@@ -6,6 +6,7 @@ import Layout from './components/webshop/Layout/Layout';
 import { AdminProducts } from './pages/admin/AdminProducts';
 import { AdminLayout } from './components/admin/Layout/AdminLayout';
 import { Notfound } from './pages/Notfound';
+import Login from './components/webshop/Login/Login';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         path: '/admin/login',
         element: <AdminLogin />,
       },
+      {
+        path: "/user/login",
+        element: <Login/>
+      }
     ],
   },
 

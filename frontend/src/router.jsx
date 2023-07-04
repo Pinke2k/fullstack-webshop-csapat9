@@ -7,6 +7,7 @@ import { AdminProducts } from './pages/admin/AdminProducts';
 import { AdminLayout } from './components/admin/Layout/AdminLayout';
 import { Notfound } from './pages/Notfound';
 import Login from './components/webshop/Login/Login';
+import Register from "./components/webshop/Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/user/login",
         element: <Login/>
+      },
+      {
+        path: "/user/register",
+        element: <Register/>
       }
     ],
   },

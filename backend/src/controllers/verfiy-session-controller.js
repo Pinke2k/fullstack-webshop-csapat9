@@ -1,12 +1,11 @@
-import cookiesUtils from '../utils/cookiesUtils';
 import sessionUtils from '../utils/sessionUtils';
 
 async function verifySession(req, res) {
   try {
-    const sessionID = cookiesUtils.get(req, 'sessionID');
+    const { sessionID } = req.body;
+    console.log('verify', sessionID);
 
     const sessionData = sessionUtils.get(sessionID);
-    console.log(sessionData);
 
     if (sessionData) {
       res.send({ ...sessionData, sessionID });
@@ -18,6 +17,7 @@ async function verifySession(req, res) {
     res.status(error.status || 500).send({ error: error.message });
   }
 }
+
 export default {
   verifySession,
 };

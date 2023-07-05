@@ -8,7 +8,8 @@ async function login(req, res, next) {
     console.log('email', email);
 
     if (!email || !password) {
-      throw new HttpError('Missing required parameter', 403);
+      res.status(403).send({ errors: ['itt a hiba nevee'] });
+      // throw new HttpError('Missing required parameter', 403);
     }
 
     const user = await usersService.login({ email, password });

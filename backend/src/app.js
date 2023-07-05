@@ -4,12 +4,13 @@ import errorHandler from './middlewares/error-handler-middleware';
 import productsRouter from './routes/products-router';
 import usersRouter from './routes/users-router';
 import verifySessionRouter from './routes/sessions-router';
+import { FRONTED_URL } from './constants';
 
 const app = express();
 app.use(
   cors({
     // frontend server, fetch-es cookie felkuldest akarunk hasznalni
-    origin: 'http://localhost:5173',
+    origin: FRONTED_URL,
     credentials: true,
   }),
 );

@@ -4,9 +4,13 @@ export default {
   createTable() {
     const sql = `
     CREATE TABLE IF NOT EXISTS products (
-      id INTEGER PRIMARY KEY,
-      name TEXT,
-      price INTEGER
+      id VARCHAR(16) NOT NULL,
+      name VARCHAR(100) NOT NULL,
+      description VARCHAR(500) NOT NULL,
+      price INTEGER NOT NULL,
+      amount INTEGER NOT NULL,
+      product_url VARCHAR(500),
+      created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `;
     db.run(sql, (err) => {

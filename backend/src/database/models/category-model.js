@@ -4,7 +4,7 @@ export default {
   createTable() {
     const sql = `
         CREATE TABLE IF NOT EXISTS categories (
-            id VARCHAR(16) NOT NULL,
+            id VARCHAR(16) PRIMARY KEY,
             name VARCHAR(50) NOT NULL UNIQUE
         )`;
     db.run(sql, (err) => {

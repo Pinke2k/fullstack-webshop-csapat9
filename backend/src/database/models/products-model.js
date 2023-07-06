@@ -4,7 +4,7 @@ export default {
   createTable() {
     const sql = `
     CREATE TABLE IF NOT EXISTS products (
-      id VARCHAR(16) NOT NULL,
+      id VARCHAR(16) PRIMARY KEY,
       name VARCHAR(100) NOT NULL,
       description VARCHAR(500) NOT NULL,
       price INTEGER NOT NULL,

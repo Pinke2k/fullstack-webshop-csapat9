@@ -3,7 +3,7 @@ import db from '../connection';
 export default {
   createTable() {
     const sql = `
-        CREATE TABLE IF NOT EXISTS orderedproducts(
+        CREATE TABLE IF NOT EXISTS ordered_products(
             order_id VARCHAR(16) NOT NULL,
             product_id VARCHAR(16) NOT NULL,
             amount INTEGER NOT NULL,

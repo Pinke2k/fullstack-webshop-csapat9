@@ -4,7 +4,7 @@ export default {
   createTable() {
     const sql = `
         CREATE TABLE IF NOT EXISTS orders (
-            id VARCHAR(16) NOT NULL,
+            id VARCHAR(16) PRIMARY KEY,
             user_id VARCHAR(16) NOT NULL,
             created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             is_done BOOLEAN NOT NULL DEFAULT FALSE,

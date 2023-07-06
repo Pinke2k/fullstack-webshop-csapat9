@@ -1,6 +1,7 @@
 import usersService from '../services/users-service';
 import sessionUtils from '../utils/sessionUtils';
 import HttpError from '../utils/httpError';
+import { nanoid } from 'nanoid';
 
 async function login(req, res, next) {
   try {
@@ -30,10 +31,12 @@ async function login(req, res, next) {
 async function register(req, res, next) {
   try {
     const { email, password, username, permission } = req.body;
+    const id = nanoid(16);
+
     if (!email || !password) {
       throw new HttpError('Missing required parameter', 403);
     }
-    const userID = await usersService.register({ email, password, username, permission });
+    const userID = await usersService.register({ id, email, password, username, permission });
     console.log(userID);
 
     if (userID) {

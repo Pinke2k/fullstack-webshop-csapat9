@@ -1,12 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import errorHandler from './middlewares/error-handler-middleware';
-import productsRouter from './routes/products-router';
-import usersRouter from './routes/users-router';
-import verifySessionRouter from './routes/sessions-router';
 import { FRONTED_URL } from './constants';
+import authRouter from './routes/auth-router';
+import apiRouter from './routes/api-router';
 
 const app = express();
+
 app.use(
   cors({
     // frontend server, fetch-es cookie felkuldest akarunk hasznalni
@@ -17,9 +17,8 @@ app.use(
 
 app.use(express.json());
 
-app.use(productsRouter);
-app.use(usersRouter);
-app.use(verifySessionRouter);
+app.use('/api', apiRouter);
+app.use('/auth', authRouter);
 
 app.use(errorHandler);
 

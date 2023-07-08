@@ -49,7 +49,7 @@ export default {
   },
 
   create({ name, description, price, amount }) {
-    const id = nanoid(8)
+    const id = nanoid(8);
     const sql =
       'INSERT INTO products(id, name, description,price,amount) VALUES($id, $name, $description,$price,$amount)';
     const params = {
@@ -68,34 +68,32 @@ export default {
     });
   },
 
-  delete(id){
-    const sql = `DELETE FROM products WHERE id = ?`
-    return new Promise((resolve,reject) => {
-      db.run(sql,[id],function(err){
-        if(err) reject(err)
-        else resolve(this) 
-      })
-    })
+  delete(id) {
+    const sql = `DELETE FROM products WHERE id = ?`;
+    return new Promise((resolve, reject) => {
+      db.run(sql, [id], function (err) {
+        if (err) reject(err);
+        else resolve(this);
+      });
+    });
   },
 
-  updateProduct({ id, name, description, price, amount, product_url }){
-      const sql = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount, product_url = $product_url WHERE id = $id`;
-      const timestamp = Date.now();
-      console.log(timestamp)
-      const params = {
-        $id: id,
-        $name: name,
-        $description: description,
-        $price: price,
-        $amount: amount,
-        $product_url: product_url,
-        // $last_updated_at: timestamp
-      };
-      return new Promise((resolve,reject) => {
-        db.run(sql,params,function(err){
-          if(err) reject(err);
-          else resolve("success")
-        })
-      })
-  }
+  updateProduct({ id, name, description, price, amount }) {
+    const sql = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount  WHERE id = $id`;
+    const timestamp = Date.now();
+    const params = {
+      $id: id,
+      $name: name,
+      $description: description,
+      $price: price,
+      $amount: amount,
+      $last_updated_at: timestamp,
+    };
+    return new Promise((resolve, reject) => {
+      db.run(sql, params, function (err) {
+        if (err) reject(err);
+        else resolve('success');
+      });
+    });
+  },
 };

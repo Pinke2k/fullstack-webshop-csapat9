@@ -4,13 +4,17 @@ export default {
   findAll() {
     return productsModel.getAll();
   },
-
   create(payload) {
     console.log('payload', payload);
     return productsModel.create(payload);
   },
-
   findOne(payload) {
     return productsModel.getOne(payload);
   },
+  delete(payload){
+    return productsModel.delete(payload)
+  },
+  updateProduct(payload){
+    return productsModel.updateProduct(payload)
+  }
 };

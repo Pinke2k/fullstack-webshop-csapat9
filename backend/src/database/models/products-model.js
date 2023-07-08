@@ -1,4 +1,5 @@
 import db from '../connection';
+import { nanoid } from 'nanoid';
 
 export default {
   createTable() {
@@ -10,7 +11,8 @@ export default {
       price INTEGER NOT NULL,
       amount INTEGER NOT NULL,
       product_url VARCHAR(500),
-      created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      last_updated_at TIMESTAMP
     )
   `;
     db.run(sql, (err) => {
@@ -46,7 +48,8 @@ export default {
     });
   },
 
-  create({ id, name, description, price, amount }) {
+  create({ name, description, price, amount }) {
+    const id = nanoid(8)
     const sql =
       'INSERT INTO products(id, name, description,price,amount) VALUES($id, $name, $description,$price,$amount)';
     const params = {
@@ -60,8 +63,39 @@ export default {
     return new Promise((resolve, reject) => {
       db.run(sql, params, function (err) {
         if (err) reject(err);
-        else resolve({ price, name, id: this.lastID, description, amount });
+        else resolve({ price, name, id, description, amount });
       });
     });
   },
+
+  delete(id){
+    const sql = `DELETE FROM products WHERE id = ?`
+    return new Promise((resolve,reject) => {
+      db.run(sql,[id],function(err){
+        if(err) reject(err)
+        else resolve(this) 
+      })
+    })
+  },
+
+  updateProduct({ id, name, description, price, amount, product_url }){
+      const sql = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount, product_url = $product_url WHERE id = $id`;
+      const timestamp = Date.now();
+      console.log(timestamp)
+      const params = {
+        $id: id,
+        $name: name,
+        $description: description,
+        $price: price,
+        $amount: amount,
+        $product_url: product_url,
+        // $last_updated_at: timestamp
+      };
+      return new Promise((resolve,reject) => {
+        db.run(sql,params,function(err){
+          if(err) reject(err);
+          else resolve("success")
+        })
+      })
+  }
 };

@@ -166,3 +166,4 @@ Temporary Items
 *.iml
 out
 gen
+backend/src/database/db/webshop.db

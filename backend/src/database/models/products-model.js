@@ -31,14 +31,36 @@ export default {
     });
   },
 
-  create({ price, name }) {
-    const sql = 'INSERT INTO products(name, price) VALUES($name, $price)';
-    const params = { $price: price, $name: name };
+  getOne(id) {
+    const sql = 'SELECT * FROM products WHERE id = ?';
+
+    return new Promise((resolve, reject) => {
+      db.get(sql, [id], (err, row) => {
+        if (err) {
+          reject(err);
+        } else {
+          console.log('row', row);
+          resolve(row);
+        }
+      });
+    });
+  },
+
+  create({ id, name, description, price, amount }) {
+    const sql =
+      'INSERT INTO products(id, name, description,price,amount) VALUES($id, $name, $description,$price,$amount)';
+    const params = {
+      $id: id,
+      $name: name,
+      $description: description,
+      $price: price,
+      $amount: amount,
+    };
 
     return new Promise((resolve, reject) => {
       db.run(sql, params, function (err) {
         if (err) reject(err);
-        else resolve({ price, name, id: this.lastID });
+        else resolve({ price, name, id: this.lastID, description, amount });
       });
     });
   },

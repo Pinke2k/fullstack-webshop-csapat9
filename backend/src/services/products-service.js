@@ -6,6 +6,11 @@ export default {
   },
 
   create(payload) {
+    console.log('payload', payload);
     return productsModel.create(payload);
+  },
+
+  findOne(payload) {
+    return productsModel.getOne(payload);
   },
 };

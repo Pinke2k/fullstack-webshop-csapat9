@@ -6,7 +6,7 @@ export default {
     authService
       .login({ email, password })
       .then(({ accessToken }) => {
-        res.send({ accessToken });
+        res.status(200).send({ accessToken });
       })
       .catch(next);
   },
@@ -15,7 +15,7 @@ export default {
     authService
       .register({ email, password })
       .then((user) => {
-        res.send(user);
+        res.status(200).send(user);
       })
       .catch((err) => next(err));
   },

@@ -18,7 +18,7 @@ export default {
             street VARCHAR(100),
             house_number VARCHAR(30),
             created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-            is_admin BOOLEAN 
+            is_admin BOOLEAN DEFAULT FALSE
         )
         `;
     db.run(sql, (err) => {
@@ -42,16 +42,16 @@ export default {
     });
   },
 
-  create({ email, passwordHash, isAdmin = false }) {
+  create({ email, passwordHash }) {
     const id = nanoid(16);
-    const sql = `INSERT INTO users (id,email,password_hash,is_admin) VALUES($id,$email,$passwordHash,$isAdmin)`;
-    const params = { $id: id, $email: email, $passwordHash: passwordHash, $isAdmin: isAdmin };
+    const sql = `INSERT INTO users (id,email,password_hash) VALUES($id,$email,$passwordHash)`;
+    const params = { $id: id, $email: email, $passwordHash: passwordHash };
 
     return new Promise((resolve, reject) => {
       db.run(sql, params, (err) => {
         if (err) reject(err);
         else {
-          resolve({ id, email, isAdmin });
+          resolve({ id, email });
         }
       });
     });

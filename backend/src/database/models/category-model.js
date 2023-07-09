@@ -1,4 +1,5 @@
 import db from '../connection';
+import { nanoid } from 'nanoid';
 
 export default {
   createTable() {
@@ -14,4 +15,71 @@ export default {
       }
     });
   },
+
+  create(name){
+    const id = nanoid(16);
+    const sql = `INSERT INTO categories (id, name) VALUES ($id, $name)`;
+    const params = {
+      $id: id,
+      $name: name
+    }
+    return new Promise((resolve, reject) => {
+      db.run(sql,params,(err) => {
+        if(err) reject(err);
+        else{
+          resolve({ name });
+        }
+      })
+    })
+  },
+
+  delete(id){
+    const sql = `DELETE FROM categories WHERE id = ?`
+    return new Promise((resolve,reject) => {
+      db.run(sql,[id],function(err) {
+        if(err) reject(err)
+        else{
+          resolve(this)
+        }
+      })
+    })
+  },
+
+  getOne(id){
+    const sql = `SELECT * FROM categories WHERE id = ?`
+    return new Promise((resolve,reject) => {
+      db.get(sql, [id], (err, row) => {
+        if(err) reject(err)
+        else{
+          resolve(row)
+        }
+      })
+    })
+  },
+  getAll(){
+    const sql = `SELECT * FROM categories`;
+    return new Promise((resolve,reject) => {
+      db.all(sql,(err,rows) => {
+        if(err) reject(err)
+        else{
+          resolve(rows)
+        }
+      })
+    })
+  },
+  updateCategory({id, name}){
+    const sql = `UPDATE categories SET name = $name WHERE id = $id`;
+    const params = {
+      $id: id,
+      $name: name
+    };
+    return new Promise((resolve,reject) => {
+      db.run(sql,params,(err) => {
+        if(err) reject(err)
+        else{
+          resolve("updated sucessfully")
+        }
+      })
+    })
+  }
 };

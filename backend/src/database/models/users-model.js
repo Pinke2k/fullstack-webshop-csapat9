@@ -56,4 +56,56 @@ export default {
       });
     });
   },
+
+  getALL() {
+    // const sql = 'SELECT id, email,is_admin FROM users';
+    const sql = 'SELECT * FROM users';
+
+    return new Promise((resolve, reject) => {
+      db.all(sql, (err, rows) => {
+        console.log(rows);
+
+        if (err) reject(err);
+        else resolve(rows);
+      });
+    });
+  },
+  readById(id) {
+    const sql = 'SELECT * FROM users WHERE id = ?';
+
+    return new Promise((resolve, reject) => {
+      db.get(sql, [id], (err, row) => {
+        if (err) reject(err);
+        else {
+          console.log(row);
+          resolve(row);
+        }
+      });
+    });
+  },
+  updateUser({ id, email, username }) {
+    const sql = `UPDATE users SET email = $email, username = $username WHERE id = $id`;
+    const params = {
+      $id: id,
+      $email: email,
+      $username: username,
+    };
+    return new Promise((resolve, reject) => {
+      db.run(sql, params, (err) => {
+        if (err) reject(err);
+        else {
+          resolve('succes');
+        }
+      });
+    });
+  },
+  delete(id) {
+    const sql = `DELETE FROM users WHERE id = ?`;
+    return new Promise((resolve, reject) => {
+      db.run(sql, [id], function (err) {
+        if (err) reject(err);
+        else resolve(this);
+      });
+    });
+  },
 };

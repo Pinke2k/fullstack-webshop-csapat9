@@ -1,5 +1,3 @@
-import React from 'react';
-
-export const AdminLayout = () => {
+export function AdminLayout() {
   return <div>AdminLayout</div>;
-};
+}

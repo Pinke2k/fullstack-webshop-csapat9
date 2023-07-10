@@ -1,7 +1,7 @@
 import React from 'react';
 
-const AdminLogin = () => {
+function AdminLogin() {
   return <div>AdminLogin</div>;
-};
+}
 
 export default AdminLogin;

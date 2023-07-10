@@ -1,7 +1,8 @@
-import React from 'react';
+import useAuth from '../../../hooks/useAuth';
 
-const Nav = () => {
-  return <div>Nav</div>;
-};
+function Nav() {
+  const { user } = useAuth();
+  return <div>Nav hello: {user?.email || 'idegen'}</div>;
+}
 
 export default Nav;

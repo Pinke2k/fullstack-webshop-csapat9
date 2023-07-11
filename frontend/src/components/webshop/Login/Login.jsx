@@ -1,55 +1,47 @@
 import { useState } from 'react';
-import { useCookies } from 'react-cookie';
-import { API_URL } from '../../../constants/constants';
+import useAuth from '../../../hooks/useAuth';
 
 export default function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-  const [cookies, setCookie] = useCookies(['user']);
+  const { login } = useAuth();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    login(formData);
+  }
 
   return (
     <>
       <h1>Login</h1>
-      <p>
-        Email:{' '}
-        <input
-          type="email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          required
-        />
-      </p>
-      <p>
-        Password:{' '}
-        <input
-          type="password"
-          value={formData.password}
-          onChange={(e) => {
-            setFormData({ ...formData, password: e.target.value }), console.log(formData);
-          }}
-          required
-        />
-      </p>
-      <p>
-        <button onClick={login}>Login</button>
-      </p>
+      <form onSubmit={handleSubmit}>
+        <p>
+          Email:{' '}
+          <input
+            type="email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            required
+          />
+        </p>
+        <p>
+          Password:{' '}
+          <input
+            type="password"
+            value={formData.password}
+            onChange={(e) => {
+              setFormData({ ...formData, password: e.target.value });
+              console.log(formData);
+            }}
+            required
+          />
+        </p>
+        <p>
+          <button type="submit">Login</button>
+        </p>
+      </form>
     </>
   );
-
-  function login() {
-    console.log(formData);
-    fetch(`${API_URL}/api/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((resp) => resp.json())
-      .then((body) => {
-        setCookie('sessionID', body.sessionID);
-      });
-  }
 }

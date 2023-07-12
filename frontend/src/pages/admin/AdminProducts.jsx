@@ -1,5 +1,9 @@
-import React from 'react';
 
-export function AdminProducts() {
-  return <div>AdminProducts</div>;
+
+const AdminProducts = () => {
+  return (
+    <div>AdminProducts</div>
+  )
 }
+
+export default AdminProducts

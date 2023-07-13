@@ -1,8 +1,9 @@
+import Products from '../../components/webshop/Products/Products'
 
-const Products = () => {
+export default function Productss() {
   return (
-    <div>Products</div>
+    <>
+      <Products/>
+    </>
   )
-}
-
-export default Products
+  }

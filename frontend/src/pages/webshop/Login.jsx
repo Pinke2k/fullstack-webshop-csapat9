@@ -1,8 +1,9 @@
+import Login from '../../components/webshop/Login/Login'
 
-const Login = () => {
+export default function Loginn() {
   return (
-    <div>Login</div>
+    <>
+      <Login/>
+    </>
   )
-}
-
-export default Login
+  }

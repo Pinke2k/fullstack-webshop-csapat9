@@ -1,8 +1,10 @@
 
-const Register = () => {
-  return (
-    <div>Register</div>
-  )
-}
+import Register from '../../components/webshop/Register/Register'
 
-export default Register
+export default function Registerr() {
+  return (
+    <>
+      <Register/>
+    </>
+  )
+  }

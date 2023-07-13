@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './components/webshop/Layout/Layout';
 import AdminProducts from './pages/admin/AdminProducts';
-import { AdminLayout } from './components/admin/Layout/AdminLayout';
+import AdminLayout from './components/admin/Layout/AdminLayout';
 import { Notfound } from './pages/Notfound';
 import Login from './pages/webshop/Login';
 import Register from './pages/webshop/Register';
@@ -23,6 +23,7 @@ import AdminNewCategory from "./pages/admin/AdminNewCategory";
 import AdminCategoryList from "./pages/admin/AdminCategoryList";
 import AdminDeleteCategory from "./pages/admin/AdminDeleteCategory";
 import AdminModifyCategory from "./pages/admin/AdminModifyCategory";
+import CreateProduct from './pages/admin/CreateProduct'
 
 
 const router = createBrowserRouter([
@@ -76,19 +77,17 @@ const router = createBrowserRouter([
 
   {
     path: '/admin',
-    element: ( /*<AdminAuth> */
-                  <AdminLayout />
-              /*</AdminAuth> */
-    ),
+    element: <AdminLayout />
+    ,
     children: [
       {
-        path: '/admin/products',
+        path: '/admin',
         element: <AdminProducts />,
       },
-      /*{
+      {
         path: "/admin/termek-felvetel",
         element: <CreateProduct />,
-      },*/
+      },
       {
         path: "/admin/termekek/:id/torles",
         element: <AdminDeleteProduct />,
@@ -98,11 +97,11 @@ const router = createBrowserRouter([
         element: <AdminModifyProduct />,
       },
       {
-        path: "/admin/vasarlok",
+        path: "/admin/customers",
         element: <AdminCustomers />,
       },
       {
-        path: "/admin/megrendelesek",
+        path: "/admin/orders",
         element: <AdminOrders />,
       },
       {
@@ -114,7 +113,7 @@ const router = createBrowserRouter([
         element: <AdminNewCategory />
       },
       {
-        path: "/admin/kategoria",
+        path: "/admin/categories",
         element: <AdminCategoryList/>
       },
       {

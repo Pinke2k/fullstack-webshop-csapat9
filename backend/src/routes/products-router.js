@@ -1,11 +1,12 @@
 import express from 'express';
 import productsController from '../controllers/products-controller';
+import authorizeMiddleware from '../middlewares/authorize-middleware';
 
 const router = express.Router();
 
 router.get('/products', productsController.findAll);
-router.post('/products', productsController.create);
 router.get('/products/:id', productsController.findOne);
-router.delete('/products/:id', productsController.delete);
-router.put('/products/:id', productsController.updateProduct);
+router.post('/products', authorizeMiddleware, productsController.create);
+router.delete('/products/:id', authorizeMiddleware, productsController.delete);
+router.put('/products/:id', authorizeMiddleware, productsController.updateProduct);
 export default router;

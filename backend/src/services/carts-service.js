@@ -12,5 +12,11 @@ export default {
     },
     getCart(payload){
         return cartsModel.getCart(payload)
+        .then( rows => {
+            const totalPrice = rows.reduce((accumulator, currentObject) => {
+            return accumulator + currentObject.sub_total;
+          }, 0);
+          return { cartItems: rows, totalPrice }
+        })
     }
 }

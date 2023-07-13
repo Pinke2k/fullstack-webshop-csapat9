@@ -4,9 +4,11 @@ export default {
   createTable() {
     const sql = `
         CREATE TABLE IF NOT EXISTS cart_products(
+            id TEXT PRIMARY KEY,
             cart_id VARCHAR(16) NOT NULL,
-            user_id VARCHAR(16) NOT NULL,
-            FOREIGN KEY (user_id) REFERENCES users(id),
+            product_id VARCHAR(16) NOT NULL,
+            amount INTEGER NOT NULL DEFAULT 1,
+            FOREIGN KEY (product_id) REFERENCES products(id),
             FOREIGN KEY (cart_id) REFERENCES carts(id)
         )
         `;

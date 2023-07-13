@@ -19,4 +19,12 @@ export default {
       }
     });
   },
+  getAllOrders(){
+    const sql = 'SELECT * FROM orderes'
+    return new Promise((resolve, reject)  => {
+      db.all(sql, (err, rows) => {
+        
+      })
+    })
+  }
 };

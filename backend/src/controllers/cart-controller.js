@@ -25,8 +25,8 @@ export default {
         .catch(next);
     },
     getCart(req, res, next){
-        const { userID } = req.params
-        cartsService.getCart(userID)
+        const { id } = req.params
+        cartsService.getCart(id)
         .then(cart => res.status(200).send(cart))
         .catch(next)
     }

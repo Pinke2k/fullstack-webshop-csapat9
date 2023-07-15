@@ -1,4 +1,4 @@
-
+import './ProductCard.css'
 
 
 
@@ -7,7 +7,7 @@ export default function ProductCard (props){
 
 
 return  (
-    <div className="product-row">
+    <div className="product-card">
     
            {/* <img src={props.product.url} alt="image" className="image" /> */ }
         

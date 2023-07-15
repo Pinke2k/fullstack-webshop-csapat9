@@ -9,7 +9,7 @@ export default function AdminNav() {
         <>
         <div className='navbar'>
             <div className="logo">
-                <NavLink to="/admin">Admin</NavLink>
+                <NavLink to="/">Home</NavLink>
             </div>
             <ul className='links'>
                 <li>

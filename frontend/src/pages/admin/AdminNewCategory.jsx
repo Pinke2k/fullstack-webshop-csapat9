@@ -1,10 +1,11 @@
+import AdminNewCategory from "../../components/admin/AdminNewCategory/AdminNewCategory"
 
-import React from 'react'
-
-const AdminNewCategory = () => {
+const AdminNewCategoryy = () => {
   return (
-    <div>AdminNewCategory</div>
+    <>
+      <AdminNewCategory/>
+    </>
   )
 }
 
-export default AdminNewCategory
+export default AdminNewCategoryy

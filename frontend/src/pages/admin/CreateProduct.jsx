@@ -1,8 +1,10 @@
-
+import AdminCreateProduct from "../../components/admin/AdminCreateProduct/AdminCreateProduct"
 
 const CreateProduct = () => {
   return (
-    <div>CreateProduct</div>
+    <>
+      <AdminCreateProduct/>
+    </>
   )
 }
 

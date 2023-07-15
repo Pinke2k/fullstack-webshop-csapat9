@@ -1,8 +1,10 @@
+import AdminCustomer from '../../components/admin/AdminCustomer/AdminCustomer'
 
-
- const AdminCustomer = () => {
+ const AdminCustomerr = () => {
   return (
-    <div>AdminCustomer</div>
+    <>
+      <AdminCustomer/>
+    </>
   )
 }
-export default AdminCustomer
+export default AdminCustomerr

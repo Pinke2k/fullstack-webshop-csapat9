@@ -1,8 +1,11 @@
+import AdminDeletProduct from "../../components/admin/AdminDeletProduct/AdminDeletProduct"
 
-const AdminDeleteProduct = () => {
+const AdminDeleteProductt = () => {
   return (
-    <div>AdminDeleteProduct</div>
+    <>
+      <AdminDeletProduct/>
+    </>
   )
 }
 
-export default AdminDeleteProduct
+export default AdminDeleteProductt

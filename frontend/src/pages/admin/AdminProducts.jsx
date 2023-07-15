@@ -1,9 +1,11 @@
+import AdminProducts from '../../components/admin/AdminProducts/AdminProducts'
 
-
-const AdminProducts = () => {
+const AdminProductss = () => {
   return (
-    <div>AdminProducts</div>
+    <>
+      <AdminProducts />
+    </>
   )
 }
 
-export default AdminProducts
+export default AdminProductss

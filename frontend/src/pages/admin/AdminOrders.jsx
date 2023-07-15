@@ -1,8 +1,12 @@
+import AdminOrders from "../../components/admin/AdminOrders/AdminOrders"
 
-const AdminOrders = () => {
+const AdminOrderss = () => {
   return (
-    <div>AdminOrders</div>
+    
+    <>
+      <AdminOrders/>
+    </>
   )
 }
 
-export default AdminOrders
+export default AdminOrderss

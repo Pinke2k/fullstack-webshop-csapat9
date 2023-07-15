@@ -1,9 +1,9 @@
+import AdminModifyCategory from "../../components/admin/AdminModifyCategory/AdminModifyCategory"
 
-
-const AdminModifyCategory = () => {
+const AdminModifyCategoryy = () => {
   return (
-    <div>AdminModifyCategory</div>
+    <AdminModifyCategory/>
   )
 }
 
-export default AdminModifyCategory
+export default AdminModifyCategoryy

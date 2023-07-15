@@ -1,10 +1,12 @@
+import AdminOrderDetails from "../../components/admin/AdminOrderDetails/AdminOrderDetails"
 
 
-
-const AdminOrderDetails = () => {
+const AdminOrderDetailss = () => {
   return (
-    <div>AdminOrderDetails</div>
+    <>
+      <AdminOrderDetails/>
+    </>
   )
 }
 
-export default AdminOrderDetails
+export default AdminOrderDetailss

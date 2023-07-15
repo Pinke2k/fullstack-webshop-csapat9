@@ -1,8 +1,11 @@
+import AdminModifyProduct from '../../components/admin/AdminModifyProduct/AdminModifyProduct'
 
-const AdminModifyProduct = () => {
+const AdminModifyProductt = () => {
   return (
-    <div>AdminModifyProduct</div>
+    <>
+      <AdminModifyProduct/>
+    </>
   )
 }
 
-export default AdminModifyProduct
+export default AdminModifyProductt

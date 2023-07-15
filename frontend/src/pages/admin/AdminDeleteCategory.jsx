@@ -1,8 +1,12 @@
+import AdminDeletCategory from "../../components/admin/AdminDeletCategory/AdminDeletCategory"
 
- const AdminDeleteCategory = () => {
+
+ const AdminDeleteCategoryy = () => {
   return (
-    <div>AdminDeleteCategory</div>
+    <>
+      <AdminDeletCategory/>
+    </>
   )
 }
 
-export default AdminDeleteCategory
+export default AdminDeleteCategoryy

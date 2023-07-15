@@ -1,13 +1,14 @@
 import useAuth from '../../../hooks/useAuth';
 import { NavLink } from "react-router-dom";
+import './Nav.css'
 
 
 function Nav() {
   const { user } = useAuth();
   return (
   <>
-   <div>Nav hello: {user?.email || 'idegen'}</div>;
-  <div>
+   {/* <div>Nav hello: {user?.email || 'idegen'}</div>; */}
+  <div className='navbar'>
     <div className="logo">
       <NavLink to="/">Főoldal/logo</NavLink>
     </div>

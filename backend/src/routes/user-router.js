@@ -4,7 +4,7 @@ import authorizeMiddleware from '../middlewares/authorize-middleware';
 
 const router = express.Router();
 
-router.get('/users', userController.findALL);
+router.get('/users', authorizeMiddleware, userController.findALL);
 router.get('/users/:id', authorizeMiddleware, userController.findOne);
 router.put('/users/:id', authorizeMiddleware, userController.uppdateUser);
 router.delete('/users/:id', authorizeMiddleware, userController.delete);

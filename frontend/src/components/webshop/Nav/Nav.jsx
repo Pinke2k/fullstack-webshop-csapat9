@@ -6,6 +6,7 @@ function Nav() {
   const { user } = useAuth();
   return (
   <>
+   <div>Nav hello: {user?.email || 'idegen'}</div>;
   <div>
     <div className="logo">
       <NavLink to="/">Főoldal/logo</NavLink>
@@ -39,7 +40,7 @@ function Nav() {
   </div>
 </>
 ); 
-  // <div>Nav hello: {user?.email || 'idegen'}</div>;
+   
 }
 
 export default Nav;

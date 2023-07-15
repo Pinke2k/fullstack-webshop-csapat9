@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
 import {readProducts} from '../../../services/api-fetch'
+import ProductCard from "../../common/ProductCard/ProductCard";
 
 export default function Products() {
-    const [ProductList, setProductList] = useState([])
-    const [SortedList, setSortedList] = useState([])
+    const [ProductList, setProductList] = useState()
+     //const [SortedList, setSortedList] = useState([])
     
     useEffect(() => {
 		readProducts().then((products) => {
-            console.log(products)
-			setProductList(Object.values(products));
-			setSortedList(Object.values(products));
+            
+			setProductList(products);
 			
 		});
 	}, []);
@@ -17,8 +17,9 @@ export default function Products() {
 
     return(
         <div className="product-box">
-            {ProductList.map((p) => (
-            console.log(p)
+            {ProductList?.map((p) => (
+            
+             <ProductCard product = {p} key = {p.id}/>
         ))}
         </div>
     )

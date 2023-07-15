@@ -7,7 +7,7 @@ export default {
     productsService
       .findAll()
       .then((products) => {
-        res.send({ products });
+        res.send( products );
       })
       .catch(next);
   },

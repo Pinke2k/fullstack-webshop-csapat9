@@ -86,7 +86,7 @@ export default {
     // return { cartID };
   },
 
-  deleteItem(cartId, productId) {
+  deleteItem({ cartId, productId }) {
     const sql = 'DELETE FROM cart_products WHERE cart_id = ? AND product_id = ?';
     console.log(productId, 'product id model');
     return new Promise((resolve, reject) => {

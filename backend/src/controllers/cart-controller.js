@@ -18,7 +18,7 @@ export default {
 
     // if (!id) throw new HttpError('Missing required parameter', 400);
     cartsService
-      .deleteItem(cartId, productId)
+      .deleteItem({ cartId, productId })
       .then((resp) => res.status(200).send(resp))
       .catch(next);
   },

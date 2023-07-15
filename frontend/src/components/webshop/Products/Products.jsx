@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import {readProducts} from '../../../services/api-fetch'
 import ProductCard from "../../common/ProductCard/ProductCard";
+import './Product.css'
 
 export default function Products() {
     const [ProductList, setProductList] = useState()

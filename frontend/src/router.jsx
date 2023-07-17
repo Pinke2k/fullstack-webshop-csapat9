@@ -71,7 +71,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-		path: "/admin/belepes",
+		path: "/admin/login",
 		element: <AdminLogin />,
 	},
 
@@ -81,19 +81,19 @@ const router = createBrowserRouter([
     ,
     children: [
       {
-        path: '/admin',
+        path: '/admin/products',
         element: <AdminProducts />,
       },
       {
-        path: "/admin/termek-felvetel",
+        path: "/admin/create-product",
         element: <CreateProduct />,
       },
       {
-        path: "/admin/termekek/:id/torles",
+        path: "/admin/products/:id/delete",
         element: <AdminDeleteProduct />,
       },
       {
-        path: "/admin/termekek/:id/modositas",
+        path: "/admin/products/:id/update",
         element: <AdminModifyProduct />,
       },
       {
@@ -105,11 +105,11 @@ const router = createBrowserRouter([
         element: <AdminOrders />,
       },
       {
-        path: "/admin/megrendelesek/:id",
+        path: "/admin/orders/:id",
         element: <AdminOrdersDetails />,
       },
       {
-        path: "/admin/kategoriak/uj-kategoria",
+        path: "/admin/categories/new-category",
         element: <AdminNewCategory />
       },
       {
@@ -117,11 +117,11 @@ const router = createBrowserRouter([
         element: <AdminCategoryList/>
       },
       {
-        path: "/admin/kategoria/:id/torles",
+        path: "/admin/categories/:id/delete",
         element: <AdminDeleteCategory />
       },
       {
-        path: "/admin/kategoria/:id/modositas",
+        path: "/admin/categories/:id/update",
         element:<AdminModifyCategory />
       }
 

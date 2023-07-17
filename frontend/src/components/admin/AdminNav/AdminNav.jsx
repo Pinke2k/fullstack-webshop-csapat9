@@ -13,7 +13,7 @@ export default function AdminNav() {
             </div>
             <ul className='links'>
                 <li>
-                    <NavLink to="/admin">Admin products</NavLink>
+                    <NavLink to="/admin/products">Admin products</NavLink>
                 </li>
                 <li>
                     <NavLink to="/admin/customers">Admin vásárlók</NavLink>

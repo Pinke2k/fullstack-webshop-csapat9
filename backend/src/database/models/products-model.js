@@ -24,7 +24,11 @@ export default {
   },
 
   getAll() {
-    const sql = 'SELECT * FROM products';
+    const sql = `SELECT p.id,p.description,p.price,p.amount, c.id AS category
+    FROM products p
+    JOIN products_categories AS pc ON p.id=pc.product_id
+    JOIN categories AS c ON c.id=pc.category_Id
+    `;
     return new Promise((resolve, reject) => {
       db.all(sql, (err, rows) => {
         if (err) reject(err);
@@ -34,7 +38,12 @@ export default {
   },
 
   getOne(id) {
-    const sql = 'SELECT * FROM products WHERE id = ?';
+    const sql = `SELECT p.id,p.description,p.price,p.amount, c.id AS category
+    FROM products p
+    JOIN products_categories AS pc ON p.id=pc.product_id
+    JOIN categories AS c ON c.id=pc.category_Id
+    WHERE p.id=?
+    `;
 
     return new Promise((resolve, reject) => {
       db.get(sql, [id], (err, row) => {
@@ -78,8 +87,10 @@ export default {
     });
   },
 
-  updateProduct({ id, name, description, price, amount }) {
-    const sql = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount  WHERE id = $id`;
+  updateProduct({ id, name, description, price, amount, categoryId }) {
+    console.log(categoryId);
+    const sql1 = `UPDATE products_categories SET category_id = ? WHERE product_id = ?`;
+    const sql2 = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount  WHERE id = $id`;
     const timestamp = Date.now();
     const params = {
       $id: id,
@@ -87,13 +98,33 @@ export default {
       $description: description,
       $price: price,
       $amount: amount,
-      $last_updated_at: timestamp,
+      // $last_updated_at: timestamp,
     };
     return new Promise((resolve, reject) => {
-      db.run(sql, params, function (err) {
+      db.run(sql1, [categoryId, id], function (err) {
         if (err) reject(err);
-        else resolve('success');
+      }),
+        db.run(sql2, params, function (err) {
+          if (err) reject(err);
+          else resolve('success');
+        });
+    });
+  },
+  addCategoriesToProduct(productId, categoryId) {
+    const sql = `
+    INSERT INTO products_categories (product_id,category_id) VALUES ($productId,$categoryId)
+    `;
+    const params = {
+      $productId: productId,
+      $categoryId: categoryId,
+    };
+
+    return new Promise((resolve, reject) => {
+      db.run(sql, params, (err) => {
+        if (err) reject(err);
+        else resolve({ succes: 'added category to product' });
       });
     });
   },
+  deleteCategoriesFromProduct() {},
 };

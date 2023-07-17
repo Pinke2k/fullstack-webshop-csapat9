@@ -1,5 +1,11 @@
-import React from 'react';
+import AdminProducts from '../../components/admin/AdminProducts/AdminProducts'
 
-export function AdminProducts() {
-  return <div>AdminProducts</div>;
+const AdminProductss = () => {
+  return (
+    <>
+      <AdminProducts />
+    </>
+  )
 }
+
+export default AdminProductss

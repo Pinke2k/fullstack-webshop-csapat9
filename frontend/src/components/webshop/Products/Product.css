@@ -1,0 +1,4 @@
+.product-box{
+    display: flex;
+    flex-direction: row;
+}

@@ -4,6 +4,7 @@ import errorHandler from './middlewares/error-handler-middleware';
 import { FRONTED_URL } from './constants';
 import authRouter from './routes/auth-router';
 import apiRouter from './routes/api-router';
+import productRouter from './routes/products-router';
 
 const app = express();
 
@@ -19,7 +20,6 @@ app.use(express.json());
 
 app.use('/api', apiRouter);
 app.use('/auth', authRouter);
-
 app.use(errorHandler);
 
 export default app;

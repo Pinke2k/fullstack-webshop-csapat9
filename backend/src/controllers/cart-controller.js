@@ -2,48 +2,35 @@ import HttpError from '../utils/httpError';
 import cartsService from '../services/carts-service';
 
 export default {
-  addToCart(req, res, next) {
-    const { userID, productID, amount, price } = req.body;
-    // if (!userID || !productID || !quanity || !price)
-    //   throw new HttpError('Missing required parameter', 400);
+  create(req, res, next) {
+    const { userId, productId, quantity } = req.body;
+    if (!userId) throw new HttpError('Missing required parameter', 400);
     cartsService
-      .addToCart({ userID, productID, amount, price })
-      .then((id) => res.status(200).send(id))
+      .create({ userId, productId, quantity })
+      .then((cart) => res.send(cart))
       .catch(next);
   },
-  deleteItem(req, res, next) {
-    const { productId } = req.params;
-    const { cartId } = req.body;
-    console.log('controller productid', productId);
+  deleteOne(req, res, next) {
+    const { userId, productId, quantity } = req.body;
+    if (!userId) throw new HttpError('Missing required parameter', 400);
+    cartsService
+      .deleteOne({ userId, productId, quantity })
+      .then((cart) => res.send(cart))
+      .catch(next);
+  },
 
-    // if (!id) throw new HttpError('Missing required parameter', 400);
-    cartsService
-      .deleteItem({ cartId, productId })
-      .then((resp) => res.status(200).send(resp))
-      .catch(next);
-  },
-  updateItem(req, res, next) {
-    // const { id } = req.params;
-    const { productId, amount, price } = req.body;
-    // if (!id) throw new HttpError('Missing required parameter', 400);
-    cartsService
-      .updateItem({ amount, price, productId })
-      .then((resp) => res.status(200).send(resp))
-      .catch(next);
-  },
   getCart(req, res, next) {
     const { id } = req.params;
     cartsService
-      .getCart(id)
-      .then((cart) => res.status(200).send(cart))
+      .findOne(id)
+      .then((cart) => res.status(200).send({ cart }))
       .catch(next);
   },
   deleteCart(req, res, next) {
-    const { userId } = req.params;
-    console.log('userid 12', userId);
-    if (!userId) throw new HttpError('Missing required parameter', 400);
+    const { id } = req.params;
+    if (!id) throw new HttpError('Missing required parameter', 400);
     cartsService
-      .deleteCart(userId)
+      .deleteCart(id)
       .then((resp) => res.status(200).send(resp))
       .catch(next);
   },

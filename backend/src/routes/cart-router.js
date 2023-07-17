@@ -3,10 +3,10 @@ import cartsController from '../controllers/cart-controller';
 
 const router = express.Router();
 
-router.post('/cart', cartsController.addToCart);
-router.delete('/cart/:userId', cartsController.deleteCart);
-router.delete('/cart/:userId/:productId', cartsController.deleteItem);
-router.put('/cart/:id', cartsController.updateItem);
+router.post('/cart/', cartsController.create);
+// router.delete('/cart/:id', cartsController.deleteCart);
+router.delete('/cart/:id', cartsController.deleteOne);
+// router.put('/cart/:id', cartsController.updateItem);
 router.get('/cart/:id', cartsController.getCart); // get user cart
 
 export default router;

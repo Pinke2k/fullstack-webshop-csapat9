@@ -1,4 +1,4 @@
-import cartProductsModel from '../database/models/cartProducts-model';
+//import cartProductsModel from '../database/models/cartProducts-model';
 import cartModel from '../database/models/cart-model';
 import productModel from '../database/models/products-model';
 import HttpError from '../utils/httpError';

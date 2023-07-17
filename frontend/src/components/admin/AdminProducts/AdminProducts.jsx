@@ -2,13 +2,14 @@ import { useEffect, useState } from "react"
 import {readProducts} from '../../../services/api-fetch'
 import ProductCard from "../../common/ProductCard/ProductCard";
 import './AdminProducts.css'
-import CreateButton from "../AdminButtons/Create";
-import DeleteButton from "../AdminButtons/Delete";
+import { useNavigate } from "react-router-dom";
+
 
 
 export default function AdminProducts(){
     const [ProductList, setProductList] = useState()
      //const [SortedList, setSortedList] = useState([])
+     const navigate = useNavigate()
     
     useEffect(() => {
 		readProducts().then((products) => { 
@@ -16,12 +17,15 @@ export default function AdminProducts(){
 			
 		});
 	}, []);
-
+ 
+    function CreateProduct () {
+        navigate(`/admin/create-product`)
+    }
 
     return(
         <>
         <div>
-            <CreateButton/>
+            <button onClick={()=>CreateProduct()}>Új termék</button>
         </div>
         <div className="product-box">
             {ProductList?.map((p) => (

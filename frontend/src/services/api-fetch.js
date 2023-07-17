@@ -15,16 +15,17 @@ import { API_URL } from '../constants/constants';
     }
 
 
-    export function createProduct(price, title, description, categoryId, url) {
+    export function createProduct( name, price, description, amount /*category */) {
         const productData = {
-            title: title,
+            name: name,
             price: price,
             description: description,
-            categoryId: categoryId,
-            url: url,
+            amount
+            //category: category,
+            //url: url,
         };
     
-        return fetch(`${API_URL}/api/products.json`, {
+        return fetch(`${API_URL}/api/products`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -37,7 +38,7 @@ import { API_URL } from '../constants/constants';
                 }
                 return response.json();
             })
-            .then((data) => {
+            /*.then((data) => {
                 const productId = data.name;
                 return fetch(`${API_URL}termekek/${productId}.json`, {
                     method: "PATCH",
@@ -50,20 +51,20 @@ import { API_URL } from '../constants/constants';
                         url: url,
                     }),
                 });
-            })
+            }) */
             .catch((error) => {
                 console.log(error.message);
             });
     }
 
 
-    export function updateProduct(id, name, price, description, ) {
-        return fetch(`${API_URL}/api/categories/${id}.json`, {
-            method: "PATCH",
+    export function updateProduct(id, name, price, description, amount ) {
+        return fetch(`${API_URL}/api/products/${id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, price, description,  }),
+            body: JSON.stringify({ name, price, description, amount }),
         })
             .then((data) => {
                 if (!data.ok) {

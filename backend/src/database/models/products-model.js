@@ -79,6 +79,7 @@ export default {
   },
 
   updateProduct({ id, name, description, price, amount }) {
+    console.log(id, name, description, price, amount)
     const sql = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount  WHERE id = $id`;
     const timestamp = Date.now();
     const params = {
@@ -87,7 +88,7 @@ export default {
       $description: description,
       $price: price,
       $amount: amount,
-      $last_updated_at: timestamp,
+      //$last_updated_at: timestamp,
     };
     return new Promise((resolve, reject) => {
       db.run(sql, params, function (err) {

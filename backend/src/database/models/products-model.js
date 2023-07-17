@@ -41,7 +41,7 @@ export default {
         if (err) {
           reject(err);
         } else {
-          console.log('row', row);
+          // console.log('row', row);
           resolve(row);
         }
       });

@@ -1,6 +1,5 @@
 import productsService from '../services/products-service';
 import HttpError from '../utils/httpError';
-import { nanoid } from 'nanoid';
 
 export default {
   findAll(req, res, next) {
@@ -33,21 +32,23 @@ export default {
       .catch(next);
   },
 
-  delete(req, res, next){
+  delete(req, res, next) {
     const { id } = req.params;
-    productsService.delete(id)
-    .then(resp => res.status(200).send("ok"))
-    .catch(next);
+    productsService
+      .delete(id)
+      .then((resp) => res.status(200).send('ok'))
+      .catch(next);
   },
-  updateProduct(req, res, next){
-    const { id } = req.params
+  updateProduct(req, res, next) {
+    const { id } = req.params;
     const { name, description, price, amount, product_url } = req.body;
 
-    productsService.updateProduct({id, name, description, price, amount, product_url})
-    .then(product => {
-      console.log(product)
-      res.status(200).send({product})
-    })
-    .catch(next);
-  }
+    productsService
+      .updateProduct({ id, name, description, price, amount, product_url })
+      .then((product) => {
+        console.log(product);
+        res.status(200).send({ product });
+      })
+      .catch(next);
+  },
 };

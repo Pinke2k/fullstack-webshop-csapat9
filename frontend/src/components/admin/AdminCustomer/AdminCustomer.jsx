@@ -19,7 +19,6 @@ export default function AdminCustomer(){
         <>
         <div className="users-box">
             {UserList?.map((p) => (
-            console.log(p),
              <UserCard users = {p} key = {p.id}/> 
              
              ))} 

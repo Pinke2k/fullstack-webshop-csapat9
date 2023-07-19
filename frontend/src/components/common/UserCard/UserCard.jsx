@@ -9,6 +9,8 @@ export default function UserCard(props){
             
              <div className="users-content">
                 <h2 className="users-name">{props.users.id}</h2>
+
+                {/* <h2 className="users-name">{props.users.username}</h2> */}
     
                 <h2 className="users-email">{props.users.email}</h2> 
     

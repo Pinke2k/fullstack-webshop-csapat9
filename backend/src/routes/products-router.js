@@ -8,5 +8,5 @@ router.get('/products', productsController.findAll);
 router.get('/products/:id', productsController.findOne);
 router.post('/products', /*authorizeMiddleware, */productsController.create);
 router.delete('/products/:id',/* authorizeMiddleware,*/ productsController.delete);
-router.put('/products/:id',/* authorizeMiddleware,*/ productsController.updateProduct);
+router.put('/products/:productId',/* authorizeMiddleware,*/ productsController.updateProduct);
 export default router;

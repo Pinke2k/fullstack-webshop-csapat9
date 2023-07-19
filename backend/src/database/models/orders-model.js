@@ -20,10 +20,44 @@ export default {
     });
   },
   getAllOrders(){
-    const sql = 'SELECT * FROM orderes'
+    const sql = 'SELECT * FROM orders'
     return new Promise((resolve, reject)  => {
       db.all(sql, (err, rows) => {
-        
+        if(err) reject(err)
+        else{
+          resolve(rows)
+        }
+      })
+    })
+  },
+  createOrder({ id, userId, created, isDone, deliveryDate }){
+    const sql = `INSERT INTO orders ( id, user_id, created, is_done, deliver_date ) VALUES ($id, $userId, $created, $isDone, $deliveryDate )`;
+    const params = {
+      $id :  id,
+      $userId : userId,
+      $created: created,
+      $isDone : isDone,
+      $deliveryDate : deliveryDate
+    }
+
+    return new Promise((resolve,reject) => {
+      db.run(sql,params, (err) => {
+        if(err) reject(err)
+        else{
+          resolve("order sent")
+        }
+      })
+    })
+  },
+  getUserOrders(userId){
+    const sql = `SELECT * FROM orders WHERE user_id = ?`
+    
+    return new Promise((resolve, reject) => {
+      db.all(sql,[userId], (err, rows) => {
+        if(err) reject(err)
+        else{
+          resolve(rows)
+        }
       })
     })
   }

@@ -16,6 +16,12 @@ export default {
     return productsModel.delete(payload);
   },
   updateProduct(payload) {
-    return productsModel.updateProduct(payload);
+    console.log(payload.categoryId)
+    if(!payload.categoryId){
+      return productsModel.deleteCategoriesFromProduct(payload.productId, payload.currentCategoryId)
+    }
+    else{
+      return productsModel.updateProduct(payload);
+    }
   },
 };

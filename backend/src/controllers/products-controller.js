@@ -41,11 +41,11 @@ export default {
       .catch(next);
   },
   updateProduct(req, res, next) {
-    const { id } = req.params;
-    const { name, description, price, amount, categoryId } = req.body;
+    const { productId } = req.params;
+    const { name, description, price, amount, currentCategoryId, categoryId } = req.body;
 
     productsService
-      .updateProduct({ id, name, description, price, amount, categoryId })
+      .updateProduct({ productId, name, description, price, amount, currentCategoryId, categoryId })
       .then((product) => {
         console.log(product);
         res.status(200).send({ product });

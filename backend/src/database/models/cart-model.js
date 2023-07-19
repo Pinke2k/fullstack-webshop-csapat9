@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import db from '../connection';
+import { normalizeParams, paramsToFieldsExpr } from '../../utils/sql-helper';
 
 export default {
   createTable() {
@@ -36,11 +37,11 @@ export default {
     });
   },
   getOne(id) {
-    const sql = `SELECT c.id,ci.quantity,p.name,p.price,p.price*ci.quantity AS subtotal
+    const sql = `SELECT ci.product_id, ci.quantity, p.name, p.price, p.price * ci.quantity AS subtotal
     FROM cart c
-    JOIN cart_item ci ON c.id=ci.cart_id
-    JOIN products p ON ci.product_id=p.id
-    WHERE c.user_id=?`;
+    JOIN cart_item ci ON c.id = ci.cart_id
+    JOIN products p ON ci.product_id = p.id
+    WHERE c.user_id = ?`;
     return new Promise((resolve, reject) => {
       db.all(sql, id, (err, rows) => {
         if (err) {
@@ -104,30 +105,7 @@ export default {
     await db.runAsync(cartItemsSQL, cartItemsParams);
     return { message: 'successful created' };
   },
-  async deleteOne({ userId, productId, quantity }) {
-    const cartId = await this.getCartIdByUserId(userId);
-    const cartItem = await this.getCartItem({ cartId, productId });
 
-    if (!cartItem) {
-      console.log(cartItem);
-    }
-
-    const updatedQuantity = Number(cartItem.quantity) - Number(quantity);
-
-    if (updatedQuantity > 0) {
-      await db.runAsync('UPDATE cart_item SET quantity = $qty WHERE id = $id', {
-        $qty: updatedQuantity,
-        $id: cartItem.id,
-      });
-      return { message: 'successful updated' };
-    } else {
-      const deleteCartItemSQL = 'DELETE FROM cart_item WHERE id = $id';
-      const deleteCartItemParams = { $id: cartItem.id };
-
-      await db.runAsync(deleteCartItemSQL, deleteCartItemParams);
-      return { message: 'successful deleted' };
-    }
-  },
   async deleteCartIdByUserId(userId) {
     const sql = 'DELETE FROM cart WHERE user_id = $userId';
     const params = { $userId: userId };
@@ -136,5 +114,25 @@ export default {
     await db.runAsync(sql, params);
 
     return { message: 'successful deleted Cart' };
+  },
+  async deleteCart(id) {
+    const cartId = await this.getCartIdByUserId(id);
+    const sql = 'DELETE  FROM cart_item WHERE cart_id=$cart_id';
+    const param = { $cart_id: cartId };
+    await db.runAsync(sql, param);
+    return { message: 'successful deleted Cart' };
+  },
+  async update(id, payload) {
+    const cartId = await this.getCartIdByUserId(id);
+    const params = normalizeParams({
+      $product_id: payload.productId,
+      $quantity: payload.quantity,
+      $cart_id: cartId,
+    });
+    const sql = `UPDATE cart_item SET ${paramsToFieldsExpr(params).join(
+      ', ',
+    )} WHERE cart_id=$cart_id`;
+    await db.runAsync(sql, params);
+    return { message: 'successful updated Cart' };
   },
 };

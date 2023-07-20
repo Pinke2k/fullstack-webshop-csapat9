@@ -129,10 +129,12 @@ export default {
       $quantity: payload.quantity,
       $cart_id: cartId,
     });
+
     const sql = `UPDATE cart_item SET ${paramsToFieldsExpr(params).join(
       ', ',
-    )} WHERE cart_id=$cart_id`;
+    )} WHERE cart_id=$cart_id AND product_id=$product_id`;
     await db.runAsync(sql, params);
+
     return { message: 'successful updated Cart' };
   },
 };

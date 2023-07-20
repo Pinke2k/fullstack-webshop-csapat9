@@ -15,13 +15,13 @@ import { API_URL } from '../constants/constants';
     }
 
 
-    export function createProduct( name, price, description, amount /*category */) {
+    export function createProduct( name, price, description, amount, category="besorolatlan" ) {
         const productData = {
             name: name,
             price: price,
             description: description,
-            amount
-            //category: category,
+            amount,
+            category: category,
             //url: url,
         };
     

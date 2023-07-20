@@ -5,16 +5,17 @@ export default {
     return productsModel.getAll();
   },
   create(payload) {
-    console.log('payload', payload);
-    return productsModel.create(payload);
+    return productsModel.create(payload).then((resp) => {
+      productsModel.addCategoriesToProduct(resp.id, payload.categoryId);
+    });
   },
   findOne(payload) {
     return productsModel.getOne(payload);
   },
-  delete(payload){
-    return productsModel.delete(payload)
+  delete(payload) {
+    return productsModel.delete(payload);
   },
-  updateProduct(payload){
-    return productsModel.updateProduct(payload)
-  }
+  updateProduct(payload) {
+    return productsModel.updateProduct(payload);
+  },
 };

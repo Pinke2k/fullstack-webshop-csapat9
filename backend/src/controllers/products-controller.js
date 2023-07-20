@@ -6,7 +6,7 @@ export default {
     productsService
       .findAll()
       .then((products) => {
-        res.send( products );
+        res.send(products);
       })
       .catch(next);
   },
@@ -22,12 +22,13 @@ export default {
   },
 
   create(req, res, next) {
-    const { name, description, price, amount } = req.body;
-    console.log(price);
-    console.log(name);
+    const { name, description, price, amount, categoryId } = req.body;
+    // console.log(price);
+    // console.log(name);
+
     if (!price || !name) throw new HttpError('missing required parameter', 400);
     productsService
-      .create({ name, description, price: Number(price), amount: Number(amount) })
+      .create({ name, description, price: Number(price), amount: Number(amount), categoryId })
       .then((product) => res.status(201).send(product))
       .catch(next);
   },
@@ -41,10 +42,10 @@ export default {
   },
   updateProduct(req, res, next) {
     const { id } = req.params;
-    const { name, description, price, amount, product_url } = req.body;
+    const { name, description, price, amount, categoryId } = req.body;
 
     productsService
-      .updateProduct({ id, name, description, price, amount, product_url })
+      .updateProduct({ id, name, description, price, amount, categoryId })
       .then((product) => {
         console.log(product);
         res.status(200).send({ product });

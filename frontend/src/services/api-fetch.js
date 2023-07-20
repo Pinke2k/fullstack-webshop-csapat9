@@ -96,4 +96,15 @@ import { API_URL } from '../constants/constants';
     }
     
 
-    
+    export function readUsers() {
+        return fetch(`${API_URL}/api/users`)
+            .then((resp) => {
+                if (!resp.ok) {
+                    throw new Error("Hiba a termékek lekérdezése során.");
+                }
+                return resp.json();
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }

@@ -56,7 +56,6 @@ export default {
   getCartIdByUserId(userId) {
     const sql = 'SELECT id FROM cart WHERE user_id = $userId';
     const params = { $userId: userId };
-    console.log('getCart...');
     return db.getAsync(sql, params).then((row) => {
       if (!row?.id) return null;
       const { id } = row;
@@ -115,12 +114,18 @@ export default {
 
     return { message: 'successful deleted Cart' };
   },
-  async deleteCart(id) {
-    const cartId = await this.getCartIdByUserId(id);
-    const sql = 'DELETE  FROM cart_item WHERE cart_id=$cart_id';
-    const param = { $cart_id: cartId };
-    await db.runAsync(sql, param);
-    return { message: 'successful deleted Cart' };
+  async deleteCartItem(userId, productId) {
+    const cartId = await this.getCartIdByUserId(userId);
+    console.log('cartid', cartId);
+
+    console.log('productid model', productId);
+    const sql = `DELETE FROM cart_item 
+                WHERE cart_item.cart_id = $cartId
+                AND cart_item.product_id = $productId`;
+
+    const params = { $cartId: cartId, $productId: productId };
+    await db.runAsync(sql, params);
+    return { message: 'successful deleted cartItem' };
   },
   async update(id, payload) {
     const cartId = await this.getCartIdByUserId(id);

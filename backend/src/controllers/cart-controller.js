@@ -28,6 +28,23 @@ export default {
       next(error);
     }
   },
+  async deleteCartItem(req, res, next) {
+    const { id, productId } = req.params;
+    console.log('id', id);
+
+    if (!id || !productId) {
+      throw new HttpError('Missing product id or cart id', 400);
+    }
+
+    try {
+      console.log('procutid', productId);
+      const result = await cartsService.deleteCartItem(id, productId);
+      console.log(result, 'resul');
+      res.status(204).send(result);
+    } catch (error) {
+      next(error);
+    }
+  },
   update(req, res, next) {
     const { id } = req.params;
     const { productId, quantity } = req.body;

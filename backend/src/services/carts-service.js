@@ -25,4 +25,10 @@ export default {
     const result = await cartModel.update(id, payload);
     return result;
   },
+  async deleteCartItem(id, payload) {
+    if (!id) throw new Error('missing id');
+    const result = await cartModel.deleteCartItem(id, payload);
+
+    return result;
+  },
 };

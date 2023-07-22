@@ -10,6 +10,7 @@ export default {
     const result = await cartModel.getOne(id);
 
     const totalPrice = [result[0]].reduce((accumulator, currentObject) => {
+      console.log(currentObject)
       return accumulator + currentObject.subtotal;
     }, 0);
 

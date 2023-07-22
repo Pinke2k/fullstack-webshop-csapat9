@@ -30,23 +30,33 @@ export default {
       })
     })
   },
-  createOrder({ id, userId, created, isDone, deliveryDate }){
-    const sql = `INSERT INTO orders ( id, user_id, created, is_done, deliver_date ) VALUES ($id, $userId, $created, $isDone, $deliveryDate )`;
-    const params = {
+  createOrder({ id, userId, created, isDone, deliveryDate }, cartItems){
+    const sql1 = `INSERT INTO orders ( id, user_id, created, is_done, deliver_date ) VALUES ($id, $userId, $created, $isDone, $deliveryDate )`;
+    const params1 = {
       $id :  id,
       $userId : userId,
       $created: created,
       $isDone : isDone,
       $deliveryDate : deliveryDate
     }
-
+    const sql2 = `INSERT INTO ordered_products ( order_id, product_id, quantity, total_price ) VALUES (?, ?, ?, ?)`;
+   
     return new Promise((resolve,reject) => {
-      db.run(sql,params, (err) => {
-        if(err) reject(err)
-        else{
-          resolve("order sent")
-        }
-      })
+      
+        db.run(sql1,params1, (err) => {
+          if(err) reject(err)
+          else{
+            cartItems.forEach(item => {
+              console.log("item ",item)
+              db.run(sql2,[id, item.product_id, item.quantity, item.subtotal],(err) => {
+                if(err) reject(err)
+                else{
+                  resolve("order sent")
+                }
+              })
+            });
+          }
+        })
     })
   },
   getUserOrders(userId){
@@ -58,6 +68,23 @@ export default {
         else{
           resolve(rows)
         }
+      })
+    })
+  },
+  deleteOrder(orderId){
+    const sql1 = `DELETE FROM orders WHERE id = ?`
+    const sql2 = `DELETE FROM ordered_products WHERE order_id = ?`
+    return new Promise((resolve, reject) => {
+      db.serialize(() => {
+        db.run(sql2,[orderId],(err) => {
+          if(err) reject(err)
+        });
+        db.run(sql1,[orderId],(err) => {
+          if(err) reject(err)
+          else{
+            resolve("order deleted")
+          }
+        });
       })
     })
   }

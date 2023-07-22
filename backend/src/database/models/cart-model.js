@@ -36,7 +36,7 @@ export default {
     });
   },
   getOne(id) {
-    const sql = `SELECT c.id,ci.quantity,p.name,p.price,p.price*ci.quantity AS subtotal
+    const sql = `SELECT ci.product_id, ci.quantity, p.name, p.price, p.price * ci.quantity AS subtotal
     FROM cart c
     JOIN cart_item ci ON c.id=ci.cart_id
     JOIN products p ON ci.product_id=p.id

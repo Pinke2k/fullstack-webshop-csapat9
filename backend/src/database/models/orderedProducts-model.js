@@ -6,7 +6,8 @@ export default {
         CREATE TABLE IF NOT EXISTS ordered_products(
             order_id VARCHAR(16) NOT NULL,
             product_id VARCHAR(16) NOT NULL,
-            amount INTEGER NOT NULL,
+            quantity INTEGER NOT NULL,
+            total_price INTEGER NOT NULL,
             FOREIGN KEY (order_id) REFERENCES orders(id),
             FOREIGN KEY (product_id) REFERENCES products(id)
         )

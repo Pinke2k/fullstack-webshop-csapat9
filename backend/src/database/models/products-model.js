@@ -24,7 +24,7 @@ export default {
   },
 
   getAll() {
-    const sql = `SELECT p.id,p.description,p.price,p.amount, c.id AS category
+    const sql = `SELECT p.id,p.description,p.price,p.amount, p.name, c.id AS category
     FROM products p
     JOIN products_categories AS pc ON p.id=pc.product_id
     JOIN categories AS c ON c.id=pc.category_Id

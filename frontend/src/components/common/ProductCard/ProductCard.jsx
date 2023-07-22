@@ -1,6 +1,5 @@
 import './ProductCard.css'
-import UpadateButton from '../../admin/AdminButtons/Update';
-import DeleteButton from '../../admin/AdminButtons/Delete';
+;
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from 'react';
 
@@ -13,10 +12,13 @@ export default function ProductCard (props){
 		const [id, setId] = useState(props.id);
 		function deleteProductt(id) {
 			navigate(`/admin/products/${id}/delete`);
-            console.log("props.id ",props.product.id)
+             //console.log("props.id ",props.product.id)
 			
-		} 
-	
+		}; 
+
+        function modifyProduct(id) {
+            navigate(`/admin/products/${id}/update`);
+        }
 	
 		
 return  (
@@ -31,7 +33,7 @@ return  (
 
             <h2 className="product-price">{props.product.price + " Ft"}</h2>
 
-            <UpadateButton id = {props.product.id} />
+            <button onClick={()=> modifyProduct(props.product.id)} > Modositas </button>
             
             <button className = "gommmb" onClick={()=> deleteProductt(props.product.id)} > Torles </button>
 

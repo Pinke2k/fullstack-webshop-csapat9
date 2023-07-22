@@ -82,7 +82,8 @@ import './Cart.css';
 import CartItemCard from './CartItemCard';
 
 const Cart = () => {
-  const { cartItems, totalPrice, incrementAmount, decrementAmount, removeCart } = useCart(); // Használjuk a useCart hookot
+  const { cartItems, totalPrice, incrementAmount, decrementAmount, removeCart, removeCartItem } =
+    useCart();
 
   return (
     <section className="grid-container">
@@ -107,14 +108,17 @@ const Cart = () => {
                     cartItemAmount={product.quantity}
                     incrementAmount={() => incrementAmount(product.product_id)}
                     decrementAmount={() => decrementAmount(product.product_id)}
-                    removeCart={() => removeCart(product.product_id)}
+                    removeCart={() => removeCartItem(product.product_id)}
                   />
                 ))}
 
                 <div className="row total">
                   <div className="price">Végösszeg: {totalPrice} Ft</div>
                 </div>
-                <div className="row checkout">Megrendelés</div>
+                <div className="row checkout">
+                  <button>Megrendelés</button>
+                  <button onClick={removeCart}>kosár törlése</button>
+                </div>
               </div>
             </div>
           </>

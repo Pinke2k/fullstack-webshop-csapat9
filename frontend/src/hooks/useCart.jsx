@@ -28,6 +28,14 @@ export const useCart = () => {
 
   const removeCart = async (productId) => {
     try {
+      await cartFetch.deleteCart(id, productId);
+      fetchCartItems();
+    } catch (err) {
+      console.error('hiba a termék törlése során');
+    }
+  };
+  const removeCartItem = async (productId) => {
+    try {
       await cartFetch.deleteCartItem(id, productId);
       fetchCartItems();
     } catch (err) {
@@ -69,5 +77,6 @@ export const useCart = () => {
     incrementAmount,
     decrementAmount,
     removeCart,
+    removeCartItem,
   };
 };

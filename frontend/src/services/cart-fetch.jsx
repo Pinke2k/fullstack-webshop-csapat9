@@ -1,13 +1,18 @@
 import { API_URL } from '../constants/constants';
+import { token } from '../constants/constants';
 
 export default {
   async getCartItems(id) {
     try {
-      const response = await fetch(`${API_URL}/api/cart/${id}`);
+      const response = await fetch(`${API_URL}/api/cart/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (!response.ok) {
         if (response.status === 500) {
-          return []; // Válasz helyett üres tömb
+          return [];
         }
         throw new Error('Hiba a kosártermékek lekérdezésénél');
       }
@@ -16,7 +21,7 @@ export default {
       return cartItems;
     } catch (error) {
       console.log(error.message);
-      return null; // Visszatérünk null értékkel, ha valamilyen hiba történik
+      return null;
     }
   },
 
@@ -26,6 +31,7 @@ export default {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ userId, productId, quantity }),
       });
@@ -53,6 +59,7 @@ export default {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(data),
       });
@@ -69,25 +76,46 @@ export default {
     }
   },
 
-  async deleteCartItem(userId) {
+  async deleteCart(userId) {
     try {
       const response = await fetch(`${API_URL}/api/cart/${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ userId }),
       });
 
-      if (!response.ok) {
-        throw new Error('Hiba a kosár törlése közben');
+      if (response.status !== 204) {
+        const result = await response.json();
+        console.log('Kosár törölve:', result);
+      } else {
+        console.log('Kosár törölve');
       }
-
-      const result = await response.json();
-      console.log('Kosár elemek sikeresen törölve:', result);
-      // További műveletek a kapott válasszal
     } catch (error) {
-      console.error('Hiba a kosár  törlése közben:', error);
+      console.error('Hiba a kosár törlése közben:', error);
+    }
+  },
+  async deleteCartItem(userId, productId) {
+    try {
+      const response = await fetch(`${API_URL}/api/cart/${userId}/${productId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ userId, productId }),
+      });
+
+      if (response.status !== 204) {
+        const result = await response.json();
+        console.log('Kosár elem törölve:', result);
+      } else {
+        console.log('Kosár elem törölve');
+      }
+    } catch (error) {
+      console.error('Hiba a kosáritem törlése közben:', error);
     }
   },
 };

@@ -4,14 +4,14 @@ import cartFetch from '../services/cart-fetch';
 import useAuth from './useAuth';
 
 export const useCart = () => {
-  const { cartItems, totalPrice, fetchCartItems } = useContext(CartContext);
+  const { cartItems, totalPrice, fetchCartItems, updateCart } = useContext(CartContext);
   const { user } = useAuth();
   const id = user?.id;
 
   const updateCartItem = async (productId, quantity) => {
     try {
       await cartFetch.updateCart(id, productId, quantity);
-      fetchCartItems();
+      updateCart(productId, quantity);
     } catch (error) {
       console.error('Hiba a kosár elemek frissítésekor:', error);
     }
@@ -20,7 +20,7 @@ export const useCart = () => {
   const addToCart = async (productId, quantity) => {
     try {
       await cartFetch.createCartItem(id, productId, quantity);
-      fetchCartItems();
+      updateCart(productId, quantity);
     } catch (error) {
       console.error('Hiba a kosár elemek hozzáadása közben:', error);
     }
@@ -66,9 +66,9 @@ export const useCart = () => {
 
   useEffect(() => {
     if (id) {
-      fetchCartItems(id);
+      fetchCartItems();
     }
-  }, [id]);
+  }, []);
 
   return {
     cartItems,

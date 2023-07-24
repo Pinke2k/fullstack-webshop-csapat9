@@ -23,14 +23,29 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const updateCart = (productId, quantity) => {
+    const cartDataItems = cartItems.map((item) => {
+      if (item.product_id === productId) {
+        return { ...item, quantity: quantity, subtotal: quantity * item.price };
+      } else {
+        return item;
+      }
+    });
+    const updatetotalPrice = cartDataItems.reduce((accumulator, currentObject) => {
+      return accumulator + currentObject.subtotal;
+    }, 0);
+    setTotalPrice(updatetotalPrice);
+    setCartItems(cartDataItems);
+  };
+
   useEffect(() => {
     if (id) {
       fetchCartItems();
     }
-  }, [id]);
+  }, []);
 
   return (
-    <CartContext.Provider value={{ cartItems, totalPrice, fetchCartItems }}>
+    <CartContext.Provider value={{ cartItems, totalPrice, fetchCartItems, updateCart }}>
       {children}
     </CartContext.Provider>
   );

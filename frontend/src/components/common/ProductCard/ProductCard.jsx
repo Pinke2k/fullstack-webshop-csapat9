@@ -1,14 +1,15 @@
 import './ProductCard.css';
 import UpadateButton from '../../admin/AdminButtons/Update';
-import DeleteButton from '../../admin/AdminButtons/Delete';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useCart } from '../../../hooks/useCart';
 
 export default function ProductCard(props) {
   const navigate = useNavigate();
+
   const { addToCart } = useCart(); // Használd az addToCart függvényt a useCart-ból
   const [id, setId] = useState(props.id);
+  console.log('props', props.product.id);
 
   function deleteProduct(id) {
     navigate(`/admin/products/${id}/delete`);

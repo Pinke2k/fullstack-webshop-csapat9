@@ -14,6 +14,9 @@ export default function ProductCard(props) {
     navigate(`/admin/products/${id}/delete`);
     console.log('props.id ', props.product.id);
   }
+  function modifyProduct(id) {
+    navigate(`/admin/products/${id}/update`);
+  }
 
   return (
     <div className="product-card">

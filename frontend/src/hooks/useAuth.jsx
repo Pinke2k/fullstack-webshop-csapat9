@@ -5,18 +5,23 @@ import authFetches from '../services/auth-fetch';
 
 const useAuth = () => {
   const { auth, setAuth } = useContext(AuthContext);
+
   useEffect(() => {
     if (auth.token) {
       const user = jwtDecode(auth.token);
+      // console.log('User:', user); // Ellenőrzés a konzolban
       setAuth((prev) => ({ ...prev, user }));
     }
-  }, [auth.token]);
+  }, [auth.token, setAuth]);
+
   function login(formData) {
     authFetches.userLogin(formData).then((resp) => {
       setAuth({ token: resp.accessToken });
       localStorage.setItem('accessToken', resp.accessToken);
     });
   }
+
   return { ...auth, login };
 };
+
 export default useAuth;

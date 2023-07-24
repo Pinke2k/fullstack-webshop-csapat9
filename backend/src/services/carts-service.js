@@ -9,17 +9,26 @@ export default {
     if (!id) throw new Error('Missing userid params');
     const result = await cartModel.getOne(id);
 
-    const totalPrice = [result[0]].reduce((accumulator, currentObject) => {
-      console.log(currentObject)
+    const totalPrice = result.reduce((accumulator, currentObject) => {
       return accumulator + currentObject.subtotal;
     }, 0);
 
     return { cartItems: result, totalPrice };
   },
-  deleteOne(payload) {
-    return cartModel.deleteOne(payload);
+  async deleteCart(id) {
+    if (!id) throw new Error('Missing id params');
+    const result = await cartModel.deleteCartIdByUserId(id);
+    return result;
   },
-  deleteCart(payload) {
-    return cartModel.deleteCartIdByUserId(payload);
+  async update(id, payload) {
+    if (!id) throw new Error('Missing id');
+    const result = await cartModel.update(id, payload);
+    return result;
+  },
+  async deleteCartItem(id, payload) {
+    if (!id) throw new Error('missing id');
+    const result = await cartModel.deleteCartItem(id, payload);
+
+    return result;
   },
 };

@@ -10,28 +10,54 @@ export default {
       .then((cart) => res.send(cart))
       .catch(next);
   },
-  deleteOne(req, res, next) {
-    const { userId, productId, quantity } = req.body;
-    if (!userId) throw new HttpError('Missing required parameter', 400);
-    cartsService
-      .deleteOne({ userId, productId, quantity })
-      .then((cart) => res.send(cart))
-      .catch(next);
-  },
 
   getCart(req, res, next) {
     const { id } = req.params;
     cartsService
       .findOne(id)
-      .then((cart) => res.status(200).send({ cart }))
+      .then((cart) => res.status(200).send(cart))
       .catch(next);
   },
-  deleteCart(req, res, next) {
+  async deleteCart(req, res, next) {
     const { id } = req.params;
-    if (!id) throw new HttpError('Missing required parameter', 400);
+    if (!id) throw new HttpError('Missing product id', 400);
+    try {
+      const result = await cartsService.deleteCart(id);
+      res.status(204).send(result);
+    } catch (error) {
+      next(error);
+    }
+  },
+  async deleteCartItem(req, res, next) {
+    const { id, productId } = req.params;
+    console.log('id', id);
+
+    if (!id || !productId) {
+      throw new HttpError('Missing product id or cart id', 400);
+    }
+
+    try {
+      console.log('procutid', productId);
+      const result = await cartsService.deleteCartItem(id, productId);
+      console.log(result, 'resul');
+      res.status(204).send(result);
+    } catch (error) {
+      next(error);
+    }
+  },
+  update(req, res, next) {
+    const { id } = req.params;
+    const { productId, quantity } = req.body;
+    if (!quantity) throw new HttpError('Missing required parameter', 400);
     cartsService
-      .deleteCart(id)
-      .then((resp) => res.status(200).send(resp))
+      .update(id, { productId, quantity })
+      .then((changes) => {
+        if (changes > 0) {
+          res.status(201).send({ changes, productId, quantity });
+        } else {
+          res.status(200).send({ changes: 0, productId, quantity });
+        }
+      })
       .catch(next);
   },
 };

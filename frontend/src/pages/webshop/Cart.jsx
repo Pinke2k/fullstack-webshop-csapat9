@@ -1,8 +1,7 @@
+import Cart from '../../components/webshop/Cart/Cart';
 
 const cart = () => {
-  return (
-    <div>cart</div>
-  )
-}
+  return <Cart />;
+};
 
-export default cart
+export default cart;

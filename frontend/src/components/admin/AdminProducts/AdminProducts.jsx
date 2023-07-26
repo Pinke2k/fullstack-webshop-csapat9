@@ -29,7 +29,7 @@ export default function AdminProducts(){
         </div>
         <div className="product-box">
             {ProductList?.map((p) => (
-            console.log(p),
+
              <ProductCardAdmin product = {p} key = {p.id}/> 
              
              ))} 

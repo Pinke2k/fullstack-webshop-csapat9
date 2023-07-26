@@ -16,9 +16,9 @@ export default {
     return productsModel.delete(payload);
   },
   updateProduct(payload) {
-    console.log(payload.categoryId)
+    console.log("itt mit ad",payload.categoryId)
     if(!payload.categoryId){
-      return productsModel.deleteCategoriesFromProduct(payload.productId, payload.currentCategoryId)
+      return productsModel.deleteCategoriesFromProduct(payload.productId, payload.categoryId)
     }
     else{
       return productsModel.updateProduct(payload);

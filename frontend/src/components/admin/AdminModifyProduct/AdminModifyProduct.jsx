@@ -19,7 +19,7 @@ export default function AdminUpdateProduct() {
     const [category, setCategory] = useState("")
     const [categoryList, setCategoryList] = useState()
 
-	console.log("kategoriaaa",category)
+	
     useEffect(() => {
 		readProducts()
         .then((data) => {
@@ -35,7 +35,6 @@ export default function AdminUpdateProduct() {
 			setNewDescription(productUpdate.description);
             SetNewAmount(productToUpdate.amount);
             setCategory(productToUpdate.category);
-
            
 		
 		});
@@ -57,7 +56,7 @@ export default function AdminUpdateProduct() {
                 
         })},[]);
      
-        console.log("kategoriak222:", categoryList)
+      
 	function handleNameChange(e) {
 		setNewName(e.target.value);
         e.preventDefault()
@@ -77,10 +76,9 @@ export default function AdminUpdateProduct() {
         e.preventDefault()
 	}
     function handleCategoryChange(e) {
-        e.preventDefault()
+        //e.preventDefault()
 		setCategory(e.target.value);
        
-        console.log("konzol",e.target.value)
 	}
 
 
@@ -91,7 +89,6 @@ export default function AdminUpdateProduct() {
 		updateProduct(id, newName, newPrice, newDescription, newAmount, category)
 			//.then(() => fileUpload(id))
 			.then(() => {
-                console.log("barmi",category)
 				navigate("/admin/products");
                 
 				toast.success("Termék sikeresen módosítva!", {
@@ -152,13 +149,15 @@ export default function AdminUpdateProduct() {
                     />
                     <label htmlFor="category">kategóriák</label>
                     <select value={category} onChange={handleCategoryChange}>
-                        <option key={0} value={category}>
+                        <option key={0} value={""}>
                             Válassz kategóriát!
                         </option>
                         { categoryList?.map((category, idx) => {
+                            
                             return(
                                 <option key={idx + 1} value={category.id} >
                                     {category.name}
+                                    
                                 </option>
                             );
                         }) }

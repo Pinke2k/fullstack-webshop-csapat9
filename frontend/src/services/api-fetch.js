@@ -57,13 +57,13 @@ export function createProduct(name, price, description, amount, categoryId = 'as
   );
 }
 
-export function updateProduct(id, name, price, description, amount, category) {
+export function updateProduct(id, name, price, description, amount, categoryId) {
   return fetch(`${API_URL}/api/products/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name, price, description, amount, category }),
+    body: JSON.stringify({ name, price, description, amount, categoryId }),
   })
     .then((data) => {
       if (!data.ok) {

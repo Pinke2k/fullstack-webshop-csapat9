@@ -33,9 +33,9 @@ return  (
 
             <h2 className="product-price">{props.product.price + " Ft"}</h2>
 
-           {/* <button onClick={()=> modifyProduct(props.product.id)} > Modositas </button>
+            <button onClick={()=> modifyProduct(props.product.id)} > Modositas </button>
             
-<button className = "gommmb" onClick={()=> deleteProductt(props.product.id)} > Torles </button>  */}
+            <button className = "gommmb" onClick={()=> deleteProductt(props.product.id)} > Torles </button>
 
           
         </div>

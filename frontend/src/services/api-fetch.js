@@ -37,7 +37,7 @@ export function createProduct(name, price, description, amount, categoryId = 'as
         }
         return response.json();
       })
-      /*.then((data) => {
+      .then((data) => {
                 const productId = data.name;
                 return fetch(`${API_URL}termekek/${productId}.json`, {
                     method: "PATCH",
@@ -50,7 +50,7 @@ export function createProduct(name, price, description, amount, categoryId = 'as
                         url: url,
                     }),
                 });
-            }) */
+            }) 
       .catch((error) => {
         console.log(error.message);
       })
@@ -103,3 +103,74 @@ export function readUsers() {
       console.log(err.message);
     });
 }
+
+export function getCategoryList() {
+  return fetch(`${API_URL}/api/categories`)
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error("Hiba a kategórialista lekérésekor");
+          }
+          return response.json();
+      })
+      .then((data) => {
+          return data;
+      })
+      .catch((error) => {
+          console.error("Hiba a kategórialista lekérésekor:", error);
+          throw error;
+      });
+};
+
+export function updateCategory(id, name) {
+	return fetch(`${API_URL}/api/categories/${id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ name }),
+	})
+		.then((data) => {
+			if (!data.ok) {
+				throw new Error("Hiba a termék frissítése során.");
+			}
+			return data.json();
+		})
+		.catch((err) => {
+			console.log(err.message);
+		});
+}
+
+export function createCategory(name) {
+	return fetch(`${API_URL}/api/categories`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ name }),
+	})
+		.then((data) => {
+			if (!data.ok) {
+				throw new Error("Hiba az új termék létrehozása során.");
+			}
+			return data.json();
+		})
+		//.then((resp) => setCategoryId(resp.name))
+		.catch((err) => {
+			console.log(err.message);
+		});
+}
+
+export function deleteCategory(id) {
+	return fetch(`${API_URL}/api/categories/${id}`, {
+		method: "DELETE",
+	})
+		.then((data) => {
+			if (!data.ok) {
+				throw new Error("Hiba a kategória törlése során.");
+			}
+			return data;
+		})
+		.catch((err) => {
+			console.log(err.message);
+		});
+	}

@@ -39,6 +39,7 @@ export default function AdminUpdateProduct() {
            
 		
 		});
+
 	}, [
 		id,
 		productUpdate.name,
@@ -76,8 +77,10 @@ export default function AdminUpdateProduct() {
         e.preventDefault()
 	}
     function handleCategoryChange(e) {
-		setCategory(e.target.value);
         e.preventDefault()
+		setCategory(e.target.value);
+       
+        console.log("konzol",e.target.value)
 	}
 
 
@@ -88,7 +91,9 @@ export default function AdminUpdateProduct() {
 		updateProduct(id, newName, newPrice, newDescription, newAmount, category)
 			//.then(() => fileUpload(id))
 			.then(() => {
+                console.log("barmi",category)
 				navigate("/admin/products");
+                
 				toast.success("Termék sikeresen módosítva!", {
 					position: toast.POSITION.TOP_RIGHT,
 				});
@@ -147,7 +152,7 @@ export default function AdminUpdateProduct() {
                     />
                     <label htmlFor="category">kategóriák</label>
                     <select value={category} onChange={handleCategoryChange}>
-                        <option key={0} value={""}>
+                        <option key={0} value={category}>
                             Válassz kategóriát!
                         </option>
                         { categoryList?.map((category, idx) => {

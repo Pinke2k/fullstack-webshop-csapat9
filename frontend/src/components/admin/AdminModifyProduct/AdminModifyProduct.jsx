@@ -19,7 +19,7 @@ export default function AdminUpdateProduct() {
     const [category, setCategory] = useState("")
     const [categoryList, setCategoryList] = useState()
 
-	
+	console.log("kategoriaaa",category)
     useEffect(() => {
 		readProducts()
         .then((data) => {

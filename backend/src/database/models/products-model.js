@@ -24,7 +24,7 @@ export default {
   },
 
   getAll() {
-    const sql = `SELECT p.id,p.description,p.price,p.amount, p.name, c.id AS category
+    const sql = `SELECT p.id,p.description,p.price,p.amount, p.name, c.id AS categoryId
     FROM products p
     JOIN products_categories AS pc ON p.id=pc.product_id
     JOIN categories AS c ON c.id=pc.category_Id
@@ -87,14 +87,13 @@ export default {
     });
   },
 
-  updateProduct({ productId, name, description, price, amount, currentCategoryId, categoryId }) {
-    console.log(categoryId);
-    const sql1 = `UPDATE products_categories SET category_id = $categoryId WHERE category_id = $currentCategoryId AND product_id = $productId`;
+  updateProduct({ productId, name, description, price, amount, categoryId }) {
+   
+    const sql1 = `UPDATE products_categories SET category_id = $categoryId WHERE product_id = $productId`;
     const sql2 = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount  WHERE id = $id`;
     const timestamp = Date.now();
     const params1 = {
       $categoryId : categoryId,
-      $currentCategoryId : currentCategoryId,
       $productId: productId
     }
     const params2 = {

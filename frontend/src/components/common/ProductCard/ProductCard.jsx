@@ -26,6 +26,7 @@ export default function ProductCard(props) {
         <h1 className="product-title">{props.product.name}</h1>
         <h3 className="product-description">{props.product.description}</h3>
         <h2 className="product-price">{props.product.price + ' Ft'}</h2>
+        <h2 className="product-price">{props.product.category + ' Ft'}</h2>
         <UpadateButton id={props.product.id} />
         <button className="gommmb" onClick={() => deleteProduct(props.product.id)}>
           Törlés

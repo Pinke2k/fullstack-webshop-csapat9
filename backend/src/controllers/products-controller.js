@@ -23,8 +23,7 @@ export default {
 
   create(req, res, next) {
     const { name, description, price, amount, categoryId } = req.body;
-    // console.log(price);
-    // console.log(name);
+  
 
     if (!price || !name) throw new HttpError('missing required parameter', 400);
     productsService
@@ -41,13 +40,13 @@ export default {
       .catch(next);
   },
   updateProduct(req, res, next) {
-    const { id } = req.params;
+    const { productId } = req.params;
     const { name, description, price, amount, categoryId } = req.body;
-
+   
     productsService
-      .updateProduct({ id, name, description, price, amount, categoryId })
+      .updateProduct({ productId, name, description, price, amount, categoryId })
       .then((product) => {
-        console.log(product);
+       
         res.status(200).send({ product });
       })
       .catch(next);

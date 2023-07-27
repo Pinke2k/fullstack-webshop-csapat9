@@ -1,12 +1,15 @@
 import express from 'express';
 import cartsController from '../controllers/cart-controller';
+import authorizeMiddleware from '../middlewares/authorize-middleware';
 
 const router = express.Router();
 
-router.post('/cart/', cartsController.create);
-// router.delete('/cart/:id', cartsController.deleteCart);
-router.delete('/cart/:id', cartsController.deleteOne);
-// router.put('/cart/:id', cartsController.updateItem);
-router.get('/cart/:id', cartsController.getCart); // get user cart
+// app.use(authorizeMiddleware);
+
+router.post('/cart/', authorizeMiddleware, cartsController.create);
+router.get('/cart/:id', authorizeMiddleware, cartsController.getCart);
+router.patch('/cart/:id', authorizeMiddleware, cartsController.update);
+router.delete('/cart/:id', authorizeMiddleware, cartsController.deleteCart);
+router.delete('/cart/:id/:productId', authorizeMiddleware, cartsController.deleteCartItem);
 
 export default router;

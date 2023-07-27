@@ -24,7 +24,7 @@ export default {
   },
 
   getAll() {
-    const sql = `SELECT p.id,p.description,p.price,p.amount, p.name, c.id AS category
+    const sql = `SELECT p.id,p.description,p.price,p.amount, p.name, c.id AS categoryId
     FROM products p
     JOIN products_categories AS pc ON p.id=pc.product_id
     JOIN categories AS c ON c.id=pc.category_Id
@@ -87,13 +87,17 @@ export default {
     });
   },
 
-  updateProduct({ id, name, description, price, amount, categoryId }) {
-    console.log(categoryId);
-    const sql1 = `UPDATE products_categories SET category_id = ? WHERE product_id = ?`;
+  updateProduct({ productId, name, description, price, amount, categoryId }) {
+   
+    const sql1 = `UPDATE products_categories SET category_id = $categoryId WHERE product_id = $productId`;
     const sql2 = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount  WHERE id = $id`;
     const timestamp = Date.now();
-    const params = {
-      $id: id,
+    const params1 = {
+      $categoryId : categoryId,
+      $productId: productId
+    }
+    const params2 = {
+      $id: productId,
       $name: name,
       $description: description,
       $price: price,
@@ -101,13 +105,18 @@ export default {
       // $last_updated_at: timestamp,
     };
     return new Promise((resolve, reject) => {
-      db.run(sql1, [categoryId, id], function (err) {
-        if (err) reject(err);
-      }),
-        db.run(sql2, params, function (err) {
+      db.serialize(() => {
+
+        db.run(sql1, params1, function (err) {
+          if (err) reject(err);
+        }),
+
+        db.run(sql2, params2, function (err) {
           if (err) reject(err);
           else resolve('success');
         });
+
+      })
     });
   },
   addCategoriesToProduct(productId, categoryId) {
@@ -126,5 +135,19 @@ export default {
       });
     });
   },
-  deleteCategoriesFromProduct() {},
+  deleteCategoriesFromProduct(productId, categoryId){
+    const sql = ` DELETE FROM products_categories WHERE category_id = $categoryId AND product_id = $productId`;
+    const params = {
+      $categoryId : categoryId,
+      $productId : productId
+    }
+    return new Promise((resolve, reject) => {
+      db.run(sql,params,(err) => {
+        if(err) reject(err)
+        else{
+          resolve('Category deleted from product')
+        }
+      })
+    })
+  },
 };

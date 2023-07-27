@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import {readProducts} from '../../../services/api-fetch'
 import ProductCard from "../../common/ProductCard/AdminProductCard";
 import './AdminProducts.css'
+import ProductCardAdmin from "../../common/ProductCard/ProductCardAdmin";
 import { useNavigate } from "react-router-dom";
 
 
@@ -29,8 +30,8 @@ export default function AdminProducts(){
         </div>
         <div className="product-box">
             {ProductList?.map((p) => (
-            console.log(p),
-             <ProductCard product = {p} key = {p.id}/> 
+
+             <ProductCardAdmin product = {p} key = {p.id}/> 
              
              ))} 
              

@@ -1,12 +1,12 @@
 // PATCH SQL utils
-function paramsToFieldsExpr(params, excludes = {}) {
+export function paramsToFieldsExpr(params, excludes = {}) {
   const opts = { $id: true, ...excludes };
   return Object.keys(params)
     .filter((param) => !opts[param])
     .map((param) => `${param.substring(1)} = ${param}`);
 }
 
-function normalizeParams(params) {
+export function normalizeParams(params) {
   return Object.entries(params).reduce((acc, [param, value]) => {
     if (!value) return acc;
     acc[param] = value;

@@ -119,7 +119,7 @@ export default function AdminCreateProduct() {
           required
         />
         <label htmlFor="category">kategóriák</label>
-        <select value={newCategory} onChange={handleCategoryChange}>
+        <select name="categoryId" value={newCategory} onChange={handleCategoryChange}>
           <option key={0} value={''}>
             Válassz kategóriát!
           </option>

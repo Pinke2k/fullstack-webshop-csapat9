@@ -19,13 +19,11 @@ export default {
     try {
       console.log('Termék létrehozás payload:', product);
       console.log('Termék létrehozás imageFile:', imageFile);
-      // Létrehozzuk a terméket
+
       const createdProduct = await productsModel.create(product);
 
-      // Hozzáadjuk a kategóriákat a termékhez
       await productsModel.addCategoriesToProduct(createdProduct.id, product.categoryId);
 
-      // Ha van képfájl, hozzáadjuk a képet a termékhez
       if (imageFile) {
         const productWithImage = await picturesService.addToProductPicture(
           createdProduct.id,
@@ -43,8 +41,19 @@ export default {
   findOne(payload) {
     return productsModel.getOne(payload);
   },
-  delete(payload) {
-    return productsModel.delete(payload);
+  async delete(productId) {
+    try {
+      const productPictures = await picturesService.getOne(productId);
+
+      if (productPictures) {
+        const { id } = productPictures;
+        await picturesService.deleteProductPicture(id);
+      }
+      return productsModel.delete(productId);
+    } catch (error) {
+      console.error('Termék törlése során hiba:', error.message);
+      throw new Error('Termék törlése során hiba');
+    }
   },
   updateProduct(payload) {
     console.log('itt mit ad', payload.categoryId);

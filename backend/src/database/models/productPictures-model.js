@@ -35,4 +35,31 @@ export default {
 
     return db.runAsync(sql, params);
   },
+  async deleteProductPicture(productId, pictureId) {
+    try {
+      const sql = `DELETE FROM product_pictures WHERE product_id = $productId AND id = $pictureId`;
+      const params = {
+        $productId: productId,
+        $pictureId: pictureId,
+      };
+
+      return db.runAsync(sql, params);
+    } catch (error) {
+      console.error(error.message);
+      throw new Error('Kép törlése során hiba történt.');
+    }
+  },
+  async getProductPicture(productId) {
+    try {
+      const sql = `SELECT * FROM product_pictures WHERE product_id = $productId`;
+      const params = {
+        $productId: productId,
+      };
+
+      return db.getAsync(sql, params);
+    } catch (error) {
+      console.error(error.message);
+      throw new Error('Kép lekérdezése során hiba történt.');
+    }
+  },
 };

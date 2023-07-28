@@ -4,7 +4,7 @@ import { encodeImageToBlurhash } from '../utils/images';
 export default {
   async addToProductPicture(productId, pictureData) {
     try {
-      console.log('picturedataarray', pictureData);
+      console.log('picturedata', pictureData);
 
       const { originalname, filename, path } = pictureData;
       const blurhash = await encodeImageToBlurhash(path);
@@ -18,5 +18,16 @@ export default {
       console.error(err.message);
       throw new Error('Kép feltöltési hiba');
     }
+  },
+  async deleteProductPicture(productId, pictureId) {
+    try {
+      return productPicturesModel.deleteProductPicture(productId, pictureId);
+    } catch (error) {
+      console.error(error.message);
+      throw new Error('Kép törlése során hiba történt.');
+    }
+  },
+  getOne(productId) {
+    return productPicturesModel.getProductPicture(productId);
   },
 };

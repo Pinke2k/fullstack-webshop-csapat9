@@ -57,26 +57,8 @@ export default function AdminCreateProduct() {
     SetNewCategory(e.target.value);
     e.preventDefault();
   }
-  function upload() {
-    // multipart kódolású adatok küldéséhez a fetchnek string helyett egy FormData
-    // objektumot kell megadni
-    const fd = new FormData();
-    // a FormData objektumhoz az append metódussal tudunk felvenni egy kulcs-érték párt
-    // - lényegében a `name` és a `value` attribútumok programmatikus megadása
-    fd.append('picture', file);
-    fd.append('filenewname', 'ujfile.jpg');
 
-    fetch('http://localhost:8080/upload', {
-      method: 'POST',
-      // headers: { "Content-Type": "text/plain" },  // FIGYELEM: nem adjuk meg a Content-Type headert!
-      // - ha nincs megadva, a böngésző fogja megpróbálni meghatározni
-      body: fd,
-    })
-      .then((resp) => resp.text())
-      .then((body) => console.log(body));
-  }
   function handleFileChange(e) {
-    // A kiválasztott képfájl beállítása az állapotba
     const selectedFile = e.target.files[0];
     console.log(selectedFile);
     setFile(selectedFile);

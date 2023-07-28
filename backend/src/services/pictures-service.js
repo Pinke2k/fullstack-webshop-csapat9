@@ -27,6 +27,21 @@ export default {
       throw new Error('Kép törlése során hiba történt.');
     }
   },
+  async updateProductPicture(pictureId, updatedData) {
+    try {
+      const { originalname, filename, path } = updatedData;
+      const blurhash = await encodeImageToBlurhash(path);
+      return productPicturesModel.updateProductPicture(pictureId, {
+        originalname,
+        filename,
+        path,
+        blurhash,
+      });
+    } catch (error) {
+      console.error(error.message);
+      throw new Error('Kép frissítése során hiba történt.');
+    }
+  },
   getOne(productId) {
     return productPicturesModel.getProductPicture(productId);
   },

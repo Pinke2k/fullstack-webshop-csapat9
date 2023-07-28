@@ -62,4 +62,26 @@ export default {
       throw new Error('Kép lekérdezése során hiba történt.');
     }
   },
+  async updateProductPicture(pictureId, updatedData) {
+    try {
+      const { originalname, filename, path, blurhash } = updatedData;
+      const sql = `
+        UPDATE product_pictures 
+        SET originalname = $originalname, filename = $filename, path = $path, blurhash = $blurhash
+        WHERE id = $pictureId
+      `;
+      const params = {
+        $originalname: originalname,
+        $filename: filename,
+        $path: path,
+        $blurhash: blurhash,
+        $pictureId: pictureId,
+      };
+
+      return db.runAsync(sql, params);
+    } catch (error) {
+      console.error(error.message);
+      throw new Error('Kép frissítése során hiba történt.');
+    }
+  },
 };

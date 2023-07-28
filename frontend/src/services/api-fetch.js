@@ -41,13 +41,12 @@ export function createProduct(formdata) {
   // });
 }
 
-export function updateProduct(id, name, price, description, amount, categoryId) {
+export function updateProduct(id, formdata) {
+  console.log('productid', id);
+  console.log('formdata', formdata);
   return fetch(`${API_URL}/api/products/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ name, price, description, amount, categoryId }),
+    body: formdata,
   })
     .then((data) => {
       if (!data.ok) {

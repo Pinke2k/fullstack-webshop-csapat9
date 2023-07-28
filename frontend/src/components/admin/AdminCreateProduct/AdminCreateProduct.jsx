@@ -3,6 +3,7 @@ import { createProduct } from '../../../services/api-fetch';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { getCategoryList } from '../../../services/api-fetch';
 
 export default function AdminCreateProduct() {
   const navigate = useNavigate();
@@ -12,28 +13,14 @@ export default function AdminCreateProduct() {
   const [newDescription, setNewDescription] = useState('');
   const [newAmount, SetNewAmount] = useState('');
   const [newCategory, SetNewCategory] = useState('');
+  const [categoryList, setCategoryList] = useState();
   const [file, setFile] = useState();
 
-  /*  useEffect(() => {
-    readProducts().then((data) => {
-      console.log('data', data);
-      const productToUpdate = data.find((product) => (product.id = id), console.log('id', id));
-      console.log('ezt frissitem', productToUpdate);
-      setNewProduct(productToUpdate);
-      setNewName(productUpdate.name);
-      setNewPrice(productUpdate.price);
-      setNewDescription(productUpdate.description);
-      SetNewAmount(productToUpdate.amount);
-      //setNewCategory(productToUpdate.category)
+  useEffect(() => {
+    getCategoryList().then((data) => {
+      setCategoryList(data);
     });
-  }, [
-    id,
-    productUpdate.name,
-    productUpdate.price,
-    productUpdate.description,
-    productUpdate.amount,
-    //productUpdate.category
-  ]);*/
+  }, []);
 
   function handleNameChange(e) {
     setNewName(e.target.value);
@@ -131,19 +118,19 @@ export default function AdminCreateProduct() {
           onChange={handleAmountChange}
           required
         />
-        {/* <label htmlFor="category">kategóriák</label>
-        <select value={category} onChange={categoryChange}>
+        <label htmlFor="category">kategóriák</label>
+        <select value={newCategory} onChange={handleCategoryChange}>
           <option key={0} value={''}>
             Válassz kategóriát!
           </option>
-          {categoryList.map((category, idx) => {
+          {categoryList?.map((category, idx) => {
             return (
               <option key={idx + 1} value={category.id}>
                 {category.name}
               </option>
             );
           })}
-        </select> */}
+        </select>
         <input type="file" onChange={handleFileChange} />
 
         {/* <button onClick={upload}>upload</button> */}

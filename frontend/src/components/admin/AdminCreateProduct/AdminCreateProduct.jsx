@@ -84,13 +84,6 @@ export default function AdminCreateProduct() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const formdata = {
-      newName,
-      newPrice,
-      newDescription,
-      newAmount,
-      newCategory,
-    };
 
     const fd = new FormData(e.target);
     fd.append('imageFile', file);

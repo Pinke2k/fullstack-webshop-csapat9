@@ -5,21 +5,8 @@ export default {
   findAll() {
     return productsModel.getAll();
   },
-  // async create(product, imageFile) {
-  //   console.log('termék create paylaod', payload);
-
-  //   const resp = await productsModel.create(product);
-  //   await productsModel.addCategoriesToProduct(resp.id, product.categoryId);
-
-  //   if(imageFile){
-  //     const productWithImage = await addToProductPicture()
-  //   }
-  // },
   async create(product, imageFile) {
     try {
-      console.log('Termék létrehozás payload:', product);
-      console.log('Termék létrehozás imageFile:', imageFile);
-
       const createdProduct = await productsModel.create(product);
 
       await productsModel.addCategoriesToProduct(createdProduct.id, product.categoryId);
@@ -55,12 +42,24 @@ export default {
       throw new Error('Termék törlése során hiba');
     }
   },
-  updateProduct(payload) {
-    console.log('itt mit ad', payload.categoryId);
-    if (!payload.categoryId) {
-      return productsModel.deleteCategoriesFromProduct(payload.productId, payload.categoryId);
-    } else {
-      return productsModel.updateProduct(payload);
+  async updateProduct(productId, payload, imageFile) {
+    try {
+      const { categoryId } = payload;
+
+      if (!categoryId) {
+        await productsModel.deleteCategoriesFromProduct(productId, categoryId);
+      } else {
+        await productsModel.updateProduct(payload);
+      }
+      if (imageFile) {
+        const productWithImage = await picturesService.addToProductPicture(productId, imageFile);
+        return productWithImage;
+      }
+
+      return true;
+    } catch (error) {
+      console.error('Termék frissítése során hiba:', error.message);
+      throw new Error('Termék frissítése során hiba');
     }
   },
 };

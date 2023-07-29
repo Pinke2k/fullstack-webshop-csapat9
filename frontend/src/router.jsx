@@ -24,6 +24,7 @@ import AdminCategoryList from './pages/admin/AdminCategoryList';
 import AdminDeleteCategory from './pages/admin/AdminDeleteCategory';
 import AdminModifyCategory from './pages/admin/AdminModifyCategory';
 import CreateProduct from './pages/admin/CreateProduct';
+import OrdersDetails from './pages/webshop/OrdersDetails';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: '/orders',
         element: <OrdersPage />,
+      },
+      {
+        path: '/orders/:id',
+        element: <OrdersDetails />,
       },
     ],
   },

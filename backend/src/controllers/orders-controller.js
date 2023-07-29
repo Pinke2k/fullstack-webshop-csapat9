@@ -35,5 +35,11 @@ export default {
     orderService.deleteOrder(orderId)
     .then( resp => res.status(200).send(resp))
     .catch(next)
+    },
+    getOrderById(req, res, next){
+        const { orderId } = req.params
+        orderService.getOrderById(orderId)
+        .then( rows => res.status(200).send(rows))
+        .catch(next)
     }
 }

@@ -23,14 +23,10 @@ export default {
         },
         method: 'DELETE',
       });
-
-      if (!response.ok) {
-        if (response.status === 500) {
-          return [];
-        }
-        throw new Error('Hiba a megrendelés törlése közben');
-      }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
   },
   setOrder(userId) {
     try {
@@ -42,6 +38,32 @@ export default {
         },
         body: JSON.stringify({ userId }),
       }).then(resp.json());
-    } catch (error) {}
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  },
+  allOrders() {
+    try {
+      return fetch(`${API_URL}/api/orders`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        method: 'GET',
+      }).then((resp) => resp.json());
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  },
+  async orderById(orderId) {
+    const result = await fetch(`${API_URL}/api/orders/details/${orderId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: 'GET',
+    }).then((resp) => resp.json());
+    return result;
   },
 };

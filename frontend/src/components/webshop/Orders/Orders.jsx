@@ -17,17 +17,19 @@ const Orders = () => {
         .getOrders(userId)
         .then((resp) => resp.json())
         .then((data) => {
-          console.log(data);
           setOrders(data);
-          console.log(orders);
         });
     }
   }, []);
   return (
     <div className="ordercard-container">
-      {orders.map((order) => (
-        <OrderCard key={order.id} order={order}></OrderCard>
-      ))}
+      {orders.length === 0 ? (
+        <h2>Nincsenek rendeléseid</h2>
+      ) : (
+        orders.map((order) => (
+          <OrderCard key={order.id} orders={orders} setOrders={setOrders} order={order}></OrderCard>
+        ))
+      )}
     </div>
   );
 };

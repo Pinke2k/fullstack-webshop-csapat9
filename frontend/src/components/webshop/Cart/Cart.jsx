@@ -123,7 +123,7 @@ const Cart = () => {
                   <button
                     onClick={() => {
                       ordersFetch.setOrder(userId);
-                      removeCart;
+                      removeCart();
                     }}
                   >
                     Megrendelés

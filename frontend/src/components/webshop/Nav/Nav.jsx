@@ -8,6 +8,7 @@ import {logIn} from 'react-icons-kit/feather/logIn'
 import {userPlus} from 'react-icons-kit/feather/userPlus';
 import {logOut} from 'react-icons-kit/feather/logOut';
 import {person} from 'react-icons-kit/oct/person'
+import {shoppingCart} from 'react-icons-kit/typicons/shoppingCart'
 import './Nav.css'
 
 
@@ -43,11 +44,14 @@ function Nav() {
         </ul>
       <div className="top-right">
         <div className="profile">
-          <button className="signOut"><Icon icon={logOut} size={30}/></button>
-          <NavLink to="/user/login"><Icon icon={logIn} size={30}/></NavLink>
-          <NavLink to="/user/register"><Icon icon={userPlus} size={30}/></NavLink>
+        {user?.id ?(<>
           <NavLink to='/profile/:id'><Icon icon={person} size={30}/></NavLink>
+          <button className="signOut"><Icon icon={logOut} size={30}/></button>
           <NavLink to='/chart'>Chart</NavLink>
+          </>) : (<>
+            <NavLink to="/user/login"><Icon icon={logIn} size={30}/></NavLink>
+            <NavLink to="/user/register"><Icon icon={userPlus} size={30}/></NavLink>
+          </>)}
           </div>
         </div>
           <div className="toggle-icon" onClick={handleToggle}>

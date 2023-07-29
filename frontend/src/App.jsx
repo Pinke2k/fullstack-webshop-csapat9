@@ -4,15 +4,19 @@ import { AuthProvider } from './contexts/authProvider';
 import { CartProvider } from './contexts/cartProvider';
 import { ordersContext } from './contexts/ordersContext';
 import { useState } from 'react';
+import { allOrdersContext } from './contexts/allOrdersContext';
 
 function App() {
   const [orders, setOrders] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
 
   return (
     <AuthProvider>
       <CartProvider>
         <ordersContext.Provider value={{ orders, setOrders }}>
-          <RouterProvider router={router} />
+          <allOrdersContext.Provider value={{ allOrders, setAllOrders }}>
+            <RouterProvider router={router} />
+          </allOrdersContext.Provider>
         </ordersContext.Provider>
       </CartProvider>
     </AuthProvider>

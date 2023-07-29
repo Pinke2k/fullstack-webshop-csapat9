@@ -152,7 +152,6 @@ export default {
   },
 
   getCurrent({pageSize, currentPage, sortBy, order}) {
-    console.log(pageSize, currentPage, "size");
     let orderquerry = "";
     if(sortBy) orderquerry = `ORDER BY ${sortBy} ${order}`
     const sql = `SELECT * FROM products ${orderquerry} LIMIT ${pageSize} OFFSET ${pageSize * (currentPage - 1)}`

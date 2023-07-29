@@ -3,13 +3,23 @@ import HttpError from '../utils/httpError';
 
 export default {
   findAll(req, res, next) {
+    console.log(req.query)
+    if(Object.keys(req.query).length == 0){
     productsService
       .findAll()
       .then((products) => {
         res.send(products);
       })
       .catch(next);
-  },
+    }
+    else {
+      const {pageSize, currentPage, sortBy, order} = req.query
+      productsService.getCurrent({pageSize, currentPage, sortBy, order})
+      .then((products) => {
+      res.send(products);
+    })
+    .catch(next);
+  }},
 
   findOne(req, res, next) {
     const { id } = req.params;

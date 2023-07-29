@@ -4,6 +4,9 @@ export default {
   findAll() {
     return productsModel.getAll();
   },
+  getCurrent({pageSize, currentPage, sortBy, order}){
+    return productsModel.getCurrent({pageSize, currentPage, sortBy, order})
+  },
   create(payload) {
     return productsModel.create(payload).then((resp) => {
       productsModel.addCategoriesToProduct(resp.id, payload.categoryId);

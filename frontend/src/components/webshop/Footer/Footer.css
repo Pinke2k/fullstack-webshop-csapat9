@@ -12,7 +12,7 @@ body{
 }
 
 footer{
-    background-color: var(--clr-dark-dark);
+    background-color: #351e10;
     color: var(--clr-light-white);
     position: absolute;
     left: 0;
@@ -38,6 +38,7 @@ footer{
     align-items: end;
     width: 100%;
     grid-column: 1/3;
+    color: #E8DED1;
 }
 
 .contactMe{
@@ -46,6 +47,7 @@ footer{
     align-self: center;
     grid-column: 3/3;
     align-items: end;
+    color: #E8DED1;
 }
 
 .social{
@@ -54,6 +56,14 @@ footer{
     align-self: center;
     gap: 3em;
     grid-column: 2/3;
+    color: #E8DED1;
 }
+
+.cont-Mea{
+    color: #E8DED1;
+    text-decoration: none;
+    
+}
+
 
 

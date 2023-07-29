@@ -10,7 +10,7 @@ body {
     width: 100%;
     height: var(--nav-height);
     padding: 1.8rem;
-    background-color: var(--clr-light-brown);
+    background-color: #351e10;
     display: flex;
     justify-content: space-evenly;
     align-items: center;

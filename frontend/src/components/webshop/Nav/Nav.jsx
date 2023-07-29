@@ -26,7 +26,7 @@ function Nav() {
     <>
       <div className={toggle ? "navbar expanded" : "navbar"}>
         <div className="logo">
-          <NavLink to="/">Főoldal/logo</NavLink>
+          <NavLink to="/">Főoldal</NavLink>
         </div>
         <ul className="links">
           <li>
@@ -47,7 +47,7 @@ function Nav() {
         {user?.id ?(<>
           <NavLink to='/profile/:id'><Icon icon={person} size={30}/></NavLink>
           <button className="signOut"><Icon icon={logOut} size={30}/></button>
-          <NavLink to='/chart'>Chart</NavLink>
+          <NavLink to='/cart'><Icon icon={shoppingCart} size={30}/></NavLink>
           </>) : (<>
             <NavLink to="/user/login"><Icon icon={logIn} size={30}/></NavLink>
             <NavLink to="/user/register"><Icon icon={userPlus} size={30}/></NavLink>

@@ -10,6 +10,7 @@ export default {
     },
     createOrder(req, res, next){
         const { userId } = req.body;
+        console.log(userId)
         const created = Date.now()
         const oneWeekLater = new Date(created + 7 * 24 * 60 * 60 * 1000);
         const deliveryDate = oneWeekLater.getTime();

@@ -7,7 +7,7 @@ export default function (req, res, next) {
 
   try {
     const payload = jwt.verify(token, JWT_SECRET_KEY);
-    console.log('jwt decide payload', payload);
+    //console.log('jwt decide payload', payload);
     req.user = payload;
     next();
   } catch {

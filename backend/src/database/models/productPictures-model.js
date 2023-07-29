@@ -23,13 +23,14 @@ export default {
 
   async addProductPicture(productId, pictureData) {
     const { originalname, filename, path, blurhash } = pictureData;
+    const newPath = path.replace(/\\/g, '/');
     const sql = `INSERT INTO product_pictures (product_id, originalname, filename, path, blurhash) 
       VALUES ($productId, $originalname, $filename, $path, $blurhash)`;
     const params = {
       $productId: productId,
       $originalname: originalname,
       $filename: filename,
-      $path: path,
+      $path: newPath,
       $blurhash: blurhash,
     };
 
@@ -62,20 +63,21 @@ export default {
       throw new Error('Kép lekérdezése során hiba történt.');
     }
   },
-  async updateProductPicture(pictureId, updatedData) {
+  async updateProductPicture(productId, updatedData) {
     try {
       const { originalname, filename, path, blurhash } = updatedData;
+      const newPath = path.replace(/\\/g, '/');
       const sql = `
         UPDATE product_pictures 
-        SET originalname = $originalname, filename = $filename, path = $path, blurhash = $blurhash
-        WHERE id = $pictureId
+        SET originalname = $originalname, filename = $filename, path = $path, blurhash=$blurhash 
+        WHERE product_id = $productId
       `;
       const params = {
         $originalname: originalname,
         $filename: filename,
-        $path: path,
+        $path: newPath,
+        $productId: productId,
         $blurhash: blurhash,
-        $pictureId: pictureId,
       };
 
       return db.runAsync(sql, params);

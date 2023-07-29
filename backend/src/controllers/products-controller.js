@@ -39,8 +39,9 @@ export default {
   },
   async updateProduct(req, res, next) {
     try {
-      const { id } = req.params;
-      const updateProduct = await productsService.updateProduct(id, req.body, req.file);
+      const { productId } = req.params;
+      console.log(req.params);
+      const updateProduct = await productsService.updateProduct(productId, req.body, req.file);
       res.json(updateProduct);
     } catch (err) {
       next(err);

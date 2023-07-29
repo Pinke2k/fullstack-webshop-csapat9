@@ -45,6 +45,7 @@ export default {
   async updateProduct(productId, payload, imageFile) {
     try {
       const { categoryId } = payload;
+      console.log(imageFile, 'prodcut id ');
 
       if (!categoryId) {
         await productsModel.deleteCategoriesFromProduct(productId, categoryId);
@@ -52,7 +53,7 @@ export default {
         await productsModel.updateProduct(payload);
       }
       if (imageFile) {
-        const productWithImage = await picturesService.addToProductPicture(productId, imageFile);
+        const productWithImage = await picturesService.updateProductPicture(productId, imageFile);
         return productWithImage;
       }
 

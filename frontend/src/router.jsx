@@ -91,7 +91,7 @@ const router = createBrowserRouter([
         element: <AdminDeleteProduct />,
       },
       {
-        path: '/admin/products/:id/update',
+        path: '/admin/products/:id/',
         element: <AdminModifyProduct />,
       },
       {

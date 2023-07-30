@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useCart } from '../../../hooks/useCart';
 import { BlurHashLazyLoading } from '../BlurhashLazyLoading/BlurhashLazyloading';
-import { API_URL } from '../../../constants/constants';
 
 export default function ProductCard(props) {
   const navigate = useNavigate();
@@ -19,12 +18,13 @@ export default function ProductCard(props) {
   function modifyProduct(id) {
     navigate(`/admin/products/${id}/update`);
   }
-  const url = `${API_URL}/${props.product.path}`;
 
   return (
     <div className="product-card">
       {/* <img src={url} alt="" className="image" /> */}
-      <BlurHashLazyLoading image={props.product} />
+      <div className="image">
+        <BlurHashLazyLoading image={props.product} />
+      </div>
 
       <div className="product-content">
         <h1 className="product-title">{props.product.name}</h1>

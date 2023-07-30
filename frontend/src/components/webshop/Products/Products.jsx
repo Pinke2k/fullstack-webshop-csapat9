@@ -9,7 +9,7 @@ export default function Products() {
 
   useEffect(() => {
     readProducts().then((products) => {
-      console.log(products);
+      // console.log(products);
 
       setProductList(products);
     });

@@ -11,13 +11,7 @@ export default {
 
       await productsModel.addCategoriesToProduct(createdProduct.id, product.categoryId);
 
-      if (imageFile) {
-        const productWithImage = await picturesService.addToProductPicture(
-          createdProduct.id,
-          imageFile,
-        );
-        return productWithImage;
-      }
+      await picturesService.addToProductPicture(createdProduct.id, imageFile);
 
       return createdProduct;
     } catch (error) {

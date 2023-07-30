@@ -1,19 +1,29 @@
 import productPicturesModel from '../database/models/productPictures-model';
 import { encodeImageToBlurhash } from '../utils/images';
+import { defaultImageData } from '../constants';
 
 export default {
   async addToProductPicture(productId, pictureData) {
     try {
-      console.log('picturedata', pictureData);
-
-      const { originalname, filename, path } = pictureData;
-      const blurhash = await encodeImageToBlurhash(path);
-      return productPicturesModel.addProductPicture(productId, {
-        originalname,
-        filename,
-        path,
-        blurhash,
-      });
+      if (!pictureData) {
+        const { originalname, filename, path } = defaultImageData;
+        const blurhash = await encodeImageToBlurhash(path);
+        return productPicturesModel.addProductPicture(productId, {
+          originalname,
+          filename,
+          path,
+          blurhash,
+        });
+      } else {
+        const { originalname, filename, path } = pictureData;
+        const blurhash = await encodeImageToBlurhash(path);
+        return productPicturesModel.addProductPicture(productId, {
+          originalname,
+          filename,
+          path,
+          blurhash,
+        });
+      }
     } catch (err) {
       console.error(err.message);
       throw new Error('Kép feltöltési hiba');

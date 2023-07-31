@@ -8,8 +8,8 @@ export default function OrderDetail({ orderId }) {
   useEffect(() => {
     ordersFetch.orderById(orderId).then((data) => {
       setOrder(data);
-      setProducts(order?.products);
-      products.forEach((product) => setPrice((prev) => prev + product.total_price));
+      setProducts(data?.products);
+      data.products.forEach((product) => setPrice((prev) => prev + product.total_price));
     });
   }, []);
   return (

@@ -151,19 +151,30 @@ export default {
     });
   },
 
-  getCurrent({pageSize, currentPage, sortBy, order}) {
-    let orderquerry = "";
-    if(sortBy) orderquerry = `ORDER BY ${sortBy} ${order}`
-    const sql = `SELECT * FROM products ${orderquerry} LIMIT ${pageSize} OFFSET ${pageSize * (currentPage - 1)}`
+  getCurrent({ pageSize, currentPage, sortBy, order }) {
+    let orderquerry = '';
+    if (sortBy) orderquerry = `ORDER BY ${sortBy} ${order}`;
+    const sql = `SELECT * FROM products LEFT JOIN product_pictures AS pp ON p.id = pp.product_id ${orderquerry} LIMIT ${pageSize} OFFSET ${
+      pageSize * (currentPage - 1)
+    }`;
 
-    return new Promise((resolve, reject) =>(
+    const sql1 = `
+    SELECT p.id, p.description, p.price, p.amount, p.name, c.id AS categoryId, pp.id AS pictureId, pp.originalname, pp.filename, pp.path, pp.blurhash
+    FROM products p
+    JOIN products_categories AS pc ON p.id = pc.product_id
+    JOIN categories AS c ON c.id = pc.category_Id
+    LEFT JOIN product_pictures AS pp ON p.id = pp.product_id
+    ${orderquerry} LIMIT ${pageSize} OFFSET ${pageSize * (currentPage - 1)}
+  `;
+
+    return new Promise((resolve, reject) =>
       db.serialize(() => {
-        const stmt = db.prepare(sql);
-        stmt.all((err,rows) => {
-          if(err) reject(err)
-          else resolve(rows)
-        })
-      })
-    ))
-  }
+        const stmt = db.prepare(sql1);
+        stmt.all((err, rows) => {
+          if (err) reject(err);
+          else resolve(rows);
+        });
+      }),
+    );
+  },
 };

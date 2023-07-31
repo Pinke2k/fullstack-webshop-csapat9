@@ -11,7 +11,7 @@ import AboutUs from './pages/webshop/AboutUs';
 import Cart from './components/webshop/Cart/Cart';
 import Contact from './pages/webshop/Contact';
 import Home from './pages/webshop/Home';
-import Orders from './pages/webshop/Orders';
+import OrdersPage from './pages/webshop/OrdersPage';
 import Profile from './pages/webshop/Profile';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDeleteProduct from './pages/admin/AdminDeleteProduct';
@@ -24,6 +24,7 @@ import AdminCategoryList from './pages/admin/AdminCategoryList';
 import AdminDeleteCategory from './pages/admin/AdminDeleteCategory';
 import AdminModifyCategory from './pages/admin/AdminModifyCategory';
 import CreateProduct from './pages/admin/CreateProduct';
+import OrdersDetails from './pages/webshop/OrdersDetails';
 
 const router = createBrowserRouter([
   {
@@ -65,7 +66,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/orders',
-        element: <Orders />,
+        element: <OrdersPage />,
+      },
+      {
+        path: '/orders/:id',
+        element: <OrdersDetails />,
       },
     ],
   },

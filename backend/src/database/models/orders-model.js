@@ -87,5 +87,35 @@ export default {
         });
       })
     })
+  },
+  getOrderById(orderId){
+    const sql = `SELECT o.id AS order_id, o.created, o.is_done, o.deliver_date,
+    op.product_id, op.quantity, op.total_price, p.name AS product_name
+    FROM orders o
+    LEFT JOIN ordered_products AS op ON o.id = op.order_id
+    LEFT JOIN products AS p ON p.id = op.product_id
+    WHERE o.id = ?`
+
+    return new Promise((resolve, reject) => {
+      db.all(sql,[orderId],(err,rows)=>{
+        if(err) reject(err)
+        else{
+          const orderDetails = {
+            order_id: rows[0].order_id,
+            created: rows[0].created,
+            is_done: rows[0].is_done,
+            deliver_date: rows[0].deliver_date,
+            products: rows.map((row) => ({
+              product_id: row.product_id,
+              quantity: row.quantity,
+              total_price: row.total_price,
+              product_name: row.product_name,
+            })),
+          };
+  
+          resolve(orderDetails);
+        }
+      })
+    })
   }
 };

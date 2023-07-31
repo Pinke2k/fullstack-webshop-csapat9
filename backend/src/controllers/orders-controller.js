@@ -10,6 +10,7 @@ export default {
     },
     createOrder(req, res, next){
         const { userId } = req.body;
+        console.log(userId)
         const created = Date.now()
         const oneWeekLater = new Date(created + 7 * 24 * 60 * 60 * 1000);
         const deliveryDate = oneWeekLater.getTime();
@@ -34,5 +35,11 @@ export default {
     orderService.deleteOrder(orderId)
     .then( resp => res.status(200).send(resp))
     .catch(next)
+    },
+    getOrderById(req, res, next){
+        const { orderId } = req.params
+        orderService.getOrderById(orderId)
+        .then( rows => res.status(200).send(rows))
+        .catch(next)
     }
 }

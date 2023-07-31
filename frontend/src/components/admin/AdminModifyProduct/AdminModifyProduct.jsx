@@ -141,8 +141,8 @@ export default function AdminUpdateProduct() {
           required
         />
         <label htmlFor="category">kategóriák</label>
-        <select name="categoryId" onChange={handleCategoryChange}>
-          <option key={0} value={newCategory}>
+        <select name="categoryId" value={newCategory} onChange={handleCategoryChange}>
+          <option key={0}>
             Válassz kategóriát!
           </option>
           {categoryList?.map((category, idx) => {

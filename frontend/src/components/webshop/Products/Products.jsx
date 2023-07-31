@@ -20,9 +20,6 @@ export default function Products() {
 		});
 	}, []);
 
-  useEffect(() => {
-    readProducts().then((products) => {
-      // console.log(products);
 
     useEffect(() =>{
         // let querry = "";

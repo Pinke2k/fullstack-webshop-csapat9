@@ -42,6 +42,7 @@ export default {
       const { productId } = req.params;
       console.log(req.params);
       const updateProduct = await productsService.updateProduct(productId, req.body, req.file);
+
       res.json(updateProduct);
     } catch (err) {
       next(err);

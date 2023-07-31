@@ -90,7 +90,8 @@ export default {
     });
   },
 
-  updateProduct({ productId, name, description, price, amount, categoryId }) {
+  updateProduct(productId, { name, description, price, amount, categoryId }) {
+    console.log(productId, name, description, price, amount, categoryId, 'termékek model update');
     const sql1 = `UPDATE products_categories SET category_id = $categoryId WHERE product_id = $productId`;
     const sql2 = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount  WHERE id = $id`;
     const timestamp = Date.now();

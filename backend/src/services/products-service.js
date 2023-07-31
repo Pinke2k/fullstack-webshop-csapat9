@@ -36,22 +36,29 @@ export default {
       throw new Error('Termék törlése során hiba');
     }
   },
+
+  // updateProduct(payload) {
+  //   console.log("itt mit ad",payload.categoryId)
+  //   if(!payload.categoryId){
+  //     return productsModel.deleteCategoriesFromProduct(payload.productId, payload.categoryId)
+  //    } else{
+  //       return productsModel.updateProduct(payload);
   async updateProduct(productId, payload, imageFile) {
     try {
       const { categoryId } = payload;
-      console.log(imageFile, 'prodcut id ');
+      console.log(productId, 'prodcut id ');
 
       if (!categoryId) {
-        await productsModel.deleteCategoriesFromProduct(productId, categoryId);
-      } else {
-        await productsModel.updateProduct(payload);
+        return await productsModel.deleteCategoriesFromProduct(productId, categoryId);
       }
+      const updateProduct = await productsModel.updateProduct(productId, payload);
+
       if (imageFile) {
         const productWithImage = await picturesService.updateProductPicture(productId, imageFile);
         return productWithImage;
       }
 
-      return true;
+      return updateProduct;
     } catch (error) {
       console.error('Termék frissítése során hiba:', error.message);
       throw new Error('Termék frissítése során hiba');

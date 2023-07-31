@@ -37,11 +37,11 @@ export default {
       throw new Error('Kép törlése során hiba történt.');
     }
   },
-  async updateProductPicture(pictureId, updatedData) {
+  async updateProductPicture(productId, updatedData) {
     try {
       const { originalname, filename, path } = updatedData;
       const blurhash = await encodeImageToBlurhash(path);
-      return productPicturesModel.updateProductPicture(pictureId, {
+      return productPicturesModel.updateProductPicture(productId, {
         originalname,
         filename,
         path,

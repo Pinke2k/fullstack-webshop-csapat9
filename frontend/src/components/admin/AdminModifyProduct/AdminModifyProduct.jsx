@@ -4,6 +4,8 @@ import { updateProduct, readProducts } from '../../../services/api-fetch';
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import {getCategoryList, updateCategory} from '../../../services/api-fetch'
+
 
 
 export default function AdminUpdateProduct() {
@@ -14,37 +16,47 @@ export default function AdminUpdateProduct() {
 	const [newPrice, setNewPrice] = useState("");
 	const [newDescription, setNewDescription] = useState("");
     const [newAmount, SetNewAmount] = useState ("")
-    const [newCategory, SetNewCategory] = useState("")
+    const [category, setCategory] = useState("")
+    const [categoryList, setCategoryList] = useState()
 
 	
     useEffect(() => {
 		readProducts()
         .then((data) => {
-            console.log("data",data)
+            
 			const productToUpdate = data.find(
-				product => product.id = id,
-                console.log("id", id)
+				product => product.id = id
                 
 			)
-            console.log("ezt frissitem", productToUpdate)
+
 			setProductUpdate(productToUpdate);
 			setNewName(productUpdate.name);
 			setNewPrice(productUpdate.price);
 			setNewDescription(productUpdate.description);
-            SetNewAmount(productToUpdate.amount)
-            //setNewCategory(productToUpdate.category)
+            SetNewAmount(productToUpdate.amount);
+            setCategory(productToUpdate.category);
+           
 		
 		});
+
 	}, [
 		id,
 		productUpdate.name,
 		productUpdate.price,
 		productUpdate.description,
         productUpdate.amount,
-        //productUpdate.category
-	]);
+        productUpdate.category
+    ],)
 
-
+   useEffect(() => {
+        getCategoryList()
+        .then((data) => {
+            
+		    setCategoryList(data.map(elem=> elem))
+                
+        })},[]);
+     
+      
 	function handleNameChange(e) {
 		setNewName(e.target.value);
         e.preventDefault()
@@ -64,18 +76,21 @@ export default function AdminUpdateProduct() {
         e.preventDefault()
 	}
     function handleCategoryChange(e) {
-		SetNewCategory(e.target.value);
-        e.preventDefault()
+        //e.preventDefault()
+		setCategory(e.target.value);
+       
 	}
 
 
 
     function handleSubmit(e) {
 		e.preventDefault();
-		updateProduct(id, newName, newPrice, newDescription, newAmount/*category*/)
+        //updateCategory(category.id, category.name);
+		updateProduct(id, newName, newPrice, newDescription, newAmount, category)
 			//.then(() => fileUpload(id))
 			.then(() => {
 				navigate("/admin/products");
+                
 				toast.success("Termék sikeresen módosítva!", {
 					position: toast.POSITION.TOP_RIGHT,
 				});
@@ -84,8 +99,8 @@ export default function AdminUpdateProduct() {
 				toast.error(`Hiba történt a termék módosítása közben: ${error.message}`, {
 					position: toast.POSITION.TOP_RIGHT,
 				});
-			})
-	}
+			})}
+            
 	
 	
 
@@ -132,21 +147,23 @@ export default function AdminUpdateProduct() {
                         onChange={handleAmountChange}
                         required
                     />
-                   { /*<label htmlFor="category">kategóriák</label>
-                    <select value={category} onChange={categoryChange}>
+                    <label htmlFor="category">kategóriák</label>
+                    <select value={category} onChange={handleCategoryChange}>
                         <option key={0} value={""}>
                             Válassz kategóriát!
                         </option>
-                        {categoryList.map((category, idx) => {
-                            return (
-                                <option key={idx + 1} value={category.id}>
+                        { categoryList?.map((category, idx) => {
+                            
+                            return(
+                                <option key={idx + 1} value={category.id} >
                                     {category.name}
+                                    
                                 </option>
                             );
-                        })}
+                        }) }
                     </select>
                     <label htmlFor="upload">File feltöltés</label>
-                    <input name="image" type="file" onChange={handleUrlChange} /> */}
+                    {/*<input name="image" type="file" onChange={handleUrlChange} />*/ }
     
                     <button type='submit'>Mentés</button>
                 </form>

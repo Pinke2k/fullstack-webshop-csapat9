@@ -1,8 +1,10 @@
-
+import ContactUs from "../../components/webshop/Contact/Contact"
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <>
+      <ContactUs/>
+    </>
   )
 }
 

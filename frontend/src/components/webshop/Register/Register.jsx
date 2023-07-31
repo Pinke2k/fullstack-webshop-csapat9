@@ -16,11 +16,11 @@ export default function Login() {
           <div className='wrapper'>
             <form>
               <div>
-                <h1 className="login-h1">Register</h1>
+                <h1 className="register-h1">Register</h1>
                 <p>
                   Email:{' '}
                 <input
-                  className="login-input"
+                  className="register-input"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -30,7 +30,7 @@ export default function Login() {
               <p>
                 Username:{' '}
                 <input
-                  className="login-input"
+                  className="register-input"
                   type="text"
                   value={formData.username}
                   onChange={(e) => setFormData({ ...formData, username: e.target.value })}
@@ -40,7 +40,7 @@ export default function Login() {
               <p>
                 Password:{' '}
                 <input
-                  className="login-input"
+                  className="register-input"
                   type="password"
                   value={formData.password}
                   onChange={(e) => {
@@ -51,7 +51,7 @@ export default function Login() {
                 />
               </p>
               <p>
-                <button type="submit" onClick={() => authFetches.userRegister(formData)}>
+                <button type="submit" className='register-button' onClick={() => authFetches.userRegister(formData)}>
                   Register
                 </button>
               </p>

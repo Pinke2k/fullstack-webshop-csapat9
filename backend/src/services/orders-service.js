@@ -15,5 +15,8 @@ export default {
     },
     deleteOrder(payload){
        return orderModel.deleteOrder(payload)
+    },
+    getOrderById(payload){
+        return orderModel.getOrderById(payload)
     }
 }

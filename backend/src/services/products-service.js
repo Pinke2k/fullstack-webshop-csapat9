@@ -17,8 +17,11 @@ export default {
     } catch (error) {
       console.error('Termék létrehozása során hiba:', error.message);
       throw new Error('Termék létrehozása során hiba');
-    }
+    }},
+  getCurrent({pageSize, currentPage, sortBy, order}){
+    return productsModel.getCurrent({pageSize, currentPage, sortBy, order})
   },
+
   findOne(payload) {
     return productsModel.getOne(payload);
   },
@@ -36,13 +39,6 @@ export default {
       throw new Error('Termék törlése során hiba');
     }
   },
-
-  // updateProduct(payload) {
-  //   console.log("itt mit ad",payload.categoryId)
-  //   if(!payload.categoryId){
-  //     return productsModel.deleteCategoriesFromProduct(payload.productId, payload.categoryId)
-  //    } else{
-  //       return productsModel.updateProduct(payload);
   async updateProduct(productId, payload, imageFile) {
     try {
       const { categoryId } = payload;

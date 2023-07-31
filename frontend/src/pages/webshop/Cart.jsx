@@ -1,7 +1,7 @@
-import Cart from '../../components/webshop/Cart/Cart';
+import {Cart} from '../../components/webshop/Cart/Cart';
 
-const cart = () => {
+const cartt = () => {
   return <Cart />;
 };
 
-export default cart;
+export default cartt;

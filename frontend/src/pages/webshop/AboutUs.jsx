@@ -1,7 +1,10 @@
+import About from "../../components/webshop/AboutUs/AboutUs"
 
-export default function AboutUs() {
+
+export default function AboutUss() {
     return (
-        <div>About us</div>
-    )
-    
-}
+        <>
+            <About/>
+        </>
+    )  
+};

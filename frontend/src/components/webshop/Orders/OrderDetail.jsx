@@ -9,7 +9,10 @@ export default function OrderDetail({ orderId }) {
     ordersFetch.orderById(orderId).then((data) => {
       setOrder(data);
       setProducts(data?.products);
-      data.products.forEach((product) => setPrice((prev) => prev + product.total_price));
+      const totalPrice = data.products.reduce((accumulator, currentObject) => {
+        return accumulator + currentObject.total_price;
+      }, 0);
+      setPrice(totalPrice);
     });
   }, []);
   return (

@@ -16,7 +16,7 @@ export default {
     });
   },
 
-  create(name){
+  create(name) {
     const id = nanoid(16);
     const sql = `INSERT INTO categories (id, name) VALUES ($id, $name)`;
     const params = {
@@ -24,59 +24,59 @@ export default {
       $name: name
     }
     return new Promise((resolve, reject) => {
-      db.run(sql,params,(err) => {
-        if(err) reject(err);
-        else{
+      db.run(sql, params, (err) => {
+        if (err) reject(err);
+        else {
           resolve({ name });
         }
       })
     })
   },
 
-  delete(id){
+  delete(id) {
     const sql = `DELETE FROM categories WHERE id = ?`
-    return new Promise((resolve,reject) => {
-      db.run(sql,[id],function(err) {
-        if(err) reject(err)
-        else{
+    return new Promise((resolve, reject) => {
+      db.run(sql, [id], function (err) {
+        if (err) reject(err)
+        else {
           resolve(this)
         }
       })
     })
   },
 
-  getOne(id){
+  getOne(id) {
     const sql = `SELECT * FROM categories WHERE id = ?`
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
       db.get(sql, [id], (err, row) => {
-        if(err) reject(err)
-        else{
+        if (err) reject(err)
+        else {
           resolve(row)
         }
       })
     })
   },
-  getAll(){
+  getAll() {
     const sql = `SELECT * FROM categories`;
-    return new Promise((resolve,reject) => {
-      db.all(sql,(err,rows) => {
-        if(err) reject(err)
-        else{
+    return new Promise((resolve, reject) => {
+      db.all(sql, (err, rows) => {
+        if (err) reject(err)
+        else {
           resolve(rows)
         }
       })
     })
   },
-  updateCategory({id, name}){
+  updateCategory({ id, name }) {
     const sql = `UPDATE categories SET name = $name WHERE id = $id`;
     const params = {
       $id: id,
       $name: name
     };
-    return new Promise((resolve,reject) => {
-      db.run(sql,params,(err) => {
-        if(err) reject(err)
-        else{
+    return new Promise((resolve, reject) => {
+      db.run(sql, params, (err) => {
+        if (err) reject(err)
+        else {
           resolve("updated sucessfully")
         }
       })

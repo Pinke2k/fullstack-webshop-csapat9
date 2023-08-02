@@ -17,9 +17,10 @@ export default {
     } catch (error) {
       console.error('Termék létrehozása során hiba:', error.message);
       throw new Error('Termék létrehozása során hiba');
-    }},
-  getCurrent({pageSize, currentPage, sortBy, order}){
-    return productsModel.getCurrent({pageSize, currentPage, sortBy, order})
+    }
+  },
+  getCurrent({ pageSize, currentPage, sortBy, order, searchByName }) {
+    return productsModel.getCurrent({ pageSize, currentPage, sortBy, order, searchByName })
   },
 
   findOne(payload) {

@@ -72,8 +72,8 @@ export default function AdminCreateProduct() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
         <label htmlFor="title">Új név:</label>
         <input
           className="input"
@@ -85,7 +85,9 @@ export default function AdminCreateProduct() {
           onChange={handleNameChange}
           required
         />
+      </div>
 
+      <div className="form-group">
         <label htmlFor="price">Új ár:</label>
         <input
           className="input"
@@ -96,7 +98,9 @@ export default function AdminCreateProduct() {
           onChange={handlePriceChange}
           required
         />
+      </div>
 
+      <div className="form-group">
         <label htmlFor="description">Új leírás:</label>
         <input
           rows={8}
@@ -108,6 +112,9 @@ export default function AdminCreateProduct() {
           onChange={handleDescChange}
           required
         />
+      </div>
+
+      <div className="form-group">
         <label htmlFor="amount">Új mennyiseg:</label>
         <input
           className="input"
@@ -118,7 +125,10 @@ export default function AdminCreateProduct() {
           onChange={handleAmountChange}
           required
         />
-        <label htmlFor="category">kategóriák</label>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="category">Kategóriák:</label>
         <select name="categoryId" value={newCategory} onChange={handleCategoryChange}>
           <option key={0} value={''}>
             Válassz kategóriát!
@@ -131,13 +141,18 @@ export default function AdminCreateProduct() {
             );
           })}
         </select>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="image">Kép feltöltése:</label>
         <input type="file" onChange={handleFileChange} />
+      </div>
 
+      <div className="button-group">
         {/* <button onClick={upload}>upload</button> */}
-
         <button type="submit">Mentés</button>
-      </form>
-      <button onClick={() => navigate('/admin/products')}>Mégsem</button>
-    </>
+        <button onClick={() => navigate('/admin/products')}>Mégsem</button>
+      </div>
+    </form>
   );
 }

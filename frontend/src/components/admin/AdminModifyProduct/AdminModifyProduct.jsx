@@ -142,9 +142,7 @@ export default function AdminUpdateProduct() {
         />
         <label htmlFor="category">kategóriák</label>
         <select name="categoryId" value={newCategory} onChange={handleCategoryChange}>
-          <option key={0}>
-            Válassz kategóriát!
-          </option>
+          <option key={0}>Válassz kategóriát!</option>
           {categoryList?.map((category, idx) => {
             return (
               <option key={idx + 1} value={category.id}>
@@ -158,8 +156,8 @@ export default function AdminUpdateProduct() {
         {/* <button onClick={upload}>upload</button> */}
 
         <button type="submit">Mentés</button>
+        <button onClick={() => navigate('/admin/products')}>Mégsem</button>
       </form>
-      <button onClick={() => navigate('/admin/products')}>Mégsem</button>
     </>
   );
 }

@@ -25,11 +25,14 @@ export default function ProductCard(props) {
 
         <h2 className="product-price">{props.product.price + ' Ft'}</h2>
 
-        <button onClick={() => modifyProduct(props.product.id)}> Modositas </button>
+        <button className="modify-product" onClick={() => modifyProduct(props.product.id)}>
+          {' '}
+          Módosítás{' '}
+        </button>
 
         <button className="gommmb" onClick={() => deleteProductt(props.product.id)}>
           {' '}
-          Torles{' '}
+          Törlés{' '}
         </button>
       </div>
     </div>

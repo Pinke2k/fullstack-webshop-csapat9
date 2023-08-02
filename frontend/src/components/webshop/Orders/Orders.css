@@ -1,52 +1,65 @@
-.ordercard-container{
+.ordercard-container {
     display: grid;
-    grid-template-columns:1fr 1fr 1fr;
-    grid-template-rows: repeat(1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    width: fit-content;  
-    margin-left: auto;
-    margin-right: auto;
-}
-.orderCard {
-    position: relative; /* Set the parent container as a relative position */
-    justify-self: center;
-    width: 70%;
-    height: 100%;
-    background-color: white;
-    border-radius: 1vh;
+    max-width: 1200px;
+    margin: 50px auto;
+  }
+  
+  .orderCard {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #f8f8f8;
+    border-radius: 15px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(auto-fill, minmax(1fr, auto));
-    padding: 1vh;
-    gap: 1vh;
-    box-shadow: 10px 10px 5px lightgrey;
-    border: 2px solid lightgrey;
-}
-.delete-order {
-    position: absolute;
-    top: -2px;
-    right: 3px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    color: red;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dcdcdc;
+  }  
+  .order-data {
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    width: 100%;
+    height: 40px;
+    background-color: #3498db;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
-}
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+  }
 
-.btn {
-    width: 75%;
-    height: 70%;
-    align-self: center;
-    justify-self: center;
-    background-color: white;
-    border-radius: 5px;
-    border: 2px solid lightgrey;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: lightgrey;
-    color: white;
-}
-
+  .delete-order {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%; 
+  background-color: #fb0202;
+  border: none;
+  font-size: 20px;
+  color: #ffffff;
+  }
+    
+  @media (max-width: 600px) {
+    .btn {
+      width: 100%;
+    }
+  }
+  

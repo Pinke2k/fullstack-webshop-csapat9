@@ -80,10 +80,14 @@ import { useCart } from '../../../hooks/useCart';
 import { Navigate } from 'react-router-dom';
 import './Cart.css';
 import CartItemCard from './CartItemCard';
+import ordersFetch from '../../../services/orders-fetch';
+import useAuth from '../../../hooks/useAuth';
 
 const Cart = () => {
   const { cartItems, totalPrice, incrementAmount, decrementAmount, removeCart, removeCartItem } =
     useCart();
+  const { user } = useAuth();
+  const userId = user?.id;
 
   return (
     <section className="grid-container">
@@ -116,7 +120,14 @@ const Cart = () => {
                   <div className="price">Végösszeg: {totalPrice} Ft</div>
                 </div>
                 <div className="row checkout">
-                  <button>Megrendelés</button>
+                  <button
+                    onClick={() => {
+                      ordersFetch.setOrder(userId);
+                      removeCart();
+                    }}
+                  >
+                    Megrendelés
+                  </button>
                   <button onClick={removeCart}>kosár törlése</button>
                 </div>
               </div>

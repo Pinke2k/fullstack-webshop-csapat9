@@ -1,14 +1,24 @@
 import productsService from '../services/products-service';
-import HttpError from '../utils/httpError';
 
 export default {
   findAll(req, res, next) {
-    productsService
-      .findAll()
-      .then((products) => {
-        res.send(products);
-      })
-      .catch(next);
+    console.log(req.query, 'query controller');
+    if (Object.keys(req.query).length == 0) {
+      productsService
+        .findAll()
+        .then((products) => {
+          res.send(products);
+        })
+        .catch(next);
+    } else {
+      const { pageSize, currentPage, sortBy, order } = req.query;
+      productsService
+        .getCurrent({ pageSize, currentPage, sortBy, order })
+        .then((products) => {
+          res.send(products);
+        })
+        .catch(next);
+    }
   },
 
   findOne(req, res, next) {
@@ -21,15 +31,14 @@ export default {
       .catch(next);
   },
 
-  create(req, res, next) {
-    const { name, description, price, amount, categoryId } = req.body;
-  
+  async create(req, res, next) {
+    try {
+      const newProduct = await productsService.create(req.body, req.file);
 
-    if (!price || !name) throw new HttpError('missing required parameter', 400);
-    productsService
-      .create({ name, description, price: Number(price), amount: Number(amount), categoryId })
-      .then((product) => res.status(201).send(product))
-      .catch(next);
+      res.json(newProduct);
+    } catch (err) {
+      next(err);
+    }
   },
 
   delete(req, res, next) {
@@ -39,16 +48,15 @@ export default {
       .then((resp) => res.status(200).send('ok'))
       .catch(next);
   },
-  updateProduct(req, res, next) {
-    const { productId } = req.params;
-    const { name, description, price, amount, categoryId } = req.body;
-   
-    productsService
-      .updateProduct({ productId, name, description, price, amount, categoryId })
-      .then((product) => {
-       
-        res.status(200).send({ product });
-      })
-      .catch(next);
+  async updateProduct(req, res, next) {
+    try {
+      const { productId } = req.params;
+      console.log(req.params);
+      const updateProduct = await productsService.updateProduct(productId, req.body, req.file);
+
+      res.json(updateProduct);
+    } catch (err) {
+      next(err);
+    }
   },
 };

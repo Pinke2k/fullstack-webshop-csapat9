@@ -24,10 +24,12 @@ export default {
   },
 
   getAll() {
-    const sql = `SELECT p.id,p.description,p.price,p.amount, p.name, c.id AS categoryId
-    FROM products p
-    JOIN products_categories AS pc ON p.id=pc.product_id
-    JOIN categories AS c ON c.id=pc.category_Id
+    const sql = `
+      SELECT p.id, p.description, p.price, p.amount, p.name, c.id AS categoryId, pp.id AS pictureId, pp.originalname, pp.filename, pp.path, pp.blurhash
+      FROM products p
+      JOIN products_categories AS pc ON p.id = pc.product_id
+      JOIN categories AS c ON c.id = pc.category_Id
+      LEFT JOIN product_pictures AS pp ON p.id = pp.product_id;
     `;
     return new Promise((resolve, reject) => {
       db.all(sql, (err, rows) => {
@@ -57,22 +59,23 @@ export default {
     });
   },
 
-  create({ name, description, price, amount }) {
+  create({ name, description, price, amount, productUrl }) {
     const id = nanoid(8);
     const sql =
-      'INSERT INTO products(id, name, description,price,amount) VALUES($id, $name, $description,$price,$amount)';
+      'INSERT INTO products(id, name, description,price,amount,product_url) VALUES($id, $name, $description,$price,$amount,$productUrl)';
     const params = {
       $id: id,
       $name: name,
       $description: description,
       $price: price,
       $amount: amount,
+      $productUrl: productUrl,
     };
 
     return new Promise((resolve, reject) => {
       db.run(sql, params, function (err) {
         if (err) reject(err);
-        else resolve({ price, name, id, description, amount });
+        else resolve({ price, name, id, description, amount, productUrl });
       });
     });
   },
@@ -87,15 +90,15 @@ export default {
     });
   },
 
-  updateProduct({ productId, name, description, price, amount, categoryId }) {
-   
+  updateProduct(productId, { name, description, price, amount, categoryId }) {
+    console.log(productId, name, description, price, amount, categoryId, 'termékek model update');
     const sql1 = `UPDATE products_categories SET category_id = $categoryId WHERE product_id = $productId`;
     const sql2 = `UPDATE products SET name = $name, description = $description, price = $price, amount = $amount  WHERE id = $id`;
     const timestamp = Date.now();
     const params1 = {
-      $categoryId : categoryId,
-      $productId: productId
-    }
+      $categoryId: categoryId,
+      $productId: productId,
+    };
     const params2 = {
       $id: productId,
       $name: name,
@@ -106,17 +109,14 @@ export default {
     };
     return new Promise((resolve, reject) => {
       db.serialize(() => {
-
         db.run(sql1, params1, function (err) {
           if (err) reject(err);
         }),
-
-        db.run(sql2, params2, function (err) {
-          if (err) reject(err);
-          else resolve('success');
-        });
-
-      })
+          db.run(sql2, params2, function (err) {
+            if (err) reject(err);
+            else resolve('success');
+          });
+      });
     });
   },
   addCategoriesToProduct(productId, categoryId) {
@@ -135,19 +135,46 @@ export default {
       });
     });
   },
-  deleteCategoriesFromProduct(productId, categoryId){
+  deleteCategoriesFromProduct(productId, categoryId) {
     const sql = ` DELETE FROM products_categories WHERE category_id = $categoryId AND product_id = $productId`;
     const params = {
-      $categoryId : categoryId,
-      $productId : productId
-    }
+      $categoryId: categoryId,
+      $productId: productId,
+    };
     return new Promise((resolve, reject) => {
-      db.run(sql,params,(err) => {
-        if(err) reject(err)
-        else{
-          resolve('Category deleted from product')
+      db.run(sql, params, (err) => {
+        if (err) reject(err);
+        else {
+          resolve('Category deleted from product');
         }
-      })
-    })
+      });
+    });
+  },
+
+  getCurrent({ pageSize, currentPage, sortBy, order }) {
+    let orderquerry = '';
+    if (sortBy) orderquerry = `ORDER BY ${sortBy} ${order}`;
+    const sql = `SELECT * FROM products LEFT JOIN product_pictures AS pp ON p.id = pp.product_id ${orderquerry} LIMIT ${pageSize} OFFSET ${
+      pageSize * (currentPage - 1)
+    }`;
+
+    const sql1 = `
+    SELECT p.id, p.description, p.price, p.amount, p.name, c.id AS categoryId, pp.id AS pictureId, pp.originalname, pp.filename, pp.path, pp.blurhash
+    FROM products p
+    JOIN products_categories AS pc ON p.id = pc.product_id
+    JOIN categories AS c ON c.id = pc.category_Id
+    LEFT JOIN product_pictures AS pp ON p.id = pp.product_id
+    ${orderquerry} LIMIT ${pageSize} OFFSET ${pageSize * (currentPage - 1)}
+  `;
+
+    return new Promise((resolve, reject) =>
+      db.serialize(() => {
+        const stmt = db.prepare(sql1);
+        stmt.all((err, rows) => {
+          if (err) reject(err);
+          else resolve(rows);
+        });
+      }),
+    );
   },
 };

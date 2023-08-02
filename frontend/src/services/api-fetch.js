@@ -1,5 +1,5 @@
 import { API_URL } from '../constants/constants';
-
+import { token } from '../constants/constants';
 export function readProducts() {
   return fetch(`${API_URL}/api/products`)
     .then((resp) => {
@@ -75,7 +75,11 @@ export function deleteProduct(id) {
 }
 
 export function readUsers() {
-  return fetch(`${API_URL}/api/users`)
+  return fetch(`${API_URL}/api/users`,{
+    headers:{
+      Authorization: `Bearer ${token}`,
+    }
+  })
     .then((resp) => {
       if (!resp.ok) {
         throw new Error('Hiba a termékek lekérdezése során.');

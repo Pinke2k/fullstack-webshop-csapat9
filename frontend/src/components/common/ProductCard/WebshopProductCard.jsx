@@ -10,10 +10,9 @@ return  (
     <div className="product-card">
         <img src="https://picsum.photos/100/100"/*{props.product.url}*/ alt="image" className="image" />
         <h1 className="product-title">{props.product.name}</h1>
-       <div className='lastline'>
         <div className="product-price">{props.product.price + " Ft"}</div>
         <button className='add-product'>Kosárba</button>
-        </div>
+        
     </div>
 );
 }

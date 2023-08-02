@@ -11,9 +11,9 @@ export default {
         })
         .catch(next);
     } else {
-      const { pageSize, currentPage, sortBy, order } = req.query;
+      const { pageSize, currentPage, sortBy, order, searchByName } = req.query;
       productsService
-        .getCurrent({ pageSize, currentPage, sortBy, order })
+        .getCurrent({ pageSize, currentPage, sortBy, order, searchByName })
         .then((products) => {
           res.send(products);
         })

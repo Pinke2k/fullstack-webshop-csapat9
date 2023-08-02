@@ -53,7 +53,7 @@ export default function Products() {
                 <option value="price-ASC">Növekvő</option>
                 <option value="price-DESC">Csökkenő</option>
             </select>
-            <label for="name">Méret:</label>
+            <label htmlFor="name">Méret:</label>
             <select className="page-size" onChange={(e) => setPageSize(e.target.value)} value={pageSize}>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -61,8 +61,8 @@ export default function Products() {
                 <option value="25">25</option>
                 <option value="50">50</option>
             </select>
-            <label for="name">Keresés:</label>
-            <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="10"/>
+            <label htmlFor="name">Keresés:</label>
+            <input type="text" id="name" name="name" required minLength="4" maxLength="8" size="10"/>
         </div>
         <div className="product-box">
             {ProductList?.map((p) => ( 
@@ -70,8 +70,8 @@ export default function Products() {
                 ))}
         </div>
         <div>
-            <button class="pagination-button" id="next-button" aria-label="Previous page" title="Previous page" onClick={decreasePage}>Előző oldal</button>
-            <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page" onClick={increasePage}>Következő oldal</button>
+            <button className="pagination-button" id="next-button" aria-label="Previous page" title="Previous page" onClick={decreasePage}>Előző oldal</button>
+            <button className="pagination-button" id="next-button" aria-label="Next page" title="Next page" onClick={increasePage}>Következő oldal</button>
         </div>
         </>
     )

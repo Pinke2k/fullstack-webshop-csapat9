@@ -1,4 +1,5 @@
 import { API_URL } from '../constants/constants';
+import jwtDecode from 'jwt-decode';
 
 export default {
   userLogin(formData) {
@@ -22,4 +23,14 @@ export default {
       body: JSON.stringify(formData),
     });
   },
+};
+
+export const createAuthInit = () => {
+  const token = localStorage.getItem('accessToken');
+  try {
+    const user = jwtDecode(token);
+    return { accessToken: token, user };
+  } catch {
+    return { accessToken: null };
+  }
 };

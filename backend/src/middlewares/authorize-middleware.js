@@ -5,9 +5,12 @@ import HttpError from '../utils/httpError';
 export default function (req, res, next) {
   const token = req.headers.authorization.split(' ')[1];
 
+  if (!token) {
+    return next(new HttpError('Authorization token not provided', 401));
+  }
+
   try {
     const payload = jwt.verify(token, JWT_SECRET_KEY);
-    // console.log('jwt decide payload', payload);
     req.user = payload;
     next();
   } catch {

@@ -1,8 +1,12 @@
+import Homee from "../../components/webshop/Home/Home"
+
+function Home (){
 
 
-const Home = () => {
-  return (
-    <div>Home</div>
+  return (<>
+  
+    <Homee/>
+    </>
   )
 }
 

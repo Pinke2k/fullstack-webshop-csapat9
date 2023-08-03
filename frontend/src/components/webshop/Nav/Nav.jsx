@@ -19,13 +19,11 @@ function Nav() {
     setToggle(!toggle);
   };
 
-  const { user } = useAuth();
+  //const { user } = useAuth();
   return (
     <>
       <div className={toggle ? 'navbar expanded' : 'navbar'}>
-        <div className="logo">
-          <NavLink to="/">Főoldal</NavLink>
-        </div>
+      
         <ul className="links">
           <li>
             <NavLink to="/products">Termékek</NavLink>
@@ -40,18 +38,6 @@ function Nav() {
             <NavLink to="/orders">Megrendeléseim</NavLink>
           </li>
         </ul>
-        <div className="top-right">
-          <div className="profile">
-            {user?.id ? (<>
-              <NavLink to='/profile/:id'><Icon icon={person} size={30} /></NavLink>
-              <button className="signOut"><Icon icon={logOut} size={30} /></button>
-              <NavLink to='/cart'><Icon icon={shoppingCart} size={30} /></NavLink>
-            </>) : (<>
-              <NavLink to="/user/login"><Icon icon={logIn} size={30} /></NavLink>
-              <NavLink to="/user/register"><Icon icon={userPlus} size={30} /></NavLink>
-            </>)}
-          </div>
-        </div>
         <div className="toggle-icon" onClick={handleToggle}>
           {toggle ? <Icon icon={x} size={30} /> : <Icon icon={menu} size={30} />}
         </div>

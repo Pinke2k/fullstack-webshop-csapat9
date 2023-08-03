@@ -69,3 +69,8 @@ footer{
 
 
 
+@media(max-width: 500px) {
+    .info {display: none;}
+    .social {display: none;}
+    .contactMe{justify-content: center;}
+}

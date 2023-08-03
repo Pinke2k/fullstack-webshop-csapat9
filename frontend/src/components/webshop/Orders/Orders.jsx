@@ -10,7 +10,7 @@ const Orders = () => {
   const { orders, setOrders } = useContext(ordersContext);
   const { user } = useAuth();
   const userId = user?.id;
-
+  console.log('orders', orders);
   useEffect(() => {
     if (userId !== undefined) {
       ordersFetch

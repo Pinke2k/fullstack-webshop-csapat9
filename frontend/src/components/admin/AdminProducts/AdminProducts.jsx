@@ -22,13 +22,13 @@ export default function AdminProducts() {
 
   return (
     <>
-      <div class="product-container">
-        <div class="button-container">
-          <button class="new-product" onClick={() => CreateProduct()}>
+      <div className="product-container">
+        <div className="button-container">
+          <button className="new-product" onClick={() => CreateProduct()}>
             Új termék
           </button>
         </div>
-        <div class="product-box">
+        <div className="product-box">
           {ProductList?.map((p) => (
             <ProductCardAdmin product={p} key={p.id} />
           ))}

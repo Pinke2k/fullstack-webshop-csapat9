@@ -2,7 +2,6 @@ import productsService from '../services/products-service';
 
 export default {
   findAll(req, res, next) {
-    console.log(req.query, 'query controller');
     if (Object.keys(req.query).length == 0) {
       productsService
         .findAll()

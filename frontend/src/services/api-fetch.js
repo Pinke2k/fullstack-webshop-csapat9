@@ -16,6 +16,9 @@ export function readProducts() {
 export function createProduct(formdata) {
   return fetch(`${API_URL}/api/products`, {
     method: 'POST',
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
     body: formdata,
   }).then((response) => {
     if (!response.ok) {
@@ -23,22 +26,6 @@ export function createProduct(formdata) {
     }
     return response.json();
   });
-  // .then((data) => {
-  //   const productId = data.name;
-  //   return fetch(`${API_URL}termekek/${productId}`, {
-  //     method: 'PATCH',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       id: productId,
-  //       categoryId: categoryId,
-  //     }),
-  //   });
-  // })
-  // .catch((error) => {
-  //   console.log(error.message);
-  // });
 }
 
 export function updateProduct(id, formdata) {
@@ -46,6 +33,9 @@ export function updateProduct(id, formdata) {
   console.log('formdata', formdata);
   return fetch(`${API_URL}/api/products/${id}`, {
     method: 'PUT',
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
     body: formdata,
   })
     .then((data) => {
@@ -62,6 +52,9 @@ export function updateProduct(id, formdata) {
 export function deleteProduct(id) {
   return fetch(`${API_URL}/api/products/${id}`, {
     method: 'DELETE',
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   })
     .then((data) => {
       if (!data.ok) {
@@ -75,10 +68,10 @@ export function deleteProduct(id) {
 }
 
 export function readUsers() {
-  return fetch(`${API_URL}/api/users`,{
-    headers:{
-      Authorization: `Bearer ${token}`,
-    }
+  return fetch(`${API_URL}/api/users`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   })
     .then((resp) => {
       if (!resp.ok) {
@@ -113,6 +106,7 @@ export function updateCategory(id, name) {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name }),
   })
@@ -133,6 +127,7 @@ export function createCategory(name) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ name }),
     })
@@ -152,6 +147,10 @@ export function createCategory(name) {
 export function deleteCategory(id) {
   return fetch(`${API_URL}/api/categories/${id}`, {
     method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
   })
     .then((data) => {
       if (!data.ok) {

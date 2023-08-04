@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.section1{
+    margin: 2rem;
+   
+}
+
+.torokcim{
+   color: rgb(68, 31, 31);
+}
+
+.toroktext {
+    color: rgb(68, 31, 31);
+    
+}
+
+.weekly-product {
+    margin: 3rem;
+    background-color: rgb(240, 238, 234);
+    width: 60%;
+    height: 30rem;
+    display: flex;
+    flex-direction: row;
+    border: 5px solid black;
+}
+
+.text {
+    width: 90%;
+    margin: 4rem;
+    background-color: rgb(240, 238, 234); 
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 5px;
+    
+
+   
+}
+
+.torok-img{
+ width: 40%;
+ float: right;
+
+}
+
+.szoveg {width: 30%;}
+

@@ -1,17 +1,20 @@
 .Cards {
     display: flex;
-    gap: 10px;
+    gap: 60px;
+    justify-content: center;
   }
   .parentContainer{
-    width: 100%;
+    width: 20%;
   }
   
   @media screen and (max-width: 1200px) {
     .Cards{
       flex-direction: column;
+  
     }
     .parentContainer{
       height: 9rem;
+      justify-content: center;
     }
   }
   

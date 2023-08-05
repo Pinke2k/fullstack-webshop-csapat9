@@ -15,6 +15,7 @@ export default function OrderDetail({ orderId }) {
       setPrice(totalPrice);
     });
   }, []);
+  console.log(order);
   return (
     <>
       <div className="orderDetail-container">
@@ -29,6 +30,7 @@ export default function OrderDetail({ orderId }) {
               ))
             : 'Betöltés...'}
         </ul>
+        <div className="orderDetail">Felhasználó azonosító: {order?.userId}</div>
         <div className="orderDetail">
           Várható szállítási időpont: {timestampToDate(order?.deliver_date)}
         </div>

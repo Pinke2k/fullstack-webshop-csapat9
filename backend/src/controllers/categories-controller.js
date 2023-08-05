@@ -15,7 +15,7 @@ export default {
         if( id.length < 16 ) throw new HttpError('there is no category with this id', 400);
         categoriesService.getOne(id)
         .then(resp => {
-            console.log(resp)
+            console.log('resp',resp)
             if(!resp) res.status(400).send(`there is no category with this id: ${id}`)
             else{
                 categoriesService.delete(id)

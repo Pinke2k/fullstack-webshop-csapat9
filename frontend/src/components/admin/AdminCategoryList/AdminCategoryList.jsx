@@ -26,7 +26,7 @@ export default function AdminProducts() {
   }
 
   function DeleteCategory(id) {
-    navigate(`/admin/categories/${id}/delete`);
+    navigate(`/admin/categories/${id}/delete?categoryId=${id}`);
   }
 
   return (

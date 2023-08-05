@@ -27,8 +27,8 @@ export default {
     const sql = `
       SELECT p.id, p.description, p.price, p.amount, p.name, c.id AS categoryId, pp.id AS pictureId, pp.originalname, pp.filename, pp.path, pp.blurhash
       FROM products p
-      JOIN products_categories AS pc ON p.id = pc.product_id
-      JOIN categories AS c ON c.id = pc.category_Id
+      FULL OUTER JOIN products_categories AS pc ON p.id = pc.product_id
+      FULL OUTER JOIN categories AS c ON c.id = pc.category_Id
       LEFT JOIN product_pictures AS pp ON p.id = pp.product_id;
     `;
     return new Promise((resolve, reject) => {
@@ -81,6 +81,7 @@ export default {
   },
 
   delete(id) {
+    console.log(id)
     const sql = `DELETE FROM products WHERE id = ?`;
     return new Promise((resolve, reject) => {
       db.run(sql, [id], function (err) {
@@ -162,8 +163,8 @@ export default {
     const sql1 = `
     SELECT p.id, p.description, p.price, p.amount, p.name, c.id AS categoryId, pp.id AS pictureId, pp.originalname, pp.filename, pp.path, pp.blurhash
     FROM products p
-    JOIN products_categories AS pc ON p.id = pc.product_id
-    JOIN categories AS c ON c.id = pc.category_Id
+    FULL OUTER JOIN products_categories AS pc ON p.id = pc.product_id
+    FULL OUTER JOIN categories AS c ON c.id = pc.category_Id
     LEFT JOIN product_pictures AS pp ON p.id = pp.product_id
     ${search}
     ${orderquerry} LIMIT ${pageSize} OFFSET ${pageSize * (currentPage - 1)}

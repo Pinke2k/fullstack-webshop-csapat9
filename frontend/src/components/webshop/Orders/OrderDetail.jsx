@@ -19,7 +19,7 @@ export default function OrderDetail({ orderId }) {
   return (
     <>
       <div className="orderDetail-container">
-        <h1 className="orderName">Order Details {`(orderId: ${orderId})`}</h1>
+        <h1 className="orderName">Rendelés adatai</h1>
         <h2>Termékek:</h2>
         <ul className="products-list">
           {products !== undefined
@@ -28,6 +28,7 @@ export default function OrderDetail({ orderId }) {
               ))
             : 'Betöltés...'}
         </ul>
+        <div className="orderDetail">Rendelés azonosító: {orderId}</div>
         <div className="orderDetail">
           Várható szállítási időpont: {timestampToDate(order?.deliver_date)}
         </div>

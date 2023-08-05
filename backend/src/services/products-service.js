@@ -36,8 +36,8 @@ export default {
       }
       return productsModel.delete(productId);
     } catch (error) {
-      console.error('Termék törlése során hiba:', error.message);
       throw new Error('Termék törlése során hiba');
+      console.error('Termék törlése során hiba:', error.message);
     }
   },
   async updateProduct(productId, payload, imageFile) {

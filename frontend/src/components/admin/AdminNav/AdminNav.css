@@ -22,6 +22,14 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
   }
+  .navbar .logo a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .navbar .logo a:hover{
+    color: rgb(185, 26, 26);
+  }
 
   .navbar .links {
     position: absolute;

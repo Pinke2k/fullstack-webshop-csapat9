@@ -24,7 +24,7 @@ export default function OrderDetail({ orderId }) {
         <ul className="products-list">
           {products !== undefined
             ? products.map((product) => (
-                <li>{`Termék neve: ${product?.product_name} | Termék id: ${product?.product_id} | Quantity: ${product.quantity}db | Subtotal: ${product.total_price}Ft`}</li>
+                <li>{`Termék neve: ${product?.product_name} | Termék azonosító: ${product?.product_id} | Mennyiség: ${product.quantity}db | Összeg: ${product.total_price}Ft`}</li>
               ))
             : 'Betöltés...'}
         </ul>

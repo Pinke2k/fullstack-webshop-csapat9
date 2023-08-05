@@ -28,11 +28,13 @@ export default function Products() {
             .then(resp => resp.json())
             .then(prod => setProductList(prod))
     }, [sortBy, currentPage, pageSize, searchByName])
-
+    
+    let limiter = ProductList.length
     let increasePage = () => {
-        if(pageSize >= ProductList.length)
+        if(pageSize <= limiter){
         setCurrentPage((c) => c + 1);
         console.log("currentpage: ", currentPage)
+    }
     }
 
     let decreasePage = () => {
@@ -71,7 +73,7 @@ export default function Products() {
             </div>
             <div>
                 <button className="pagination-button" id="next-button" aria-label="Previous page" title="Previous page" onClick={decreasePage}>Előző oldal</button>
-                <button className="pagination-button" id="next-button" aria-label="Next page" title="Next page" onClick={increasePage}>Következő oldal</button>
+                <button className="pagination-button" id="next-button" aria-label="Next page" title="Next page" onClick={increasePage} value={limiter}>Következő oldal</button>
             </div>
         </>
     )

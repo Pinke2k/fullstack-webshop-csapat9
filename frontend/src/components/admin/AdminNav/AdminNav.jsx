@@ -9,11 +9,11 @@ export default function AdminNav() {
         <>
         <div className='navbar'>
             <div className="logo">
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/">Webshop</NavLink>
             </div>
             <ul className='links'>
                 <li>
-                    <NavLink to="/admin/products">Admin products</NavLink>
+                    <NavLink to="/admin/products">Admin termékek</NavLink>
                 </li>
                 <li>
                     <NavLink to="/admin/customers">Admin vásárlók</NavLink>

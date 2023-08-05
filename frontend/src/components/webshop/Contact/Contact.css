@@ -8,11 +8,18 @@
     display: flex;
     justify-content: end;
     align-self: center;
+ 
+    
+}
+
+.form{
+    background-color: rgb(232, 219, 203);
 }
 
 .kapcsolat-p{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    
 }
 
 @media(max-width:900px){

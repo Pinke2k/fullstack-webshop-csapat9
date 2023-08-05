@@ -101,11 +101,22 @@ body {
       margin: 1rem 0;
       font-size: 1.4rem;
     }
+
+    .toggle-icon{
+      display: block;
+      color: var(--clr-dark-dark);
+      
+      top: 1rem;
+      right: 1.2rem;
+      
+    }
+
+
   }
 
-  .toggle-icon{
-    display: none;
-  }
+    .toggle-icon{
+    display: none; } 
+  
 
   @media(max-width: 450px){
    
@@ -138,7 +149,7 @@ body {
       gap: 2rem;
     }
 
-    .navbar.expanded .toggle-icon{
+    .toggle-icon{
       display: block;
       color: var(--clr-dark-dark);
       

@@ -49,29 +49,31 @@ export default function Products() {
     return (
         <>
             <div className="sort-search">
-                <select onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
+                <select className='select-p' onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
                     <option value="price-ASC">Ár szerint növekvő</option>
                     <option value="price-DESC">Ár szerint csökkenő</option>
-                    <option value="name-ASC">Név szerint növekvő</option>
-                    <option value="name-DESC">Név szerint csökkenő</option>
+                    <option value="name-ASC">ABC sorrend A-Z</option>
+                    <option value="name-DESC">ABC sorrend Z-A</option>
                 </select>
-
-                <label>Méret:</label>
+                <div className='product-count'>
+                <p>Termszám/oldal </p>
                 <select className="page-size" onChange={(e) => setPageSize(e.target.value)} value={pageSize}>
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
                 </select>
-                <label>Keresés:</label>
-                <input type="text" onChange={(e) => setsearchByName(e.target.value)} value={searchByName} />
+                </div>
+                <div className='searching'>
+                    <input type="text" placeholder='  Mit keresel?' onChange={(e) => setsearchByName(e.target.value)} value={searchByName} />
+                </div>
             </div>
             <div className="product-box">
                 {ProductList?.map((p) => (
                     <ProductCard product={p} key={p.id} />
                 ))}
             </div>
-            <div>
+            <div className='pagination-b'>
                 <button className="pagination-button" id="next-button" aria-label="Previous page" title="Previous page" onClick={decreasePage}>Előző oldal</button>
                 <button className="pagination-button" id="next-button" aria-label="Next page" title="Next page" onClick={increasePage} value={limiter}>Következő oldal</button>
             </div>

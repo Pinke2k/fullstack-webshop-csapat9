@@ -4,6 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import { NavLink } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import MainDash from '../Dashboard/MainDash';
 
 export default function AdminLayout() {
   const { user } = useAuth();
@@ -18,6 +19,7 @@ export default function AdminLayout() {
       {user?.isAdmin ? (
         <>
           <AdminNav />
+          <MainDash/>
           <Outlet />
         </>
       ) : (

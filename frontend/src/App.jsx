@@ -5,6 +5,7 @@ import { CartProvider } from './contexts/cartProvider';
 import { ordersContext } from './contexts/ordersContext';
 import { useState } from 'react';
 import { allOrdersContext } from './contexts/allOrdersContext';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [orders, setOrders] = useState([]);
@@ -16,6 +17,7 @@ function App() {
         <ordersContext.Provider value={{ orders, setOrders }}>
           <allOrdersContext.Provider value={{ allOrders, setAllOrders }}>
             <RouterProvider router={router} />
+            <ToastContainer />
           </allOrdersContext.Provider>
         </ordersContext.Provider>
       </CartProvider>

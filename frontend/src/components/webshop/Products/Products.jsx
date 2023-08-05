@@ -1,26 +1,23 @@
-import { useEffect, useState } from "react"
-import { readProducts } from '../../../services/api-fetch'
-import ProductCard from "../../common/ProductCard/WebshopProductCard";
-import { useSearchParams } from "react-router-dom";
-import './Product.css'
+import { useEffect, useState } from 'react';
+import { readProducts } from '../../../services/api-fetch';
+import ProductCard from '../../common/ProductCard/WebshopProductCard';
+import { useSearchParams } from 'react-router-dom';
+import './Product.css';
 
 export default function Products() {
-    let [searchParams, setSearchParams] = useSearchParams();
-    const [ProductList, setProductList] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-    const [sortBy, setSortBy] = useState("")
-    const [searchByName, setsearchByName] = useState("")
-    const [SortedList, setSortedList] = useState()
-    const [pageSize, setPageSize] = useState(1)
-    console.log(ProductList)
+  let [searchParams, setSearchParams] = useSearchParams();
+  const [ProductList, setProductList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState('');
+  const [SortedList, setSortedList] = useState();
+  const [pageSize, setPageSize] = useState(1);
+  console.log(ProductList);
 
-    useEffect(() => {
-        readProducts().then((products) => {
-            setProductList(products);
-
-        });
-    }, []);
-
+  useEffect(() => {
+    readProducts().then((products) => {
+      setProductList(products);
+    });
+  }, []);
 
     useEffect(() => {
         const sort = sortBy.split("-")
@@ -78,4 +75,5 @@ export default function Products() {
             </div>
         </>
     )
+  
 }

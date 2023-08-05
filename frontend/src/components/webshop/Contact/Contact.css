@@ -1,0 +1,23 @@
+.map{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.contact-form{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.kapcsolat-p{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media(max-width:900px){
+    .kapcsolat-p{
+        grid-template-columns: none;
+        grid-template-rows: 1fr 1fr;
+    }
+}

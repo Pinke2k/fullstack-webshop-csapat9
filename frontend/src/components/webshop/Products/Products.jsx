@@ -32,6 +32,7 @@ export default function Products() {
     }, [sortBy, currentPage, pageSize, searchByName])
 
     let increasePage = () => {
+        if(pageSize >= ProductList.length)
         setCurrentPage((c) => c + 1);
         console.log("currentpage: ", currentPage)
     }

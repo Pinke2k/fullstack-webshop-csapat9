@@ -2,11 +2,11 @@ import { API_URL } from '../constants/constants';
 import { token } from '../constants/constants';
 
 export default {
-  async getCartItems(id) {
+  async getCartItems(id,accessToken) {
     try {
       const response = await fetch(`${API_URL}/api/cart/${id}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
@@ -21,6 +21,7 @@ export default {
       return cartItems;
     } catch (error) {
       console.log(error.message);
+      console.log(token,'token')
       return null;
     }
   },

@@ -43,6 +43,10 @@
   text-align: center;
 }
 
+.add-product button{
+  background-color: #4a2e04;
+}
+
 .product-content {
   display: flex;
   flex-direction: column;
@@ -67,7 +71,7 @@
 }
 
 .product-content button.gommmb {
-  background-color: #ff5a5f;
+  background-color: #7d0000;
 }
 
 .product-content button.modify-product {
@@ -79,5 +83,5 @@
 }
 
 .product-content button.gommmb:hover {
-  background-color: #e52c30;
+  background-color: #a20000;
 }

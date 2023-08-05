@@ -62,8 +62,8 @@ export function deleteProduct(id) {
       }
       return data, console.log('ez lefut5', data);
     })
-    .catch((err) => {
-      console.log(err.message);
+    .catch((error) => {
+      console.log(error);
     });
 }
 

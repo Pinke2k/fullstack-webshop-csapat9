@@ -46,7 +46,10 @@
   }
   
   .modifyProduct form input[type="file"] {
-    display: none; 
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .modifyProduct form button {
@@ -68,7 +71,7 @@
     background-color: #0056b3;
   }
   
-  button {
+  .modifyProduct button {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;

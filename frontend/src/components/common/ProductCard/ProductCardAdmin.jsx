@@ -6,12 +6,12 @@ export default function ProductCard(props) {
   const navigate = useNavigate();
   const [id, setId] = useState(props.id);
   function deleteProductt(id) {
-    navigate(`/admin/products/${id}/delete`);
+    navigate(`/admin/products/${id}/delete?productId=${id}`);
     //console.log("props.id ",props.product.id)
   }
 
   function modifyProduct(id) {
-    navigate(`/admin/products/${id}`);
+    navigate(`/admin/products/${id}?productId=${id}`);
   }
 
   return (

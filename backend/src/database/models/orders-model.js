@@ -89,7 +89,7 @@ export default {
     })
   },
   getOrderById(orderId){
-    const sql = `SELECT o.id AS order_id, o.created, o.is_done, o.deliver_date,
+    const sql = `SELECT o.id AS order_id, o.user_id, o.created, o.is_done, o.deliver_date,
     op.product_id, op.quantity, op.total_price, p.name AS product_name
     FROM orders o
     LEFT JOIN ordered_products AS op ON o.id = op.order_id
@@ -102,6 +102,7 @@ export default {
         else{
           const orderDetails = {
             order_id: rows[0].order_id,
+            userId: rows[0].user_id,
             created: rows[0].created,
             is_done: rows[0].is_done,
             deliver_date: rows[0].deliver_date,

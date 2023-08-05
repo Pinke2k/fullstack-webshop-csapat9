@@ -34,13 +34,19 @@ export default {
   },
 
   delete(id) {
-    const sql = `DELETE FROM categories WHERE id = ?`
+    const sql1 = `DELETE FROM products_categories WHERE category_id = ?`
+    const sql2 = `DELETE FROM categories WHERE id = ?`
     return new Promise((resolve, reject) => {
-      db.run(sql, [id], function (err) {
-        if (err) reject(err)
-        else {
-          resolve(this)
-        }
+      db.serialize(() => {
+        db.run(sql1, [id], function (err) {
+          if (err) reject(err)
+        });
+        db.run(sql2, [id], (err) => {
+          if (err) reject(err)
+          else {
+            resolve(this)
+          }
+        })
       })
     })
   },

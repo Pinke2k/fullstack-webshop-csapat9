@@ -15,20 +15,22 @@ export default function OrderDetail({ orderId }) {
       setPrice(totalPrice);
     });
   }, []);
+  console.log(order);
   return (
     <>
       <div className="orderDetail-container">
-        <h1 className="orderName">Order Details {`(orderId: ${orderId})`}</h1>
+        <h1 className="orderName">Rendelés részletei {`(Rendelés azonosító: ${orderId})`}</h1>
         <h2>Termékek:</h2>
         <ul className="products-list">
           {products !== undefined
             ? products.map((product) => (
                 <li
                   key={product?.product_id}
-                >{`Termék neve: ${product?.product_name} | Termék id: ${product?.product_id} | Quantity: ${product.quantity}db | Subtotal: ${product.total_price}Ft`}</li>
+                >{`Termék neve: ${product?.product_name} | Termék azonosító: ${product?.product_id} | Mennyiség: ${product.quantity}db | Összeg: ${product.total_price}Ft`}</li>
               ))
             : 'Betöltés...'}
         </ul>
+        <div className="orderDetail">Felhasználó azonosító: {order?.userId}</div>
         <div className="orderDetail">
           Várható szállítási időpont: {timestampToDate(order?.deliver_date)}
         </div>

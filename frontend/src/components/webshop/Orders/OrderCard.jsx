@@ -17,8 +17,7 @@ const OrderCard = (props) => {
         <button onClick={() => deleteUserOrders(props.order.id)} className="delete-order">
           x
         </button>
-        <div className="order-data">Rendelés id: {props.order.id}</div>
-        <div className="order-data">User id: {props.order.user_id}</div>
+        <div className="order-data">Rendelés azonosító: {props.order.id}</div>
         <div className="order-data">Rendelés időpontja: {timestampToDate(props.order.created)}</div>
         <div className="order-data">
           Várható szállítási nap: {timestampToDate(props.order.deliver_date)}

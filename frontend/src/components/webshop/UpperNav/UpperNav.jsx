@@ -19,7 +19,7 @@ function UpperNav() {
   setToggle(!toggleU);
   };
 
-  const { user } = useAuth();
+  const { user,logout } = useAuth();
   return (
     <>
       <div className={toggleU ? 'uppernavbar expanded' : 'uppernavbar'}>
@@ -31,7 +31,7 @@ function UpperNav() {
           <div className="profile">
             {user?.id ? (<>
               <NavLink to='/profile/:id'><Icon icon={person} size={30} /></NavLink>
-              <button className="signOut"><Icon icon={logOut} size={30} /></button>
+              <button className="signOut" onClick={()=> logout()}><Icon icon={logOut} size={30} /></button>
               <NavLink to='/cart'><Icon icon={shoppingCart} size={30} /></NavLink>
             </>) : (<>
               <NavLink to="/user/login">Belépés</NavLink>

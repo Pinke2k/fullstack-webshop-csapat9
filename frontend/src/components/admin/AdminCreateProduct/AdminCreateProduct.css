@@ -1,4 +1,4 @@
-form {
+.createProduct .form form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,19 +13,19 @@ form {
     margin-top: 20px;
   }
   
-  .form-group {
+  .form .form-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
   
-  .form-group label {
+  .form .form-group label {
     font-weight: bold;
     color: #333;
   }
   
-  .form-group input,
-  .form-group select {
+  .form .form-group input,
+  .form .form-group select {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -35,8 +35,8 @@ form {
     transition: border-color 0.2s ease;
   }
   
-  .form-group input:focus,
-  .form-group select:focus {
+  .form .form-group input:focus,
+  .form .form-group select:focus {
     border-color: #007bff;
   }
   
@@ -46,7 +46,7 @@ form {
     gap: 1rem;
   }
   
-  .button-group button {
+  .form .button-group button {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -57,19 +57,19 @@ form {
     transition: background-color 0.2s ease;
   }
   
-  .button-group button[type="submit"] {
+  .form .button-group button[type="submit"] {
     background-color: #007bff;
   }
   
-  .button-group button[type="submit"]:hover {
+  .form .button-group button[type="submit"]:hover {
     background-color: #0056b3;
   }
   
-  .button-group button:last-child {
+  .form .button-group button:last-child {
     background-color: #dc3545;
   }
   
-  .button-group button:last-child:hover {
+  .form .button-group button:last-child:hover {
     background-color: #b30016;
   }
   

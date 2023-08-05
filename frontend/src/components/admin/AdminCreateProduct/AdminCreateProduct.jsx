@@ -72,87 +72,89 @@ export default function AdminCreateProduct() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="title">Új név:</label>
-        <input
-          className="input"
-          maxLength={100}
-          id="title"
-          type="text"
-          name="name"
-          value={newName}
-          onChange={handleNameChange}
-          required
-        />
-      </div>
+    <div className="createProduct">
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="title">Új név:</label>
+          <input
+            className="input"
+            maxLength={100}
+            id="title"
+            type="text"
+            name="name"
+            value={newName}
+            onChange={handleNameChange}
+            required
+          />
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="price">Új ár:</label>
-        <input
-          className="input"
-          id="price"
-          type="number"
-          name="price"
-          value={newPrice}
-          onChange={handlePriceChange}
-          required
-        />
-      </div>
+        <div className="form-group">
+          <label htmlFor="price">Új ár:</label>
+          <input
+            className="input"
+            id="price"
+            type="number"
+            name="price"
+            value={newPrice}
+            onChange={handlePriceChange}
+            required
+          />
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="description">Új leírás:</label>
-        <input
-          rows={8}
-          cols={30}
-          id="description"
-          type="text"
-          name="description"
-          value={newDescription}
-          onChange={handleDescChange}
-          required
-        />
-      </div>
+        <div className="form-group">
+          <label htmlFor="description">Új leírás:</label>
+          <input
+            rows={8}
+            cols={30}
+            id="description"
+            type="text"
+            name="description"
+            value={newDescription}
+            onChange={handleDescChange}
+            required
+          />
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="amount">Új mennyiseg:</label>
-        <input
-          className="input"
-          id="amount"
-          type="number"
-          name="amount"
-          value={newAmount}
-          onChange={handleAmountChange}
-          required
-        />
-      </div>
+        <div className="form-group">
+          <label htmlFor="amount">Új mennyiseg:</label>
+          <input
+            className="input"
+            id="amount"
+            type="number"
+            name="amount"
+            value={newAmount}
+            onChange={handleAmountChange}
+            required
+          />
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="category">Kategóriák:</label>
-        <select name="categoryId" value={newCategory} onChange={handleCategoryChange}>
-          <option key={0} value={''}>
-            Válassz kategóriát!
-          </option>
-          {categoryList?.map((category, idx) => {
-            return (
-              <option key={idx + 1} value={category.id}>
-                {category.name}
-              </option>
-            );
-          })}
-        </select>
-      </div>
+        <div className="form-group">
+          <label htmlFor="category">Kategóriák:</label>
+          <select name="categoryId" value={newCategory} onChange={handleCategoryChange}>
+            <option key={0} value={''}>
+              Válassz kategóriát!
+            </option>
+            {categoryList?.map((category, idx) => {
+              return (
+                <option key={idx + 1} value={category.id}>
+                  {category.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="image">Kép feltöltése:</label>
-        <input type="file" onChange={handleFileChange} />
-      </div>
+        <div className="form-group">
+          <label htmlFor="image">Kép feltöltése:</label>
+          <input type="file" onChange={handleFileChange} />
+        </div>
 
-      <div className="button-group">
-        {/* <button onClick={upload}>upload</button> */}
-        <button type="submit">Mentés</button>
-        <button onClick={() => navigate('/admin/products')}>Mégsem</button>
-      </div>
-    </form>
+        <div className="button-group">
+          {/* <button onClick={upload}>upload</button> */}
+          <button type="submit">Mentés</button>
+          <button onClick={() => navigate('/admin/products')}>Mégsem</button>
+        </div>
+      </form>
+    </div>
   );
 }

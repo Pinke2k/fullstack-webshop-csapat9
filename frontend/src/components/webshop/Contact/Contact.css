@@ -1,12 +1,12 @@
 .map{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-self: center;
 }
 
 .contact-form{
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-self: center;
 }
 

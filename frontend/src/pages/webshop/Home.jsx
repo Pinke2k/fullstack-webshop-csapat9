@@ -2,6 +2,7 @@ import { ordersContext } from '../../contexts/ordersContext';
 import ordersFetch from '../../services/orders-fetch';
 import { useContext, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
+import Homee from '../../components/webshop/Home/Home';
 
 const Home = () => {
   const { orders, setOrders } = useContext(ordersContext);
@@ -20,7 +21,11 @@ const Home = () => {
         });
     }
   }, []);
-  return <div>Home</div>;
+  return (
+  
+    <Homee/>
+  
+  )
 };
 
 export default Home;

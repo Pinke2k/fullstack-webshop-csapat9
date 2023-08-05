@@ -4,6 +4,10 @@
     margin: 3rem;
 }
 
+.prod-container{
+  padding-bottom: 0.5rem;
+}
+
 .product-count {
   display: flex;
   text-align: center;
@@ -23,7 +27,8 @@
 .pagination-b{
   display: flex;
   justify-content: flex-end;
-  margin-right: 3rem;
+  margin-bottom: 5rem;
+  margin-right: 2rem;
 }
 
 .pagination-b button {

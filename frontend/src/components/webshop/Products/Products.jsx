@@ -48,6 +48,7 @@ export default function Products() {
 
     return (
         <>
+        <div className='prod-container'>
             <div className="sort-search">
                 <select className='select-p' onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
                     <option value="price-ASC">Ár szerint növekvő</option>
@@ -76,6 +77,7 @@ export default function Products() {
             <div className='pagination-b'>
                 <button className="pagination-button" id="next-button" aria-label="Previous page" title="Previous page" onClick={decreasePage}>Előző oldal</button>
                 <button className="pagination-button" id="next-button" aria-label="Next page" title="Next page" onClick={increasePage} value={limiter}>Következő oldal</button>
+            </div>
             </div>
         </>
     )

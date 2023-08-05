@@ -5,7 +5,7 @@ html{
 
 body{
     margin: 0;
-    position: relative;
+    position: absolute;
     min-height: 100%;
     padding-bottom: 6rem;
     box-sizing: inherit;

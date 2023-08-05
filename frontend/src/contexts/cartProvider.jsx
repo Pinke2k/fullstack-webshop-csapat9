@@ -1,19 +1,32 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import cartFetch from '../services/cart-fetch';
 import useAuth from '../hooks/useAuth';
+import AuthContext from './authProvider';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const {auth} = useContext(AuthContext)
 
+  
   const { user } = useAuth();
-  const id = user?.id;
+  const token = auth?.accessToken;
+  // console.log(token,'auth')
+  const id = user?.id
+  // console.log(token,'user')
+  
+  useEffect(() => {
+    if (id && token) {
+      console.log(token,'efffedt')
+      fetchCartItems();
+    }
+  }, [id,token]);
 
   const fetchCartItems = async () => {
     try {
-      const cartData = await cartFetch.getCartItems(id);
+      const cartData = await cartFetch.getCartItems(id,auth?.accessToken);
       if (cartData) {
         setCartItems(cartData.cartItems);
         setTotalPrice(cartData.totalPrice);
@@ -38,11 +51,6 @@ export const CartProvider = ({ children }) => {
     setCartItems(cartDataItems);
   };
 
-  useEffect(() => {
-    if (id) {
-      fetchCartItems();
-    }
-  }, []);
 
   return (
     <CartContext.Provider value={{ cartItems, totalPrice, fetchCartItems, updateCart }}>

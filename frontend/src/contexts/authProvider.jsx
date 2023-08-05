@@ -9,6 +9,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     if (auth.accessToken) {
+      console.log('accessToken in AuthProvider:', auth.accessToken)
       const decoded = jwtDecode(auth.accessToken);
       setAuth((prev) => ({ ...prev, user: { ...decoded } }));
     }

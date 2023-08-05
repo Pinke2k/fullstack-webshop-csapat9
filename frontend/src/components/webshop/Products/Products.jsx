@@ -56,7 +56,7 @@ export default function Products() {
                     <option value="name-DESC">ABC sorrend Z-A</option>
                 </select>
                 <div className='product-count'>
-                <p>Termszám/oldal </p>
+                <p>Termékszám/oldal </p>
                 <select className="page-size" onChange={(e) => setPageSize(e.target.value)} value={pageSize}>
                     <option value="10">10</option>
                     <option value="20">20</option>

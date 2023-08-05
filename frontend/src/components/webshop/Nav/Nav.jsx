@@ -28,7 +28,7 @@ function Nav() {
             <NavLink to="/products">Termékek</NavLink>
           </li>
           <li>
-            <NavLink to="/aboutus">Rolunk</NavLink>
+            <NavLink to="/aboutus">Rólunk</NavLink>
           </li>
           <li>
             <NavLink to="/contact">Kapcsolat</NavLink>

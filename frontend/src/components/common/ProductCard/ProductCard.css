@@ -43,8 +43,12 @@
   text-align: center;
 }
 
-.add-product button{
-  background-color: #4a2e04;
+.product-content .lastline button{
+  background-color: #53360b;
+}
+
+.product-content .lastline button:hover{
+  background-color: #794c08;
 }
 
 .product-content {

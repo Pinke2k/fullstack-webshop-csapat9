@@ -19,8 +19,14 @@ body {
     width: 100%;
    
   }
-
   
+  
+  .toggle-icon{
+  display: none;
+
+
+} 
+
   .navbar .links a{
     text-decoration: none;
     color: var(--clr-dark-dark);
@@ -42,7 +48,7 @@ body {
   }
 
   .navbar .links li a:hover{
-    color: var(--clr-light-yellow);
+    color: rgb(184, 126, 76);
     box-shadow: 0 0.1rem 0 var(--clr-light-dark);
   }
 
@@ -105,7 +111,7 @@ body {
     .toggle-icon{
       display: block;
       color: var(--clr-dark-dark);
-      
+      position: absolute;
       top: 1rem;
       right: 1.2rem;
       
@@ -114,12 +120,13 @@ body {
 
   }
 
-    .toggle-icon{
-    display: none; } 
   
 
   @media(max-width: 450px){
-   
+
+    .navbar.expanded {
+      height: 10rem;
+    }
     
     .navbar.expanded .links{
       position: absolute;
@@ -152,7 +159,7 @@ body {
     .toggle-icon{
       display: block;
       color: var(--clr-dark-dark);
-      
+      position: absolute;
       top: 1rem;
       right: 1.2rem;
       

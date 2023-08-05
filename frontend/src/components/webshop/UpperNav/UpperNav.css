@@ -111,9 +111,12 @@ body {
 
   .profile .signOut{
     color: var(--clr-dark-dark);
-    background-color: var(--clr-light-brown);
+    background-color: white;
     border: none;
     order: 2;
+  }
+  .top-right i:hover{
+    color: var(--clr-light-yellow);
   }
   
   @media(max-width: 900px){

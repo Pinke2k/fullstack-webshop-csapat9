@@ -12,7 +12,7 @@ export default function AdminProducts(){
     const [currentPage, setCurrentPage] = useState(1)
     const [sortBy, setSortBy] = useState("")
     const [searchByName, setsearchByName] = useState("")
-    const [pageSize, setPageSize] = useState(1)
+    const [pageSize, setPageSize] = useState(10)
      const navigate = useNavigate()
     
     useEffect(() => {
@@ -64,9 +64,8 @@ export default function AdminProducts(){
 
                 <label>Méret:</label>
                 <select className="page-size" onChange={(e) => setPageSize(e.target.value)} value={pageSize}>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
                     <option value="10">10</option>
+                    <option value="20">20</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
                 </select>

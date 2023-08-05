@@ -17,8 +17,10 @@ export default function Login() {
             <form>
               <div>
                 <h1 className="register-h1">Register</h1>
+                <div className='inputs'>
                 <p>
                   Email:{' '}
+                  
                 <input
                   className="register-input"
                   type="email"
@@ -50,6 +52,7 @@ export default function Login() {
                   required
                 />
               </p>
+              </div>
               <p>
                 <button type="submit" className='register-button' onClick={() => authFetches.userRegister(formData)}>
                   Register

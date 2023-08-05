@@ -54,7 +54,7 @@ export default function Products() {
           <option value="price-ASC">Növekvő</option>
           <option value="price-DESC">Csökkenő</option>
         </select>
-        <label for="name">Méret:</label>
+        <label name="name">Méret:</label>
         <select
           className="page-size"
           onChange={(e) => setPageSize(e.target.value)}
@@ -66,7 +66,7 @@ export default function Products() {
           <option value="25">25</option>
           <option value="50">50</option>
         </select>
-        <label for="name">Keresés:</label>
+        <label name="name">Keresés:</label>
         <input type="text" id="name" name="name" />
       </div>
       <div className="product-box">
@@ -76,7 +76,7 @@ export default function Products() {
       </div>
       <div>
         <button
-          class="pagination-button"
+          className="pagination-button"
           id="next-button"
           aria-label="Previous page"
           title="Previous page"
@@ -85,7 +85,7 @@ export default function Products() {
           Előző oldal
         </button>
         <button
-          class="pagination-button"
+          className="pagination-button"
           id="next-button"
           aria-label="Next page"
           title="Next page"

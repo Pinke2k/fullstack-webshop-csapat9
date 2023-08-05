@@ -10,6 +10,7 @@ const useAuth = () => {
     authFetches.userLogin(formData).then((resp) => {
       setAuth((prev) => ({ ...prev, accessToken: resp.accessToken }));
       localStorage.setItem('accessToken', resp.accessToken);
+      console.log('accessToken after login:', resp.accessToken);
       toast.success('Sikeres bejelentkezés');
       // navigate('/');
     });
@@ -17,11 +18,10 @@ const useAuth = () => {
 
   function logout() {
     localStorage.removeItem('accessToken');
-    setAuth({ accessToken: null });
+    // Töröld a korábbi felhasználói adatokat is
+    setAuth({ accessToken: null, user: null });
     toast.success('Kijelentkezve');
-    // navigate('/');
   }
-
   return { ...auth, login, logout };
 };
 

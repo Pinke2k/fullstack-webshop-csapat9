@@ -17,8 +17,8 @@ body {
   
     --clr-light-white: #ffffff; 
     --clr-dark-white: #e7e7e7; 
-    --clr-light-brown: #c1a32a; 
-    --clr-dark-brown: #846300;
+    --clr-light-brown: #edd2aa; 
+    --clr-dark-brown: #9e7b4a;
     --clr-medium-brown: #4e3b00;
     --clr-light-dark: #3d3d3d; 
     --clr-dark-dark: #000000;
@@ -51,7 +51,7 @@ body {
     --lh-small: 0.5em;
     --lh-medium: 0.75em;
   
-    --nav-height: 10vh;
+    --nav-height: 3vh;
   
   
   }

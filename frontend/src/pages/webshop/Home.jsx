@@ -21,11 +21,7 @@ const Home = () => {
         });
     }
   }, []);
-  return (
-  
-    <Homee/>
-  
-  )
+  return <Homee />;
 };
 
 export default Home;

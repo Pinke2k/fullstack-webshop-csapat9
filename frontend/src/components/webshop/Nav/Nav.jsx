@@ -19,10 +19,10 @@ function Nav() {
   };
 
   const { user, logout } = useAuth();
+  console.log(user);
   return (
     <>
       <div className={toggle ? 'navbar expanded' : 'navbar'}>
-      
         <ul className="links">
           <li>
             <NavLink to="/products">Termékek</NavLink>
@@ -36,6 +36,11 @@ function Nav() {
           <li>
             <NavLink to="/orders">Megrendeléseim</NavLink>
           </li>
+          {user?.isAdmin === 1 ? (
+            <li>
+              <NavLink to="/admin">Admin oldalak</NavLink>
+            </li>
+          ) : null}
         </ul>
         <div className="toggle-icon" onClick={handleToggle}>
           {toggle ? <Icon icon={x} size={30} /> : <Icon icon={menu} size={30} />}

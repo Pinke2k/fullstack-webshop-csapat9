@@ -7,36 +7,25 @@ import { toast } from 'react-toastify';
 import { getCategoryList, updateCategory } from '../../../services/api-fetch';
 
 export default function AdminUpdateProduct() {
-  const [productUpdate, setProductUpdate] = useState('');
-  const { id } = useParams();
+  const [productUpdate, setProductUpdate] = useState({});
+  const { id } = useParams('productId');
   const navigate = useNavigate();
   const [newName, setNewName] = useState('');
   const [newPrice, setNewPrice] = useState('');
   const [newDescription, setNewDescription] = useState('');
-  const [newAmount, SetNewAmount] = useState('');
+  const [newAmount, setNewAmount] = useState('');
   const [newCategory, setNewCategory] = useState('');
   const [categoryList, setCategoryList] = useState();
   const [file, setFile] = useState();
 
   useEffect(() => {
     readProducts().then((data) => {
-      const productToUpdate = data.find((product) => (product.id = id));
-
+      console.log(data, id);
+      const productToUpdate = data.find((product) => product.id === id);
+      console.log(productToUpdate);
       setProductUpdate(productToUpdate);
-      setNewName(productUpdate.name);
-      setNewPrice(productUpdate.price);
-      setNewDescription(productUpdate.description);
-      SetNewAmount(productToUpdate.amount);
-      setNewCategory(productToUpdate.categoryId);
     });
-  }, [
-    id,
-    productUpdate.name,
-    productUpdate.price,
-    productUpdate.description,
-    productUpdate.amount,
-    productUpdate.categoryId,
-  ]);
+  }, []);
 
   useEffect(() => {
     getCategoryList().then((data) => {
@@ -45,27 +34,27 @@ export default function AdminUpdateProduct() {
   }, []);
 
   function handleNameChange(e) {
-    setNewName(e.target.value);
     e.preventDefault();
+    setProductUpdate({ ...productUpdate, name: e.target.value });
   }
 
   function handlePriceChange(e) {
-    setNewPrice(e.target.value);
     e.preventDefault();
+    setProductUpdate({ ...productUpdate, price: e.target.value });
   }
 
   function handleDescChange(e) {
-    setNewDescription(e.target.value);
     e.preventDefault();
+    setProductUpdate({ ...productUpdate, description: e.target.value });
   }
   function handleAmountChange(e) {
-    SetNewAmount(e.target.value);
     e.preventDefault();
+    setProductUpdate({ ...productUpdate, amount: e.target.value });
   }
   function handleCategoryChange(e) {
     //e.preventDefault()
 
-    setNewCategory(e.target.value);
+    setProductUpdate({ ...productUpdate, categoryId: e.target.value });
   }
   function handleFileChange(e) {
     const selectedFile = e.target.files[0];
@@ -104,7 +93,7 @@ export default function AdminUpdateProduct() {
             id="title"
             type="text"
             name="name"
-            value={newName}
+            value={productUpdate?.name}
             onChange={handleNameChange}
             required
           />
@@ -115,7 +104,7 @@ export default function AdminUpdateProduct() {
             id="price"
             type="number"
             name="price"
-            value={newPrice}
+            value={productUpdate?.price}
             onChange={handlePriceChange}
             required
           />
@@ -127,7 +116,7 @@ export default function AdminUpdateProduct() {
             id="description"
             type="text"
             name="description"
-            value={newDescription}
+            value={productUpdate?.description}
             onChange={handleDescChange}
             required
           />
@@ -137,12 +126,16 @@ export default function AdminUpdateProduct() {
             id="amount"
             type="number"
             name="amount"
-            value={newAmount}
+            value={productUpdate?.amount}
             onChange={handleAmountChange}
             required
           />
           <label htmlFor="category">kategóriák</label>
-          <select name="categoryId" value={newCategory} onChange={handleCategoryChange}>
+          <select
+            name="categoryId"
+            value={productUpdate?.categoryId}
+            onChange={handleCategoryChange}
+          >
             <option key={0}>Válassz kategóriát!</option>
             {categoryList?.map((category, idx) => {
               return (

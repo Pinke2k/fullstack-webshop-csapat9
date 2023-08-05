@@ -11,7 +11,7 @@
 
   .product-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap:wrap;
     align-items: center;
     padding: 20px;
   }
@@ -39,13 +39,17 @@
   }
   
   .product-box {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
     gap: 20px;
-    justify-items: center;
+    justify-items: center; 
+    box-sizing: border-box;
+    display: flex;
   }
   
   .product-card {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;

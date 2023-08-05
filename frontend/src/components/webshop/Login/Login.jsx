@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import './Login.css';
 
@@ -8,18 +9,20 @@ export default function Login() {
     password: '',
   });
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
     login(formData);
+    navigate('/');
   }
 
   return (
     <>
-    <main className="loginMain">
-      <section>
-        {/* <h1>Login</h1> */}
-        <div className='wrapper'>
+      <main className="loginMain">
+        <section>
+          {/* <h1>Login</h1> */}
+          <div className="wrapper">
             <form onSubmit={handleSubmit}>
               <div>
                 <h1 className="login-h1">Bejelentkezés</h1>
@@ -47,7 +50,9 @@ export default function Login() {
                   />
                 </p>
                 <p>
-                  <button type="submit" className='login-button'>Login</button>
+                  <button type="submit" className="login-button">
+                    Login
+                  </button>
                 </p>
               </div>
             </form>

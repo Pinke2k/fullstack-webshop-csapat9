@@ -1,0 +1,75 @@
+.createProduct .form form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    margin-top: 20px;
+  }
+  
+  .form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form .form-group label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form .form-group input,
+  .form .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  
+  .form .form-group input:focus,
+  .form .form-group select:focus {
+    border-color: #007bff;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .form .button-group button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .form .button-group button[type="submit"] {
+    background-color: #007bff;
+  }
+  
+  .form .button-group button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .form .button-group button:last-child {
+    background-color: #dc3545;
+  }
+  
+  .form .button-group button:last-child:hover {
+    background-color: #b30016;
+  }
+  

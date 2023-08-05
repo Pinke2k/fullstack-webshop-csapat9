@@ -1,0 +1,100 @@
+.button-container {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  .button-container button.new-category {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-container button.new-category:hover {
+    background-color: #0056b3;
+  }
+  
+  .button-container button.new-category:focus {
+    outline: none;
+  }
+  
+  label {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .category-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .category-box div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 15px;
+    min-width: 200px;
+    max-width: 300px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+  }
+  
+  .category-box div span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .category-box div button {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .category-box div button:focus {
+    outline: none;
+  }
+  
+  .category-box div button.modify-category {
+    background-color: #48b64b;
+  }
+  
+  .category-box div button.modify-category:hover {
+    background-color: #1b9221;
+  }
+  
+  .category-box div button.modify-category:focus {
+    outline: none;
+  }
+  
+  .category-box div button.delete-category {
+      background-color: #f64d4d;
+    }
+    
+    .category-box div button.delete-category:hover {
+      background-color: #f60a0a;
+  }
+  
+  .category-box div button.delete-category:focus {
+    outline: none;
+  }
+  

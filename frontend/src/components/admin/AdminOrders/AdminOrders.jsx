@@ -1,7 +1,6 @@
-import './AdminOrders.css';
+import '../../webshop/Orders/Orders.css';
 import { useEffect, useContext } from 'react';
 import ordersFetch from '../../../services/orders-fetch';
-import '../../webshop/Orders/Orders.css';
 import OrderCard from '../..//webshop/Orders/OrderCard';
 import { allOrdersContext } from '../../../contexts/allOrdersContext';
 

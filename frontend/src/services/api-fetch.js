@@ -1,6 +1,5 @@
 import { API_URL } from '../constants/constants';
 import { token } from '../constants/constants';
-
 export function readProducts() {
   return fetch(`${API_URL}/api/products`)
     .then((resp) => {

@@ -9,17 +9,24 @@ import { userPlus } from 'react-icons-kit/feather/userPlus';
 import { logOut } from 'react-icons-kit/feather/logOut';
 import { person } from 'react-icons-kit/oct/person'
 import { shoppingCart } from 'react-icons-kit/typicons/shoppingCart'
+import { useNavigate } from 'react-router-dom';
 import './UpperNav.css'
+import { func } from 'prop-types';
 
 
 function UpperNav() {
   const [toggleU, setToggle] = useState(false);
+  const navigate = useNavigate()
 
   const handleToggle = () => {
   setToggle(!toggleU);
   };
-
   const { user,logout } = useAuth();
+
+function handleLogout() {
+  logout()
+  navigate('/')
+}
   return (
     <>
       <div className={toggleU ? 'uppernavbar expanded' : 'uppernavbar'}>
@@ -31,7 +38,7 @@ function UpperNav() {
           <div className="profile">
             {user?.id ? (<>
               <NavLink to='/profile/:id'><Icon icon={person} size={30} /></NavLink>
-              <button className="signOut" onClick={()=> logout()}><Icon icon={logOut} size={30} /></button>
+              <button className="signOut" onClick={handleLogout}><Icon icon={logOut} size={30} /></button>
               <NavLink to='/cart'><Icon icon={shoppingCart} size={30} /></NavLink>
             </>) : (<>
               <NavLink to="/user/login">Belépés</NavLink>

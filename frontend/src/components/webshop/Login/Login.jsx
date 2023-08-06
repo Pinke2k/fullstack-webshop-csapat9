@@ -27,7 +27,7 @@ export default function Login() {
               <div>
                 <h1 className="login-h1">Bejelentkezés</h1>
                 <p>
-                  Email:{' '}
+                  E-mail:{' '}
                   <input
                     className="login-input"
                     type="email"
@@ -37,7 +37,7 @@ export default function Login() {
                   />
                 </p>
                 <p>
-                  Password:{' '}
+                  Jelszó:{' '}
                   <input
                     className="login-input"
                     type="password"

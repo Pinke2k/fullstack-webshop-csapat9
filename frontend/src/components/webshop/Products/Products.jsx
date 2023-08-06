@@ -41,7 +41,7 @@ export default function Products() {
         if (currentPage > 1) {
             setCurrentPage((c) => c - 1)
         };
-        console.log("currentpage: ", currentPage)
+        console.log("currentpage: ", currentPage) 
     }
 
 

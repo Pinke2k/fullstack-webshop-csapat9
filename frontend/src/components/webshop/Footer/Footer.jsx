@@ -9,8 +9,8 @@ export function Footer() {
     <>
         <footer className="footer">
             <div className="info">
-            <a className="cont-Mea" href="/home">Adatvédelem</a>
-            <a className="cont-Mea" href="/home">Jogi nyilatkozat</a>
+            <a className="cont-Mea" href="/">Adatvédelem</a>
+            <a className="cont-Mea" href="/">Jogi nyilatkozat</a>
             </div>
             <div className="contactMe">
                 <a className="cont-Mea" href="/contact">Lépj velünk kapcsolatba!</a>

@@ -16,19 +16,6 @@ export default function AdminLayout() {
     return <Navigate to="/" />;
   }
 
-  // return (
-  //   <>
-  //     {user?.isAdmin ? (
-  //       <>
-  //         <AdminNav />
-  //         <MainDash/>
-  //         <Outlet />
-  //       </>
-  //     ) : (
-  //       <Navigate to="/"></Navigate>
-  //     )}
-  //   </>
-  // );
 
   return (
     <>
@@ -38,10 +25,5 @@ export default function AdminLayout() {
     </>
   );
 }
-  // return (
-  //   <>
-  //     <AdminNav />
-  //     <Outlet />
-  //   </>
-  // );
+
 

@@ -13,6 +13,9 @@ export default function AdminNav() {
             </div>
             <ul className='links'>
                 <li>
+                    <NavLink to="/admin">Admin Főoldal</NavLink>
+                </li>
+                <li>
                     <NavLink to="/admin/products">Admin termékek</NavLink>
                 </li>
                 <li>

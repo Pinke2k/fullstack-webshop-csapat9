@@ -47,7 +47,8 @@ import {
     {
       title: "Eladás",
       color: {
-        backGround: "linear-gradient(180deg, #bb67ff 0%, #c484f3 100%)",
+        backGround: "linear-gradient(90deg, rgba(194,121,205,1) 0%, rgba(71,4,77,1) 100%)",
+        // linear-gradient(90deg, rgba(209,158,202,1) 0%, rgba(128,68,119,1) 100%)
         boxShadow: "0px 10px 20px 0px #e0c6f5",
       },
       barValue: 70,
@@ -63,8 +64,8 @@ import {
     {
       title: "Bevétel",
       color: {
-        backGround: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(49,217,116,1) 35%, rgba(0,212,255,1) 100%)",
-        boxShadow: "0px 10px 20px 0px #FDC0C7",
+        backGround: "linear-gradient(90deg, rgba(219,178,209,1) 0%, rgba(149,36,122,1) 100%)",
+        boxShadow: "0px 10px 20px 0px #e0c6f5",
       },
       barValue: 80,
       value: "14,270",
@@ -80,8 +81,8 @@ import {
       title: "Kiadások",
       color: {
         backGround:
-          "linear-gradient(rgb(248, 212, 154) -146.42%, rgb(255 202 113) -46.42%)",
-        boxShadow: "0px 10px 20px 0px #F9D59B",
+          "linear-gradient(90deg, rgba(209,158,202,1) 0%, rgba(128,68,119,1) 100%)",
+        boxShadow: "0px 10px 20px 0px #e0c6f5",
       },
       barValue: 60,
       value: "4,270",

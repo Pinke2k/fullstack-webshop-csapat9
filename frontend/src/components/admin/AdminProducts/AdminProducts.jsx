@@ -91,9 +91,11 @@ export default function AdminProducts() {
           </button>
         </div>
         <div className="product-box">
-          {ProductList?.map((p) => (
-            <ProductCardAdmin product={p} key={p.id} />
-          ))}
+          {ProductList?.map((p) => {
+            if (p.name !== null) {
+              return <ProductCardAdmin product={p} key={p.id} />;
+            }
+          })}
         </div>
       </div>
       <div>

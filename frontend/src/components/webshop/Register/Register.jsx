@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import authFetches from '../../../services/auth-fetch';
+import { useNavigate } from 'react-router';
+import {toast} from 'react-toastify'
 import './Register.css';
 
 export default function Login() {
@@ -9,17 +11,32 @@ export default function Login() {
     password: '',
   });
 
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    authFetches.userRegister(formData)
+      .then(() => {
+        toast.success('Sikeres regisztráció!');
+        navigate('/');
+      })
+      .catch((error) => {
+        toast.error('Hiba történt a regisztráció során.');
+        console.error(error);
+      });
+  }
+
   return (
     <>
       <main className='loginMain'>
         <section>
           <div className='wrapper'>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div>
-                <h1 className="register-h1">Register</h1>
+                <h1 className="register-h1">Regisztráció</h1>
                 <div className='inputs'>
                 <p>
-                  Email:{' '}
+                  E-mail:{' '}
                   
                 <input
                   className="register-input"
@@ -30,7 +47,7 @@ export default function Login() {
                 />
               </p>
               <p>
-                Username:{' '}
+                Felhasználónév:{' '}
                 <input
                   className="register-input"
                   type="text"
@@ -40,7 +57,7 @@ export default function Login() {
                 />
               </p>
               <p>
-                Password:{' '}
+                Jelszó:{' '}
                 <input
                   className="register-input"
                   type="password"
@@ -54,8 +71,8 @@ export default function Login() {
               </p>
               </div>
               <p>
-                <button type="submit" className='register-button' onClick={() => authFetches.userRegister(formData)}>
-                  Register
+                <button type="submit" className='register-button'>
+                  Regisztráció
                 </button>
               </p>
               </div>

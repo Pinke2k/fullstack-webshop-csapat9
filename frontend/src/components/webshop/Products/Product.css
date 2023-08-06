@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     margin: 3rem;
+    justify-content: center;
 }
 
 .prod-container{
@@ -61,7 +62,7 @@
    height: 2rem;
    background-color: rgb(255, 255, 255);
    border-radius: 3px;
-   border-color: #dcbc94;
+   border: 1px solid #dcbc94;
     
   }
 
@@ -86,6 +87,17 @@
    background-color: rgb(255, 255, 255);
    border-radius: 3px;
    border-color: #dcbc94;
+  }
+
+  @media (max-width: 900px) {
+    .product-box{
+      display: flex;
+      flex-direction: row;
+      margin: 3rem;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+  }
   }
 
  

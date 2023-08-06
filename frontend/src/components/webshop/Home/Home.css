@@ -31,6 +31,7 @@ body {
 
 }
 
+
 .nyeremenyjatek button {
     width: 10rem;
     height: 4rem;
@@ -38,6 +39,17 @@ body {
     margin-left: 2rem;
     border-color: rgb(168, 119, 87);
     background-color: rgb(160, 128, 100);
+    color: antiquewhite;
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.nyeremenyjatek button:hover {
+    width: 10rem;
+    height: 4rem;
+    border-radius: 10px;
+    margin-left: 2rem;
+    border-color: rgb(110, 63, 31);
+    background-color: rgb(128, 88, 53);
     color: antiquewhite;
     font-size: larger;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -133,10 +145,12 @@ body {
 }
 
 @media(max-width: 1000px){
-    .categories {
+
+    .categories, .categories-home {
         display: flex;
         flex-direction: column;
         gap:2rem ;
+        justify-content: center;
 
     }
     .categories img {
@@ -164,18 +178,29 @@ body {
         flex-direction: column;
         text-align: center;
         align-items: center;
-        justify-content: space-between;
-        margin-left: 8rem;
-        margin-right: 10rem;
+        justify-content: center;
+       
         background-color: rgb(191, 179, 165);
         border-radius: 10px;
-        padding-right: 2rem;
         padding-bottom: 1rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
 
 }
+
+        .nyeremenyjatek div {
+            display: flex;
+            justify-content: center;
+        }
 }
+
+@media(max-width: 500px) {
+    .nyeremenyjatek {
+        display: none;
+    }
+}
+
+
 
 
     

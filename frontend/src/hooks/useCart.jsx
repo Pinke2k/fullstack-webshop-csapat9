@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { CartContext } from '../contexts/cartProvider';
 import cartFetch from '../services/cart-fetch';
 import useAuth from './useAuth';
+import {toast} from "react-toastify"
 
 export const useCart = () => {
   const { cartItems, totalPrice, fetchCartItems, updateCart } = useContext(CartContext);
@@ -19,19 +20,37 @@ export const useCart = () => {
 
   const addToCart = async (productId, quantity) => {
     try {
+      if(!id){
+        toast.warning('Bejelentkezés szükséges', {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        return
+      }
+
       await cartFetch.createCartItem(id, productId, quantity);
       updateCart(productId, quantity);
+      toast.success('Sikeresen hozzá adtad a kosárhoz!', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } catch (error) {
       console.error('Hiba a kosár elemek hozzáadása közben:', error);
+      toast.error('Hiba a kosár elemek hozzáadása közben', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
+  
 
   const removeCart = async (productId) => {
     try {
       await cartFetch.deleteCart(id, productId);
       fetchCartItems();
+      
     } catch (err) {
       console.error('hiba a termék törlése során');
+      toast.error('Hiba a kosár törlése közben', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
   const removeCartItem = async (productId) => {

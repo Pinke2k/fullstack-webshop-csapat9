@@ -34,9 +34,12 @@ export default {
     return new Promise((resolve, reject) => {
       db.get(sql, [email], (err, row) => {
         if (err) reject(err);
-        else {
+        else if(row) {
           const { id, password_hash: passwordHash, is_admin: isAdmin } = row;
           resolve({ id, email, passwordHash, isAdmin });
+        }
+        else {
+          reject(err)
         }
       });
     });

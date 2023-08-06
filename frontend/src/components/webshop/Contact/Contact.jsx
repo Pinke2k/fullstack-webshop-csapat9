@@ -30,7 +30,7 @@ const Contact = () => {
           </form>
         </StyledContactForm>
         </div>
-        <div className="map"><iframe width="450" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=500&amp;height=400&amp;hl=en&amp;q=Margit%20h%C3%ADd+(My%20Business%20Name)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/population/">Population mapping</a></iframe>
+        <div className="map"><iframe width="450" height="350" src="https://maps.google.com/maps?width=500&amp;height=400&amp;hl=en&amp;q=Margit%20h%C3%ADd+(My%20Business%20Name)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/population/">Population mapping</a></iframe>
       </div>
     </div>
     </>

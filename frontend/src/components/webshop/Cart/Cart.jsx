@@ -128,7 +128,7 @@ const Cart = () => {
                   >
                     Megrendelés
                   </button>
-                  <button onClick={removeCart}>kosár törlése</button>
+                  <button onClick={removeCart}>Kosár törlése</button>
                 </div>
               </div>
             </div>

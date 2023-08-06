@@ -38,7 +38,7 @@ export default function AdminModifyCategory() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <label htmlFor="title">Új név:</label>
       <p>
         <input

@@ -1,99 +1,123 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .product-container {
-    display: flex;
-    flex-wrap:wrap;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .button-container {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .button-container button.new-product {
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .button-container button.new-product:hover {
-    background-color: #0056b3;
-  }
-  
-  .product-box {
-    display: flex;
-    flex-wrap:wrap;
-    align-items: center;
-    gap: 20px;
-    justify-items: center; 
-    box-sizing: border-box;
-    display: flex;
-  }
-  
-  .product-card {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-card img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  
-  .product-card h3 {
-    font-weight: bold;
-    margin-bottom: 5px;
-    text-align: center;
-    color: #333;
-  }
-  
-  .product-card span {
-    text-align: center;
-    color: #666;
-  }
-  
-  
-  .product-card button {
-    margin-top: auto;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    background-color: #ff5a5f;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .product-card button:hover {
-    background-color: #e52c30;
-  }
-  
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap:wrap;
+  align-items: center;
+  padding: 20px;
+}
+
+.button-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button-container button.new-product {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-container button.new-product:hover {
+  background-color: #0056b3;
+}
+
+.product-box {
+  display: flex;
+  flex-wrap:wrap;
+  align-items: center;
+  gap: 20px;
+  justify-items: center; 
+  box-sizing: border-box;
+  display: flex;
+}
+
+.product-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center;
+  color: #333;
+}
+
+.product-card span {
+  text-align: center;
+  color: #666;
+}
+
+
+.product-card button {
+  margin-top: auto;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff5a5f;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+  background-color: #e52c30;
+}
+.pagination-button{
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #bba487;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin: 1px;
+}
+.pagination-button:hover{
+  background-color: #7a6449;
+}
+
+.pagination{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width:max-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+}

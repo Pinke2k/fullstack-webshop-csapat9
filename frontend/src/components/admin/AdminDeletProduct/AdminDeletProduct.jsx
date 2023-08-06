@@ -2,6 +2,7 @@ import { deleteProduct, readProducts } from '../../../services/api-fetch';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import './AdminDeletProduct.css';
 
 export default function AdminDeleteProduct() {
   const [productDelete, setProductDelete] = useState('');

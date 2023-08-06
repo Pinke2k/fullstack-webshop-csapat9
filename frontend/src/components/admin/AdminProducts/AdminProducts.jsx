@@ -98,7 +98,7 @@ export default function AdminProducts() {
           })}
         </div>
       </div>
-      <div>
+      <div className="pagination">
         <button
           className="pagination-button"
           id="next-button"
